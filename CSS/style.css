@@ -1,0 +1,54 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Sarabun', Tahoma, sans-serif; }
+body { background-color: #1a1a2e; color: white; overflow: hidden; }
+.screen { display: none; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
+.screen.active { display: flex; }
+
+/* --- 1. Menu Screen --- */
+#menu-screen { justify-content: center; align-items: center; gap: 5vw; background: radial-gradient(circle, #2a2a4a 0%, #0d0d1a 100%); }
+.characters { display: flex; flex-direction: column; gap: 20px; }
+.char-box { width: 100px; height: 120px; background: rgba(255, 255, 255, 0.1); border: 2px dashed #aaa; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.center-stage { display: flex; flex-direction: column; align-items: center; position: relative; margin-top: -50px; }
+.magic-book { font-size: 120px; text-shadow: 0 0 30px #00ffff; z-index: 2; pointer-events: none; }
+.hologram-container { position: relative; margin-bottom: -40px; animation: float 3s ease-in-out infinite; }
+.hologram-base { width: 0; height: 0; border-left: 160px solid transparent; border-right: 160px solid transparent; border-top: 100px solid rgba(0, 255, 255, 0.25); position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); filter: blur(8px); z-index: 0; pointer-events: none; }
+.hologram-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: rgba(0, 40, 70, 0.7); border: 2px solid #00ffff; border-radius: 15px; padding: 25px; box-shadow: 0 0 25px rgba(0, 255, 255, 0.6); position: relative; z-index: 1; }
+.subject-btn { width: 130px; height: 130px; background: rgba(0, 0, 0, 0.6); border: 1px solid #00ffff; border-radius: 10px; color: white; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 16px; }
+.subject-btn .icon { font-size: 45px; margin-bottom: 10px; }
+.subject-btn.unlocked:hover { background: rgba(0, 255, 255, 0.3); transform: scale(1.05); box-shadow: 0 0 15px #00ffff; }
+.subject-btn.locked { border-color: #555; color: #888; background: rgba(0, 0, 0, 0.8); cursor: not-allowed; }
+.subject-btn.locked .icon { filter: grayscale(100%); }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+/* --- 2. Map Screen (Line Ranger Style) --- */
+#map-screen { flex-direction: column; background: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(to bottom, #0f2027, #203a43, #2c5364); }
+.map-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); z-index: 10; }
+.map-title-text { color: #00ffff; text-shadow: 0 0 10px #00ffff; font-size: 28px; }
+.map-area { position: relative; flex-grow: 1; width: 100%; overflow: hidden; }
+.path-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+.stage-node { position: absolute; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; z-index: 2; transform: translate(-50%, -50%); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+.stage-node::after { content: attr(data-label); position: absolute; bottom: -25px; font-size: 14px; white-space: nowrap; color: white; text-shadow: 1px 1px 2px black; }
+/* สถานะล็อก */
+.stage-node.locked { background: #555; border: 3px solid #333; color: #aaa; cursor: not-allowed; }
+/* สถานะที่เล่นได้ปัจจุบัน */
+.stage-node.current { background: radial-gradient(circle, #00ffff, #0088ff); border: 3px solid white; color: white; cursor: pointer; animation: pulse 1.5s infinite; }
+/* สถานะที่ผ่านแล้ว */
+.stage-node.passed { background: #2ed573; border: 3px solid white; color: white; cursor: pointer; }
+/* บอส */
+.stage-node.boss { width: 90px; height: 90px; background: radial-gradient(circle, #ff4757, #8b0000); border: 4px solid yellow; font-size: 30px; }
+
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); } }
+
+/* --- 3. Game Screen --- */
+#game-screen { justify-content: center; align-items: center; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+.game-container { width: 90%; max-width: 800px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 30px; }
+.game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.back-btn { padding: 10px 15px; background: #ff4757; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.hearts { font-size: 24px; letter-spacing: 5px; }
+.boss-zone { text-align: center; margin-bottom: 20px; padding: 15px; background: rgba(0, 0, 0, 0.5); border-radius: 10px; border: 2px solid #ff4757; }
+.boss-name { color: #ff4757; text-shadow: 0 0 10px red; }
+.boss-img { font-size: 60px; margin: 10px 0; }
+.question-box { background: white; color: #333; padding: 30px; border-radius: 10px; font-size: 24px; text-align: center; margin-bottom: 30px; min-height: 120px; display: flex; align-items: center; justify-content: center; }
+.choices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.choice-btn { padding: 20px; font-size: 18px; background: #2ed573; color: white; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: bold; }
+.choice-btn:hover { background: #26ae60; transform: translateY(-3px); }

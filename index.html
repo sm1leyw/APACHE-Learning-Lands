@@ -4,34 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APACHE Learning Land</title>
-    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
     <div id="menu-screen" class="screen active">
-        <div class="background-mysterious"></div>
-        
-        <div class="character-group left">
-            <div class="char-placeholder">👦 พี่ศิลา</div>
-            <div class="char-placeholder">👦 จุก</div>
+        <div class="characters">
+            <div class="char-box">👦 น้องสมหมาย</div>
+            <div class="char-box">👦 น้องจุก</div>
         </div>
 
         <div class="center-stage">
             <div class="hologram-container">
                 <div class="hologram-grid">
-                    <button class="subject-btn unlocked" onclick="startGame('thai')">
+                    <button id="btn-thai" class="subject-btn unlocked" onclick="enterSubject('thai')">
                         <span class="icon">📝</span>
                         <p>ภาษาไทย</p>
                     </button>
-                    <button class="subject-btn locked" onclick="alert('ต้องผ่านวิชาภาษาไทยก่อนนะ!')">
+                    <button id="btn-math" class="subject-btn locked" onclick="alertLockedSubject()">
                         <span class="icon">📐</span>
                         <p>คณิตศาสตร์</p>
                     </button>
-                    <button class="subject-btn locked" onclick="alert('ต้องผ่านวิชาคณิตศาสตร์ก่อนนะ!')">
+                    <button id="btn-science" class="subject-btn locked" onclick="alertLockedSubject()">
                         <span class="icon">🔬</span>
                         <p>วิทยาศาสตร์</p>
                     </button>
-                    <button class="subject-btn locked" onclick="alert('ต้องผ่านวิชาวิทยาศาสตร์ก่อนนะ!')">
+                    <button id="btn-english" class="subject-btn locked" onclick="alertLockedSubject()">
                         <span class="icon">🔤</span>
                         <p>ภาษาอังกฤษ</p>
                     </button>
@@ -41,30 +39,45 @@
             <div class="magic-book">📖</div>
         </div>
 
-        <div class="character-group right">
-            <div class="char-placeholder">👧 น้องหน้า</div>
-            <div class="char-placeholder">👧 มานี</div>
+        <div class="characters">
+            <div class="char-box">👧 น้องน้อยหน่า</div>
+            <div class="char-box">👧 น้องมานี</div>
+        </div>
+    </div>
+
+    <div id="map-screen" class="screen">
+        <div class="map-header">
+            <button class="back-btn" onclick="returnToMenu()">⬅ กลับเมนูหลัก</button>
+            <h2 id="map-title" class="map-title-text">แผนที่วิชา...</h2>
+        </div>
+        
+        <div class="map-area" id="map-area">
+            <svg id="path-svg" class="path-svg"></svg>
+            <div id="nodes-container"></div>
         </div>
     </div>
 
     <div id="game-screen" class="screen">
-        <div class="game-header">
-            <button onclick="returnToMenu()" class="back-btn">กลับเมนู</button>
-            <h2 id="level-title">วิชาภาษาไทย - ด่านที่ 1 (ตัวสะกด)</h2>
-            <div class="hearts-container" id="hearts-display">
-                ❤️ ❤️ ❤️
+        <div class="game-container">
+            <div class="game-header">
+                <button class="back-btn" onclick="returnToMap()">⬅ ถอยทัพ (กลับแผนที่)</button>
+                <h2 id="level-title">ด่านที่...</h2>
+                <div class="hearts" id="hearts-display">❤️❤️❤️</div>
             </div>
-        </div>
 
-        <div class="game-board">
+            <div id="boss-ui" class="boss-zone" style="display: none;">
+                <h2 class="boss-name">🔥 BOSS: TJ ROBERT 🔥</h2>
+                <div class="boss-img">😈</div>
+                <p class="boss-quote">"เข้ามาเลยเด็กๆ!"</p>
+            </div>
+
             <div class="question-box">
                 <h3 id="question-text">คำถามจะแสดงที่นี่</h3>
             </div>
-            <div class="choices-grid" id="choices-container">
-                </div>
+            <div class="choices-grid" id="choices-container"></div>
         </div>
     </div>
 
-    <script src="js/index.js"></script>
+    <script src="JAVA/script.js"></script>
 </body>
 </html>
