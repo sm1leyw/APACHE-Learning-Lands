@@ -1,11 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>APACHE Learning Land</title>
+    <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
-    
+
+    <div id="menu-screen" class="screen active">
+        <div class="background-mysterious"></div>
+        
+        <div class="character-group left">
+            <div class="char-placeholder">👦 พี่ศิลา</div>
+            <div class="char-placeholder">👦 จุก</div>
+        </div>
+
+        <div class="center-stage">
+            <div class="hologram-container">
+                <div class="hologram-grid">
+                    <button class="subject-btn unlocked" onclick="startGame('thai')">
+                        <span class="icon">📝</span>
+                        <p>ภาษาไทย</p>
+                    </button>
+                    <button class="subject-btn locked" onclick="alert('ต้องผ่านวิชาภาษาไทยก่อนนะ!')">
+                        <span class="icon">📐</span>
+                        <p>คณิตศาสตร์</p>
+                    </button>
+                    <button class="subject-btn locked" onclick="alert('ต้องผ่านวิชาคณิตศาสตร์ก่อนนะ!')">
+                        <span class="icon">🔬</span>
+                        <p>วิทยาศาสตร์</p>
+                    </button>
+                    <button class="subject-btn locked" onclick="alert('ต้องผ่านวิชาวิทยาศาสตร์ก่อนนะ!')">
+                        <span class="icon">🔤</span>
+                        <p>ภาษาอังกฤษ</p>
+                    </button>
+                </div>
+                <div class="hologram-base"></div>
+            </div>
+            <div class="magic-book">📖</div>
+        </div>
+
+        <div class="character-group right">
+            <div class="char-placeholder">👧 น้องหน้า</div>
+            <div class="char-placeholder">👧 มานี</div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <button onclick="returnToMenu()" class="back-btn">กลับเมนู</button>
+            <h2 id="level-title">วิชาภาษาไทย - ด่านที่ 1 (ตัวสะกด)</h2>
+            <div class="hearts-container" id="hearts-display">
+                ❤️ ❤️ ❤️
+            </div>
+        </div>
+
+        <div class="game-board">
+            <div class="question-box">
+                <h3 id="question-text">คำถามจะแสดงที่นี่</h3>
+            </div>
+            <div class="choices-grid" id="choices-container">
+                </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
 </body>
 </html>
