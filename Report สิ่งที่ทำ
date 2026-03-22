@@ -1,12 +1,15 @@
 21/3/69 #Phuvaness
-ทำ Mock ระบบ หน้า Menu , หน้า ด่าน , หน้า แบบทดสอบ , Gen Background
+ทำ Mock ระบบ หน้า Menu , หน้า ด่าน , หน้า แบบทดสอบ , Gen ภาพ และวีดีโอ Background
 ไฟล์ที่อัพเดทแก้ไข 
+
 1."index.html"
 2."JAVA/script.js"
 3."CSS/style.css"
 4."BG" (โฟลเดอร์ Background)
 
 22/3/69 #Phuvaness
+ไฟล์ที่อัพเดทแก้ไข
+
 ทำ Mock ระบบ Battle(การต่อสู้จำลอง)
 เข้าไปลอง Test ได้ในไฟล์ "Battle Tester"
 
