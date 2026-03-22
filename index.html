@@ -7,48 +7,55 @@
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div id="menu-screen" class="screen active" style="background: url('./BG/_animation_vdo_169__720p_.gif') no-repeat center center; background-size: cover;"></div>
+
     <div id="menu-screen" class="screen active">
-        <div class="characters">
-            <div class="char-box">👦 น้องสมหมาย</div>
-            <div class="char-box">👦 น้องจุก</div>
-        </div>
+        
+        <video autoplay loop muted playsinline class="bg-video">
+            <source src="BG/Children_amazed_excited_202603221444.mp4" type="video/mp4">
+        </video>
 
-        <div class="center-stage">
-            <div class="hologram-container">
-                <div class="hologram-grid">
-                    <button id="btn-thai" class="subject-btn unlocked" onclick="enterSubject('thai')">
-                        <span class="icon">📝</span>
-                        <p>ภาษาไทย</p>
-                    </button>
-                    <button id="btn-math" class="subject-btn locked" onclick="alertLockedSubject()">
-                        <span class="icon">📐</span>
-                        <p>คณิตศาสตร์</p>
-                    </button>
-                    <button id="btn-science" class="subject-btn locked" onclick="alertLockedSubject()">
-                        <span class="icon">🔬</span>
-                        <p>วิทยาศาสตร์</p>
-                    </button>
-                    <button id="btn-english" class="subject-btn locked" onclick="alertLockedSubject()">
-                        <span class="icon">🔤</span>
-                        <p>ภาษาอังกฤษ</p>
-                    </button>
-                </div>
-                <div class="hologram-base"></div>
+        <div class="menu-content">
+            <div class="characters">
+                <!-- <div class="char-box">👦 น้องสมหมาย</div>
+                <div class="char-box">👦 น้องจุก</div> -->
             </div>
-            <div class="magic-book">📖</div>
-        </div>
 
-        <div class="characters">
-            <div class="char-box">👧 น้องน้อยหน่า</div>
-            <div class="char-box">👧 น้องมานี</div>
+            <div class="center-stage">
+                <div class="hologram-container">
+                    <div class="hologram-grid">
+                        <button id="btn-thai" class="subject-btn unlocked" onclick="enterSubject('thai')">
+                            <span class="icon">📝</span>
+                            <p>ภาษาไทย</p>
+                        </button>
+                        <button id="btn-math" class="subject-btn locked" onclick="alertLockedSubject()">
+                            <span class="icon">📐</span>
+                            <p>คณิตศาสตร์</p>
+                        </button>
+                        <button id="btn-science" class="subject-btn locked" onclick="alertLockedSubject()">
+                            <span class="icon">🔬</span>
+                            <p>วิทยาศาสตร์</p>
+                        </button>
+                        <button id="btn-english" class="subject-btn locked" onclick="alertLockedSubject()">
+                            <span class="icon">🔤</span>
+                            <p>ภาษาอังกฤษ</p>
+                        </button>
+                    </div>
+                    <div class="hologram-base"></div>
+                </div>
+                <div class="magic-book">📖</div>
+            </div>
+
+            <div class="characters">
+                <!-- <div class="char-box">👧 น้องน้อยหน่า</div>
+                <div class="char-box">👧 น้องมานี</div> -->
+            </div>
         </div>
     </div>
 
     <div id="map-screen" class="screen">
         <div class="map-header">
             <button class="back-btn" onclick="returnToMenu()">⬅ กลับเมนูหลัก</button>
-            <h2 id="map-title" class="map-title-text">แผนที่วิชา...</h2>
+            <h2 id="map-title" class="map-title-text">แผนที่ผจญภัย: วิชา...</h2>
         </div>
         
         <div class="map-area" id="map-area">

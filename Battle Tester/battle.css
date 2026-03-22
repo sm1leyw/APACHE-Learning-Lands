@@ -1,0 +1,186 @@
+/* ===== พื้นฐาน ===== */
+body {
+  font-family: 'Prompt', sans-serif;
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* ===== กรอบหน้าจอเกม (Game Container) ===== */
+.game-container {
+  width: 100%;
+  max-width: 600px;
+  height: 800px;
+  max-height: 90vh;
+  background: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop') center/cover;
+  position: relative;
+  border: 10px solid #333;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== แถบหัวใจด้านบน (HUD) ===== */
+.hud-top {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hp-box {
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid #111;
+  border-radius: 8px;
+  padding: 5px 15px;
+  display: inline-block;
+  box-shadow: 2px 2px 0px #111;
+}
+
+.hp-label { font-weight: 600; color: #333; margin-right: 5px; }
+.hearts { font-size: 1.2rem; }
+
+.boss-name {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 2px solid white;
+}
+
+/* ===== พื้นที่บอส (Arena) ===== */
+.battle-arena {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.monster {
+  width: 150px; /* ขยายขนาดรูป Gif ให้ใหญ่ขึ้น */
+  filter: drop-shadow(0px 10px 5px rgba(0,0,0,0.5));
+}
+
+/* อนิเมชั่นบอสหายใจ (ขยับขึ้นลง) */
+.idle {
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* อนิเมชั่นตอนบอสโดนตี */
+.hit-effect {
+  animation: blinkRed 0.3s 3; /* กระพริบแดง 3 รอบ */
+}
+
+@keyframes blinkRed {
+  0% { filter: brightness(1) drop-shadow(0px 10px 5px rgba(0,0,0,0.5)); }
+  50% { filter: brightness(0) sepia(1) hue-rotate(-50deg) saturate(5) drop-shadow(0px 10px 5px rgba(255,0,0,0.5)); }
+  100% { filter: brightness(1) drop-shadow(0px 10px 5px rgba(0,0,0,0.5)); }
+}
+
+/* ===== กล่อง UI ด้านล่าง (สไตล์เรโทร) ===== */
+.ui-bottom {
+  height: 250px;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.dialogue-box, .quiz-box {
+  background: white;
+  border: 6px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: inset 0 0 0 4px #e0e0e0, 0 5px 15px rgba(0,0,0,0.5); /* ทำขอบซ้อนแบบเกมยุคเก่า */
+  cursor: pointer;
+}
+
+.dialogue-box p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ลูกศรกระพริบรอให้กด */
+.blinking-cursor {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  color: #d32f2f;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===== กล่องคำถาม & ปุ่มกด ===== */
+.question {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.choices-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* แบ่ง 2 คอลัมน์ */
+  gap: 10px;
+}
+
+.choice-btn {
+  background: #f0f0f0;
+  border: 3px solid #777;
+  padding: 10px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* เวลาเอาเมาส์ชี้ ให้เหมือนมีลูกศรเลื่อนมาชี้ */
+.choice-btn:hover {
+  background: #333;
+  color: white;
+  border-color: #111;
+}
+
+.choice-btn:hover::before {
+  content: "▶ ";
+  color: #ffeb3b;
+}
+
+/* ===== Utilities ===== */
+.hidden { display: none !important; }
+
+/* อนิเมชั่นหน้าจอสั่น (เวลาโดนบอสตี/ตอบผิด) */
+.shake-screen {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-5px, 0, 0); }
+  20%, 80% { transform: translate3d(5px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-10px, 0, 0); }
+  40%, 60% { transform: translate3d(10px, 0, 0); }
+}

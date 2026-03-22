@@ -1,4 +1,4 @@
-// ================= 1. ข้อมูลวิชาและด่าน =================
+// ================= ข้อมูลโจทย์วิชาภาษาไทย =================
 const subjectData = {
     thai: {
         name: "ภาษาไทย",
@@ -18,30 +18,20 @@ const subjectData = {
             ]}
         ]
     }
-    // อนาคตเพิ่ม math, science, english ที่นี่
 };
 
-// ตำแหน่งของแต่ละด่านบนแผนที่ (X%, Y%) ไล่จากล่างขึ้นบนแบบคดเคี้ยว
 const mapPositions = [
     { x: 15, y: 85 }, { x: 40, y: 80 }, { x: 70, y: 85 }, { x: 85, y: 65 }, { x: 60, y: 55 },
-    { x: 30, y: 60 }, { x: 15, y: 40 }, { x: 35, y: 20 }, { x: 65, y: 30 }, { x: 85, y: 15 } // ด่าน 10 บอส
+    { x: 30, y: 60 }, { x: 15, y: 40 }, { x: 35, y: 20 }, { x: 65, y: 30 }, { x: 85, y: 15 }
 ];
 
-// ================= 2. ระบบเซฟความคืบหน้า =================
-// เก็บว่าวิชาไหนด่านล่าสุดที่เล่นได้คือด่านอะไร (เริ่มที่ 1)
-let userProgress = {
-    thai: 1, 
-    math: 0, // 0 = ล็อกทั้งวิชา
-    science: 0,
-    english: 0
-};
-
+let userProgress = { thai: 1, math: 0, science: 0, english: 0 };
 let currentSubject = "";
-let playingLevelIndex = 0; // index ของด่านที่กำลังเล่น (0-9)
+let playingLevelIndex = 0;
 let currentQuestionIndex = 0;
 let hearts = 3;
 
-// ================= 3. การควบคุมหน้าจอ =================
+// ================= ระบบหน้าจอ =================
 function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -51,7 +41,7 @@ function returnToMenu() { showScreen('menu-screen'); }
 function returnToMap() { showScreen('map-screen'); buildMap(); }
 function alertLockedSubject() { alert("ต้องผ่านวิชาก่อนหน้าและปราบมอนสเตอร์ให้หมดก่อนนะ!"); }
 
-// ================= 4. ระบบแผนที่ (Map) =================
+// ================= ระบบแผนที่ =================
 function enterSubject(subject) {
     currentSubject = subject;
     document.getElementById('map-title').innerText = `แผนที่ผจญภัย: ${subjectData[subject].name}`;
@@ -62,60 +52,43 @@ function enterSubject(subject) {
 function buildMap() {
     const container = document.getElementById('nodes-container');
     const svg = document.getElementById('path-svg');
-    container.innerHTML = "";
-    svg.innerHTML = "";
-
+    container.innerHTML = ""; svg.innerHTML = "";
+    
     const levels = subjectData[currentSubject].levels;
-    const maxUnlocked = userProgress[currentSubject]; // ด่านสูงสุดที่เล่นได้
-
-    // วาดเส้นเชื่อมก่อน
+    const maxUnlocked = userProgress[currentSubject];
     let pathD = "";
 
     levels.forEach((lvl, index) => {
         const pos = mapPositions[index];
+        const px = `${pos.x}%`; const py = `${pos.y}%`;
         
-        // วาดเส้น SVG
-        const px = `${pos.x}%`;
-        const py = `${pos.y}%`;
         if (index === 0) pathD += `M ${pos.x} ${pos.y} `;
         else pathD += `L ${pos.x} ${pos.y} `;
 
-        // สร้างปุ่มด่าน
         const btn = document.createElement('div');
         btn.className = 'stage-node';
-        btn.style.left = px;
-        btn.style.top = py;
+        btn.style.left = px; btn.style.top = py;
         btn.setAttribute('data-label', lvl.isBoss ? "BOSS" : `ด่าน ${lvl.id}`);
 
-        // เช็คสถานะล็อก/ปลดล็อก
         if (lvl.id < maxUnlocked) {
-            btn.classList.add('passed');
-            btn.innerHTML = "⭐"; // ผ่านแล้ว
-            btn.onclick = () => startLevel(index); // กลับไปเล่นซ้ำได้
+            btn.classList.add('passed'); btn.innerHTML = "⭐";
+            btn.onclick = () => startLevel(index);
         } else if (lvl.id === maxUnlocked) {
-            btn.classList.add('current');
-            btn.innerHTML = lvl.isBoss ? "😈" : lvl.id;
+            btn.classList.add('current'); btn.innerHTML = lvl.isBoss ? "😈" : lvl.id;
             if(lvl.isBoss) btn.classList.add('boss');
             btn.onclick = () => startLevel(index);
         } else {
-            btn.classList.add('locked');
-            btn.innerHTML = "🔒"; // ล็อกอยู่
+            btn.classList.add('locked'); btn.innerHTML = "🔒";
             btn.onclick = () => alert("ด่านนี้ยังถูกล็อกอยู่ เคลียร์ด่านก่อนหน้าก่อนนะ!");
-            if(lvl.isBoss) {
-                btn.classList.add('boss');
-                btn.innerHTML = "😈";
-            }
+            if(lvl.isBoss) { btn.classList.add('boss'); btn.innerHTML = "😈"; }
         }
-        
         container.appendChild(btn);
     });
 
-    // ใส่เส้นทางลงใน SVG (แปลง % เป็นขนาดพิกเซลเพื่อให้เส้นสวย)
-    // หมายเหตุ: แบบจำลองอย่างง่ายเพื่อวาดเส้น
     svg.innerHTML = `<path d="${pathD}" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="8" stroke-dasharray="10, 10" />`;
 }
 
-// ================= 5. ระบบเล่นเกม =================
+// ================= ระบบเกมเพลย์ =================
 function startLevel(index) {
     playingLevelIndex = index;
     hearts = 3;
@@ -126,7 +99,7 @@ function startLevel(index) {
 
     const bossUI = document.getElementById('boss-ui');
     const gameBoard = document.querySelector('.game-container');
-
+    
     if (levelInfo.isBoss) {
         bossUI.style.display = 'block';
         gameBoard.style.border = "3px solid #ff4757";
@@ -140,25 +113,24 @@ function startLevel(index) {
     renderQuestion();
 }
 
-function updateHearts() {
-    document.getElementById('hearts-display').innerText = "❤️".repeat(hearts);
+function updateHearts() { 
+    document.getElementById('hearts-display').innerText = "❤️".repeat(hearts); 
 }
 
 function renderQuestion() {
     const levelInfo = subjectData[currentSubject].levels[playingLevelIndex];
     
-    // ถ้าตอบครบทุกข้อ
     if (currentQuestionIndex >= levelInfo.questions.length) {
         handleLevelComplete();
         return;
     }
-
+    
     const q = levelInfo.questions[currentQuestionIndex];
     document.getElementById('question-text').innerText = q.q;
     
     const choicesBox = document.getElementById('choices-container');
     choicesBox.innerHTML = ""; 
-
+    
     q.choices.forEach((choice, index) => {
         const btn = document.createElement('button');
         btn.className = 'choice-btn';
@@ -184,30 +156,34 @@ function renderQuestion() {
     });
 }
 
-// ================= 6. เคลียร์ด่านและอัปเดต Map =================
 function handleLevelComplete() {
     const levelInfo = subjectData[currentSubject].levels[playingLevelIndex];
-
-    // ถ้าด่านที่เพิ่งเคลียร์ เป็นด่านสูงสุดที่เคยมาถึง ให้อัปเดต Progress
+    
     if (levelInfo.id === userProgress[currentSubject]) {
         userProgress[currentSubject]++;
     }
-
+    
     if (levelInfo.isBoss) {
         alert("🎉 สุดยอด! ปราบบอส TJ ROBERT สำเร็จ! ปลดล็อกวิชาคณิตศาสตร์แล้ว!");
         unlockSubjectMenu('math');
-        returnToMenu(); // จบวิชา กลับไปหน้าหลัก
+        returnToMenu();
     } else {
         alert(`เยี่ยมมาก! ผ่านด่าน ${levelInfo.id} แล้ว ไปลุยต่อกันเลย!`);
-        returnToMap(); // กลับหน้าแผนที่ เพื่อกดด่านต่อไป
+        returnToMap();
     }
 }
 
-// ปลดล็อกวิชาที่หน้าแรก
+// ================= ปลดล็อกวิชา =================
 function unlockSubjectMenu(subject) {
-    userProgress[subject] = 1; // เซ็ตให้วิชานั้นเริ่มเล่นด่าน 1 ได้
+    userProgress[subject] = 1; 
     const btn = document.getElementById(`btn-${subject}`);
     btn.classList.remove('locked');
     btn.classList.add('unlocked');
-    btn.onclick = () => enterSubject(subject);
+    
+    // ตั้งค่าให้เมื่อกดปุ่มคณิตศาสตร์ จะวิ่งไปที่ไฟล์ math.html 
+    if(subject === 'math') {
+        btn.onclick = () => window.location.href = 'math.html';
+    } else {
+        btn.onclick = () => enterSubject(subject);
+    }
 }

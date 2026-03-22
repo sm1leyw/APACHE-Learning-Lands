@@ -3,15 +3,10 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 .screen { display: none; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
 .screen.active { display: flex; }
 
-/* ================= 1. Menu Screen (อัปเดตพื้นหลัง GIF) ================= */
-#menu-screen { 
-    justify-content: center; 
-    align-items: center; 
-    gap: 5vw; 
-    /* โค้ดดึงไฟล์ GIF มาเป็นพื้นหลัง */
-    background: url('BG/_animation_vdo_169__720p_.gif') no-repeat center center; 
-    background-size: cover; /* บังคับให้ขยายเต็มหน้าจอ */
-}
+/* --- 1. Menu Screen (Video Background) --- */
+#menu-screen { position: relative; background-color: #1a1a2e; overflow: hidden; }
+.bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; }
+.menu-content { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; gap: 5vw; width: 100%; height: 100%; }
 
 .characters { display: flex; flex-direction: column; gap: 20px; }
 .char-box { width: 100px; height: 120px; background: rgba(255, 255, 255, 0.1); border: 2px dashed #aaa; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; backdrop-filter: blur(5px); }
@@ -25,27 +20,23 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 .subject-btn.unlocked:hover { background: rgba(0, 255, 255, 0.3); transform: scale(1.05); box-shadow: 0 0 15px #00ffff; }
 .subject-btn.locked { border-color: #555; color: #888; background: rgba(0, 0, 0, 0.8); cursor: not-allowed; }
 .subject-btn.locked .icon { filter: grayscale(100%); }
-
 @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-/* ================= 2. Map Screen (ภาษาไทย) ================= */
+/* --- 2. Map Screen --- */
 #map-screen { flex-direction: column; background: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(to bottom, #0f2027, #203a43, #2c5364); }
 .map-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); z-index: 10; }
 .map-title-text { color: #00ffff; text-shadow: 0 0 10px #00ffff; font-size: 28px; }
 .map-area { position: relative; flex-grow: 1; width: 100%; overflow: hidden; }
 .path-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-
 .stage-node { position: absolute; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; z-index: 2; transform: translate(-50%, -50%); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
 .stage-node::after { content: attr(data-label); position: absolute; bottom: -25px; font-size: 14px; white-space: nowrap; color: white; text-shadow: 1px 1px 2px black; }
-
 .stage-node.locked { background: #555; border: 3px solid #333; color: #aaa; cursor: not-allowed; }
 .stage-node.current { background: radial-gradient(circle, #00ffff, #0088ff); border: 3px solid white; color: white; cursor: pointer; animation: pulse 1.5s infinite; }
 .stage-node.passed { background: #2ed573; border: 3px solid white; color: white; cursor: pointer; }
 .stage-node.boss { width: 90px; height: 90px; background: radial-gradient(circle, #ff4757, #8b0000); border: 4px solid yellow; font-size: 30px; }
-
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); } }
 
-/* ================= 3. Game Screen ================= */
+/* --- 3. Game Screen --- */
 #game-screen { justify-content: center; align-items: center; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
 .game-container { width: 90%; max-width: 800px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 30px; }
 .game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
