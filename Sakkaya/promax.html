@@ -15,6 +15,8 @@
             --locked-node: #5d5d5d;
             --active-node1: #2dd4ff;
             --active-node2: #0ea5e9;
+            --success-green: #22c55e;
+            --error-red: #ef4444;
         }
 
         * {
@@ -224,6 +226,10 @@
             color: white;
         }
 
+        .node.locked {
+            cursor: not-allowed;
+        }
+
         .node.locked .node-circle {
             background: var(--locked-node);
             color: #ffd166;
@@ -336,7 +342,7 @@
 
         .game-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             background: rgba(255,255,255,0.08);
             border-radius: 24px;
             padding: 25px;
@@ -368,6 +374,56 @@
             text-align: center;
         }
 
+        .reading-box {
+            background: rgba(255,255,255,0.12);
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .reading-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #bfdbfe;
+        }
+
+        .reading-text {
+            font-size: 1.15rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .reading-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .speak-btn {
+            background: var(--success-green);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .speak-btn:hover {
+            opacity: 0.9;
+        }
+
+        .speak-note {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #dbeafe;
+            text-align: center;
+        }
+
         .choices-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -383,10 +439,29 @@
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         .choice-btn:hover {
             background: #dbeafe;
+        }
+
+        .choice-btn.correct {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .choice-btn.wrong {
+            background: var(--error-red);
+            color: white;
+        }
+
+        #answer-result {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 48px;
         }
 
         @media (max-width: 768px) {
@@ -476,10 +551,14 @@
                 <div class="hearts" id="hearts-display">❤️❤️❤️</div>
             </div>
 
+            <div id="reading-container"></div>
+
             <div class="question-box">
                 <h3 id="question-text">คำถามจะแสดงที่นี่</h3>
             </div>
+
             <div class="choices-grid" id="choices-container"></div>
+            <div id="answer-result"></div>
         </div>
     </div>
 
@@ -500,21 +579,63 @@
         const levelTitle = document.getElementById("level-title");
         const questionText = document.getElementById("question-text");
         const choicesContainer = document.getElementById("choices-container");
+        const answerResult = document.getElementById("answer-result");
+        const readingContainer = document.getElementById("reading-container");
 
         let currentSubject = "";
         let currentLevel = 1;
+        let answeredCorrectly = false;
 
         const levelPositions = [
-            { x: 15, y: 85, label: "ด่าน 1", active: true },
-            { x: 40, y: 80, label: "ด่าน 2", active: false },
-            { x: 70, y: 85, label: "ด่าน 3", active: false },
-            { x: 85, y: 65, label: "ด่าน 4", active: false },
-            { x: 60, y: 55, label: "ด่าน 5", active: false },
-            { x: 30, y: 60, label: "ด่าน 6", active: false },
-            { x: 15, y: 40, label: "ด่าน 7", active: false },
-            { x: 35, y: 20, label: "ด่าน 8", active: false },
-            { x: 65, y: 30, label: "ด่าน 9", active: false }
+            { x: 15, y: 85, label: "ด่าน 1" },
+            { x: 40, y: 80, label: "ด่าน 2" },
+            { x: 70, y: 85, label: "ด่าน 3" },
+            { x: 85, y: 65, label: "ด่าน 4" },
+            { x: 60, y: 55, label: "ด่าน 5" },
+            { x: 30, y: 60, label: "ด่าน 6" },
+            { x: 15, y: 40, label: "ด่าน 7" },
+            { x: 35, y: 20, label: "ด่าน 8" },
+            { x: 65, y: 30, label: "ด่าน 9" }
         ];
+
+        const subjectProgress = {
+            "ภาษาไทย": 1,
+            "อังกฤษ": 1,
+            "วิทยาศาสตร์": 1,
+            "คณิตศาสตร์": 1
+        };
+
+        const questions = {
+            "ภาษาไทย": {
+                1: {
+                    question: "คำในข้อใดเป็นคำนาม",
+                    choices: ["วิ่ง", "โรงเรียน", "สวย", "เร็ว"],
+                    correct: 1
+                }
+            },
+            "อังกฤษ": {
+                1: {
+                    readingText: "Tom is a student. He goes to school every day. He likes English.",
+                    question: "What does Tom like?",
+                    choices: ["Math", "English", "Football", "Music"],
+                    correct: 1
+                }
+            },
+            "วิทยาศาสตร์": {
+                1: {
+                    question: "ดาวเคราะห์ที่เราอาศัยอยู่คือข้อใด",
+                    choices: ["ดาวอังคาร", "โลก", "ดาวศุกร์", "ดวงจันทร์"],
+                    correct: 1
+                }
+            },
+            "คณิตศาสตร์": {
+                1: {
+                    question: "2 + 3 เท่ากับเท่าไร",
+                    choices: ["4", "5", "6", "7"],
+                    correct: 1
+                }
+            }
+        };
 
         function showScreen(screen) {
             menuScreen.classList.remove("active");
@@ -536,6 +657,7 @@
         }
 
         function returnToMap() {
+            renderMap();
             showScreen(mapScreen);
         }
 
@@ -546,6 +668,8 @@
         function renderMap() {
             nodesContainer.innerHTML = "";
             pathSvg.innerHTML = "";
+
+            const unlockedLevels = subjectProgress[currentSubject] || 1;
 
             for (let i = 0; i < levelPositions.length - 1; i++) {
                 const start = levelPositions[i];
@@ -564,18 +688,21 @@
             }
 
             levelPositions.forEach((level, index) => {
+                const levelNumber = index + 1;
+                const isUnlocked = levelNumber <= unlockedLevels;
+
                 const node = document.createElement("div");
-                node.className = `node ${level.active ? "active" : "locked"}`;
+                node.className = `node ${isUnlocked ? "active" : "locked"}`;
                 node.style.left = level.x + "%";
                 node.style.top = level.y + "%";
 
-                if (level.active) {
-                    node.onclick = () => openLessonVideo(index + 1);
+                if (isUnlocked) {
+                    node.onclick = () => openLessonVideo(levelNumber);
                 }
 
                 const circle = document.createElement("div");
                 circle.className = "node-circle";
-                circle.textContent = level.active ? (index + 1) : "🔒";
+                circle.textContent = isUnlocked ? levelNumber : "🔒";
 
                 const label = document.createElement("div");
                 label.className = "node-label";
@@ -591,25 +718,105 @@
             currentLevel = level;
             lessonTitle.textContent = `${currentSubject} - ด่าน ${level} : วิดีโอการสอน`;
 
-            // ใส่ลิงก์วิดีโอจริงของแต่ละด่านตรงนี้
             lessonVideoSource.src = "https://www.w3schools.com/html/mov_bbb.mp4";
 
             lessonVideo.load();
             showScreen(videoScreen);
         }
 
-        function goToQuestion() {
-            levelTitle.textContent = `${currentSubject} - ด่าน ${currentLevel}`;
-            questionText.textContent = `คำถามของวิชา${currentSubject} ด่าน ${currentLevel}`;
+        function speakText(text) {
+            window.speechSynthesis.cancel();
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = "en-US";
+            speech.rate = 0.9;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        }
 
-            choicesContainer.innerHTML = `
-                <button class="choice-btn">ตัวเลือก A</button>
-                <button class="choice-btn">ตัวเลือก B</button>
-                <button class="choice-btn">ตัวเลือก C</button>
-                <button class="choice-btn">ตัวเลือก D</button>
+        function renderReadingSection(levelQuestion) {
+            if (!levelQuestion.readingText) {
+                readingContainer.innerHTML = "";
+                return;
+            }
+
+            readingContainer.innerHTML = `
+                <div class="reading-box">
+                    <div class="reading-title">📖 Reading</div>
+                    <div class="reading-text">${levelQuestion.readingText}</div>
+                    <div class="reading-actions">
+                        <button class="speak-btn" onclick="speakText(${JSON.stringify(levelQuestion.readingText)})">🔊 ฟังประโยค</button>
+                        <button class="speak-btn" onclick="speakText(${JSON.stringify(levelQuestion.readingText)})">🗣️ พูดตาม</button>
+                    </div>
+                    <div class="speak-note">กดปุ่มเพื่อให้นักเรียนฟังเสียงภาษาอังกฤษ แล้วพูดตามได้</div>
+                </div>
             `;
+        }
+
+        function goToQuestion() {
+            answeredCorrectly = false;
+            answerResult.textContent = "";
+            answerResult.style.color = "white";
+
+            levelTitle.textContent = `${currentSubject} - ด่าน ${currentLevel}`;
+
+            const subjectQuestions = questions[currentSubject];
+            const levelQuestion = subjectQuestions && subjectQuestions[currentLevel];
+
+            if (!levelQuestion) {
+                readingContainer.innerHTML = "";
+                questionText.textContent = `ยังไม่มีคำถามสำหรับวิชา${currentSubject} ด่าน ${currentLevel}`;
+                choicesContainer.innerHTML = `
+                    <button class="choice-btn" onclick="returnToMap()">กลับแผนที่</button>
+                `;
+                showScreen(gameScreen);
+                return;
+            }
+
+            renderReadingSection(levelQuestion);
+            questionText.textContent = levelQuestion.question;
+            choicesContainer.innerHTML = "";
+
+            levelQuestion.choices.forEach((choice, index) => {
+                const button = document.createElement("button");
+                button.className = "choice-btn";
+                button.textContent = choice;
+                button.onclick = () => checkAnswer(index, button);
+                choicesContainer.appendChild(button);
+            });
 
             showScreen(gameScreen);
+        }
+
+        function checkAnswer(selectedIndex, clickedButton) {
+            if (answeredCorrectly) return;
+
+            const levelQuestion = questions[currentSubject][currentLevel];
+            const allButtons = document.querySelectorAll(".choice-btn");
+
+            if (selectedIndex === levelQuestion.correct) {
+                answeredCorrectly = true;
+                clickedButton.classList.add("correct");
+                answerResult.textContent = "✔ ตอบถูก";
+                answerResult.style.color = "#22c55e";
+
+                if (
+                    currentLevel === subjectProgress[currentSubject] &&
+                    subjectProgress[currentSubject] < levelPositions.length
+                ) {
+                    subjectProgress[currentSubject]++;
+                }
+
+                allButtons.forEach(btn => btn.disabled = true);
+
+                setTimeout(() => {
+                    alert("ตอบถูก! ปลดล็อกด่านถัดไปแล้ว");
+                    returnToMap();
+                }, 1000);
+            } else {
+                clickedButton.classList.add("wrong");
+                answerResult.textContent = "✖";
+                answerResult.style.color = "#ef4444";
+            }
         }
     </script>
 </body>
