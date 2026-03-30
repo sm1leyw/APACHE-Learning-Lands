@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,7 @@
 
     <style>
         :root {
-            --primary-blue: #1e3a8a;
+            --primary-blue: #f59e0b;
             --light-blue: #3b82f6;
             --dark-bg-top: #0b2236;
             --dark-bg-bottom: #2f6077;
@@ -44,7 +45,8 @@
 
         /* ---------- หน้าเมนู ---------- */
         #menu-screen {
-            background: #ffffff;
+            background: url("https://img2.pic.in.th/map1c12e03363a3077a.png") no-repeat center center;
+            background-size: cover;
         }
 
         nav {
@@ -52,7 +54,16 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: var(--primary-blue);
+
+            /* 🔥 โปร่งแสง */
+            background: rgba(30, 58, 138, 0.4);
+
+            /* 🔥 blur พื้นหลัง (โคตรสวย) */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            /* 🔥 ขอบบาง */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .logo {
@@ -62,17 +73,23 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
             margin-left: 25px;
             font-size: 0.95rem;
-            opacity: 0.85;
+            font-weight: 500;
+
+            /* 🔥 อ่านชัด */
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+
+            opacity: 0.9;
             transition: 0.3s;
         }
 
         .nav-links a:hover {
             opacity: 1;
-            color: #c7d2fe;
+            color: #fde047;
+            /* เหลืองทอง */
         }
 
         .main-container {
@@ -90,7 +107,7 @@
             background: white;
             border-radius: 20px;
             padding: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             margin-bottom: 50px;
         }
 
@@ -108,28 +125,31 @@
         }
 
         .subject-btn {
-            background: var(--primary-blue);
-            color: white;
+            background: linear-gradient(135deg, #facc15, #f59e0b);
+            /* 🟡 เหลืองทอง */
+            color: #78350f;
             border: none;
             padding: 18px 10px;
             border-radius: 12px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         .subject-btn:hover {
-            background: var(--light-blue);
-            transform: translateY(-5px);
+            background: linear-gradient(135deg, #fde047, #f97316);
+            transform: translateY(-5px) scale(1.05);
         }
+
 
         /* ---------- หน้าแผนที่ ---------- */
         #map-screen {
             background:
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15) 1px, transparent 1px),
-                radial-gradient(circle at 70% 40%, rgba(255,255,255,0.12) 1px, transparent 1px),
-                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.12) 1px, transparent 1px),
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--dark-bg-top), var(--dark-bg-bottom));
             background-size: 160px 160px, 220px 220px, 180px 180px, cover;
             position: relative;
@@ -148,9 +168,9 @@
         }
 
         .back-btn {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: white;
-            border: 1px solid rgba(255,255,255,0.35);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             padding: 10px 18px;
             border-radius: 12px;
             cursor: pointer;
@@ -159,14 +179,14 @@
         }
 
         .back-btn:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.25);
         }
 
         .map-title-text {
             color: white;
             font-size: 1.4rem;
             font-weight: 700;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
         }
 
         .map-area {
@@ -209,15 +229,15 @@
             justify-content: center;
             font-size: 1.5rem;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
-            border: 3px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+            border: 3px solid rgba(255, 255, 255, 0.2);
         }
 
         .node-label {
             color: white;
             font-weight: 700;
             font-size: 1.05rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .node.active .node-circle {
@@ -266,7 +286,7 @@
 
         /* ---------- หน้าวิดีโอ ---------- */
         #video-screen {
-            background: linear-gradient(to bottom, #f8fbff, #dbeafe);
+            background: linear-gradient(to bottom, #1e293b, #334155);
             justify-content: center;
             align-items: center;
             padding: 30px 20px;
@@ -277,7 +297,7 @@
             max-width: 900px;
             background: white;
             border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
             padding: 25px;
         }
 
@@ -343,7 +363,7 @@
         .game-container {
             width: 100%;
             max-width: 950px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 24px;
             padding: 25px;
         }
@@ -367,7 +387,7 @@
         }
 
         .question-box {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.12);
             padding: 25px;
             border-radius: 18px;
             margin-bottom: 20px;
@@ -375,7 +395,7 @@
         }
 
         .reading-box {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.12);
             padding: 20px;
             border-radius: 18px;
             margin-bottom: 20px;
@@ -475,6 +495,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- หน้าเมนู -->
@@ -482,14 +503,16 @@
         <nav>
             <div class="logo">โลโก้เว็บเรา</div>
             <div class="nav-links">
-                <a href="#">เพิ่มความคิดเห็น</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejhQxtD_7Mw_6v9xEM3KRZtbHwEYPA2Lkm8maBLsioOUFuHw/viewform?usp=header">ตอบคำถามลุ้นรับของรางวัล</a>
             </div>
         </nav>
 
         <div class="main-container">
             <div class="video-box">
                 <video controls autoplay muted loop>
-                    <source src="https://cdn.discordapp.com/attachments/1183793886724894801/1485224185054761050/users_2d9991a4-6753-4a03-b7db-b38142c5138f_generated_5023e460-b530-4b5d-9cb0-f2b740a9f410_generated_video.mov" type="video/mp4">
+                    <source
+                        src="https://cdn.discordapp.com/attachments/1183793886724894801/1485224185054761050/users_2d9991a4-6753-4a03-b7db-b38142c5138f_generated_5023e460-b530-4b5d-9cb0-f2b740a9f410_generated_video.mov"
+                        type="video/mp4">
                 </video>
             </div>
 
@@ -524,7 +547,8 @@
     <div id="video-screen" class="screen">
         <div class="lesson-container">
             <div class="lesson-header">
-                <button class="back-btn" style="background: var(--primary-blue);" onclick="returnToMap()">⬅ กลับแผนที่</button>
+                <button class="back-btn" style="background: var(--primary-blue);" onclick="returnToMap()">⬅
+                    กลับแผนที่</button>
                 <h2 id="lesson-title" class="lesson-title">วิดีโอการสอน</h2>
             </div>
 
@@ -578,63 +602,52 @@
         const levelTitle = document.getElementById("level-title");
         const questionText = document.getElementById("question-text");
         const choicesContainer = document.getElementById("choices-container");
-        const answerResult = document.getElementById("answer-result");
-        const readingContainer = document.getElementById("reading-container");
+        const heartsDisplay = document.getElementById("hearts-display");
 
         let currentSubject = "";
         let currentLevel = 1;
-        let answeredCorrectly = false;
+        let currentQuestionIndex = 0;
+        let hearts = 3;
 
+        // 📊 ปลดล็อคด่าน
+        const subjectProgress = { "ภาษาไทย": 1 };
+
+        // 🔥 แมพ
         const levelPositions = [
-            { x: 15, y: 85, label: "ด่าน 1" },
-            { x: 40, y: 80, label: "ด่าน 2" },
-            { x: 70, y: 85, label: "ด่าน 3" },
-            { x: 85, y: 65, label: "ด่าน 4" },
-            { x: 60, y: 55, label: "ด่าน 5" },
-            { x: 30, y: 60, label: "ด่าน 6" },
-            { x: 15, y: 40, label: "ด่าน 7" },
-            { x: 35, y: 20, label: "ด่าน 8" },
-            { x: 65, y: 30, label: "ด่าน 9" }
+            { x: 10, y: 75 },
+            { x: 25, y: 70 },
+            { x: 40, y: 75 },
+            { x: 55, y: 65 },
+            { x: 70, y: 60 },
+            { x: 60, y: 45 },
+            { x: 45, y: 40 },
+            { x: 30, y: 30 },
+            { x: 50, y: 20 }
         ];
 
-        const subjectProgress = {
-            "ภาษาไทย": 1,
-            "อังกฤษ": 1,
-            "วิทยาศาสตร์": 1,
-            "คณิตศาสตร์": 1
-        };
-
+        // ✅ คำถามครบ 10 ข้อ
         const questions = {
             "ภาษาไทย": {
                 1: {
-                    question: "คำในข้อใดเป็นคำนาม",
-                    choices: ["วิ่ง", "โรงเรียน", "สวย", "เร็ว"],
-                    correct: 1
-                }
-            },
-            "อังกฤษ": {
-                1: {
-                    readingText: "Tom is a student. He goes to school every day. He likes English.",
-                    question: "What does Tom like?",
-                    choices: ["Math", "English", "Football", "Music"],
-                    correct: 1
-                }
-            },
-            "วิทยาศาสตร์": {
-                1: {
-                    question: "ดาวเคราะห์ที่เราอาศัยอยู่คือข้อใด",
-                    choices: ["ดาวอังคาร", "โลก", "ดาวศุกร์", "ดวงจันทร์"],
-                    correct: 1
-                }
-            },
-            "คณิตศาสตร์": {
-                1: {
-                    question: "2 + 3 เท่ากับเท่าไร",
-                    choices: ["4", "5", "6", "7"],
-                    correct: 1
+                    questionsList: [
+                        { question: "คำว่า “แมว” ลงท้ายด้วยตัวสะกดอะไร", choices: ["ว", "ม", "ก", "น"], correct: 1 },
+                        { question: "“บ้าน” มีตัวสะกดไหม", choices: ["ไม่มี", "มี"], correct: 1 },
+                        { question: "คำว่า “รถ” สะกดด้วยตัวอะไรตอนท้าย", choices: ["ด", "ต", "ถ", "ท"], correct: 2 },
+                        { question: "“ปลา” มีตัวสะกดหรือไม่", choices: ["มี", "ไม่มี"], correct: 1 },
+                        { question: "“นก” ลงท้ายเสียงอะไร", choices: ["ก", "ง", "ด", "บ"], correct: 0 },
+                        { question: "“ดิน” ตัวสะกดคืออะไร", choices: ["ด", "น", "ง", "ม"], correct: 1 },
+                        { question: "“มือ” มีตัวสะกดไหม", choices: ["มี", "ไม่มี"], correct: 1 },
+                        { question: "“เด็ก” สะกดด้วยตัวอะไร", choices: ["ก", "ด", "ต", "ค"], correct: 0 },
+                        { question: "“ลม” ลงท้ายเสียงอะไร", choices: ["ม", "ง", "น", "บ"], correct: 0 },
+                        { question: "“ไฟ” มีตัวสะกดหรือเปล่า", choices: ["มี", "ไม่มี"], correct: 1 }
+                    ]
                 }
             }
         };
+
+        function updateHearts() {
+            heartsDisplay.textContent = "❤️".repeat(hearts);
+        }
 
         function showScreen(screen) {
             menuScreen.classList.remove("active");
@@ -644,179 +657,128 @@
             screen.classList.add("active");
         }
 
-        function openMap(subjectName) {
-            currentSubject = subjectName;
-            mapTitle.textContent = "แผนที่ผจญภัย: วิชา" + subjectName;
+        function openMap(subject) {
+            currentSubject = subject;
             renderMap();
             showScreen(mapScreen);
         }
 
-        function returnToMenu() {
-            showScreen(menuScreen);
-        }
+        function returnToMenu() { showScreen(menuScreen); }
+        function returnToMap() { renderMap(); showScreen(mapScreen); }
+        function returnToVideo() { showScreen(videoScreen); }
 
-        function returnToMap() {
-            renderMap();
-            showScreen(mapScreen);
-        }
-
-        function returnToVideo() {
-            showScreen(videoScreen);
-        }
-
+        // 🎮 render map (ล็อคด่าน)
         function renderMap() {
             nodesContainer.innerHTML = "";
             pathSvg.innerHTML = "";
 
-            const unlockedLevels = subjectProgress[currentSubject] || 1;
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-            for (let i = 0; i < levelPositions.length - 1; i++) {
-                const start = levelPositions[i];
-                const end = levelPositions[i + 1];
+            let d = `M ${levelPositions[0].x}% ${levelPositions[0].y}%`;
 
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", start.x + "%");
-                line.setAttribute("y1", start.y + "%");
-                line.setAttribute("x2", end.x + "%");
-                line.setAttribute("y2", end.y + "%");
-                line.setAttribute("stroke", "rgba(255,255,255,0.25)");
-                line.setAttribute("stroke-width", "4");
-                line.setAttribute("stroke-linecap", "round");
-                line.setAttribute("stroke-dasharray", "8 10");
-                pathSvg.appendChild(line);
+            for (let i = 1; i < levelPositions.length; i++) {
+                const prev = levelPositions[i - 1];
+                const curr = levelPositions[i];
+                const cx = (prev.x + curr.x) / 2;
+                const cy = prev.y;
+                d += ` Q ${cx}% ${cy}% ${curr.x}% ${curr.y}%`;
             }
 
-            levelPositions.forEach((level, index) => {
-                const levelNumber = index + 1;
-                const isUnlocked = levelNumber <= unlockedLevels;
+            path.setAttribute("d", d);
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "#8b5a2b");
+            path.setAttribute("stroke-width", "20");
+            path.setAttribute("stroke-linecap", "round");
 
+            pathSvg.appendChild(path);
+
+            const unlocked = subjectProgress[currentSubject] || 1;
+
+            levelPositions.forEach((pos, i) => {
                 const node = document.createElement("div");
-                node.className = `node ${isUnlocked ? "active" : "locked"}`;
-                node.style.left = level.x + "%";
-                node.style.top = level.y + "%";
+                node.className = "node " + (i + 1 <= unlocked ? "active" : "locked");
+                node.style.left = pos.x + "%";
+                node.style.top = pos.y + "%";
 
-                if (isUnlocked) {
-                    node.onclick = () => openLessonVideo(levelNumber);
+                node.innerHTML = `<div class="node-circle">${i + 1 <= unlocked ? i + 1 : "🔒"}</div>`;
+
+                if (i + 1 <= unlocked) {
+                    node.onclick = () => openLessonVideo(i + 1);
                 }
 
-                const circle = document.createElement("div");
-                circle.className = "node-circle";
-                circle.textContent = isUnlocked ? levelNumber : "🔒";
-
-                const label = document.createElement("div");
-                label.className = "node-label";
-                label.textContent = level.label;
-
-                node.appendChild(circle);
-                node.appendChild(label);
                 nodesContainer.appendChild(node);
             });
         }
 
         function openLessonVideo(level) {
             currentLevel = level;
-            lessonTitle.textContent = `${currentSubject} - ด่าน ${level} : วิดีโอการสอน`;
-
-            lessonVideoSource.src = "https://www.w3schools.com/html/mov_bbb.mp4";
-
-            lessonVideo.load();
             showScreen(videoScreen);
         }
 
-        function speakText(text) {
-            window.speechSynthesis.cancel();
-            const speech = new SpeechSynthesisUtterance(text);
-            speech.lang = "en-US";
-            speech.rate = 0.9;
-            speech.pitch = 1;
-            window.speechSynthesis.speak(speech);
-        }
-
-        function renderReadingSection(levelQuestion) {
-            if (!levelQuestion.readingText) {
-                readingContainer.innerHTML = "";
-                return;
-            }
-
-            readingContainer.innerHTML = `
-                <div class="reading-box">
-                    <div class="reading-title">📖 Reading</div>
-                    <div class="reading-text">${levelQuestion.readingText}</div>
-                    <div class="reading-actions">
-                        <button class="speak-btn" onclick="speakText(${JSON.stringify(levelQuestion.readingText)})">🔊 ฟังประโยค</button>
-                        <button class="speak-btn" onclick="speakText(${JSON.stringify(levelQuestion.readingText)})">🗣️ พูดตาม</button>
-                    </div>
-                    <div class="speak-note">กดปุ่มเพื่อให้นักเรียนฟังเสียงภาษาอังกฤษ แล้วพูดตามได้</div>
-                </div>
-            `;
-        }
-
         function goToQuestion() {
-            answeredCorrectly = false;
-            answerResult.textContent = "";
-            answerResult.style.color = "white";
-
-            levelTitle.textContent = `${currentSubject} - ด่าน ${currentLevel}`;
-
-            const subjectQuestions = questions[currentSubject];
-            const levelQuestion = subjectQuestions && subjectQuestions[currentLevel];
-
-            if (!levelQuestion) {
-                readingContainer.innerHTML = "";
-                questionText.textContent = `ยังไม่มีคำถามสำหรับวิชา${currentSubject} ด่าน ${currentLevel}`;
-                choicesContainer.innerHTML = `
-                    <button class="choice-btn" onclick="returnToMap()">กลับแผนที่</button>
-                `;
-                showScreen(gameScreen);
-                return;
-            }
-
-            renderReadingSection(levelQuestion);
-            questionText.textContent = levelQuestion.question;
-            choicesContainer.innerHTML = "";
-
-            levelQuestion.choices.forEach((choice, index) => {
-                const button = document.createElement("button");
-                button.className = "choice-btn";
-                button.textContent = choice;
-                button.onclick = () => checkAnswer(index, button);
-                choicesContainer.appendChild(button);
-            });
-
+            currentQuestionIndex = 0;
+            hearts = 3;
+            updateHearts();
+            showQuestion();
             showScreen(gameScreen);
         }
 
-        function checkAnswer(selectedIndex, clickedButton) {
-            if (answeredCorrectly) return;
+        function showQuestion() {
+            const q = questions[currentSubject][currentLevel].questionsList[currentQuestionIndex];
+            questionText.textContent = `ข้อ ${currentQuestionIndex + 1}: ${q.question}`;
 
-            const levelQuestion = questions[currentSubject][currentLevel];
-            const allButtons = document.querySelectorAll(".choice-btn");
+            choicesContainer.innerHTML = "";
 
-            if (selectedIndex === levelQuestion.correct) {
-                answeredCorrectly = true;
-                clickedButton.classList.add("correct");
-                answerResult.textContent = "✔ ตอบถูก";
-                answerResult.style.color = "#22c55e";
+            q.choices.forEach((c, i) => {
+                const b = document.createElement("button");
+                b.className = "choice-btn";
+                b.textContent = c;
+                b.onclick = () => checkAnswer(i, b);
+                choicesContainer.appendChild(b);
+            });
+        }
 
-                if (
-                    currentLevel === subjectProgress[currentSubject] &&
-                    subjectProgress[currentSubject] < levelPositions.length
-                ) {
-                    subjectProgress[currentSubject]++;
-                }
+        function checkAnswer(i, btn) {
+            const list = questions[currentSubject][currentLevel].questionsList;
+            const q = list[currentQuestionIndex];
 
-                allButtons.forEach(btn => btn.disabled = true);
+            if (i === q.correct) {
+                btn.classList.add("correct");
 
                 setTimeout(() => {
-                    alert("ตอบถูก! ปลดล็อกด่านถัดไปแล้ว");
-                    returnToMap();
-                }, 1000);
+                    currentQuestionIndex++;
+
+                    if (currentQuestionIndex < list.length) {
+                        showQuestion();
+                    } else {
+                        alert("ผ่านด่าน!");
+
+                        // 🔓 ปลดล็อคด่านถัดไป
+                        if (currentLevel === subjectProgress[currentSubject]) {
+                            subjectProgress[currentSubject]++;
+                        }
+
+                        returnToMap();
+                    }
+                }, 800);
+
             } else {
-                clickedButton.classList.add("wrong");
-                answerResult.textContent = "✖";
-                answerResult.style.color = "#ef4444";
+                btn.classList.add("wrong");
+
+                hearts--;
+                updateHearts();
+
+                if (hearts <= 0) {
+                    alert("แพ้! เริ่มใหม่");
+
+                    hearts = 3;
+                    currentQuestionIndex = 0;
+                    updateHearts();
+                    showQuestion();
+                }
             }
         }
     </script>
 </body>
+
 </html>
