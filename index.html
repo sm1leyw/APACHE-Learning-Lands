@@ -12,24 +12,26 @@
         <video autoplay loop muted playsinline class="bg-video">
             <source src="BG/Children_amazed_excited_202603221444.mp4" type="video/mp4">
         </video>
+        
         <div class="menu-content">
             <div class="characters">
                 <div class="char-box">👦 น้องสมหมาย</div>
                 <div class="char-box">👦 น้องจุก</div>
             </div>
+            
             <div class="center-stage">
                 <div class="hologram-container">
                     <div class="hologram-grid">
                         <button id="btn-thai" class="subject-btn unlocked" onclick="enterSubject('thai')">
                             <span class="icon">📝</span><p>ภาษาไทย</p>
                         </button>
-                        <button class="subject-btn locked" onclick="alert('เคลียร์ภาษาไทยก่อนนะ!')">
+                        <button id="btn-math" class="subject-btn locked" onclick="alertLockedSubject()">
                             <span class="icon">📐</span><p>คณิตศาสตร์</p>
                         </button>
-                        <button class="subject-btn locked" onclick="alert('เคลียร์คณิตศาสตร์ก่อนนะ!')">
+                        <button id="btn-science" class="subject-btn locked" onclick="alertLockedSubject()">
                             <span class="icon">🔬</span><p>วิทยาศาสตร์</p>
                         </button>
-                        <button class="subject-btn locked" onclick="alert('เคลียร์วิทยาศาสตร์ก่อนนะ!')">
+                        <button id="btn-english" class="subject-btn locked" onclick="alertLockedSubject()">
                             <span class="icon">🔤</span><p>ภาษาอังกฤษ</p>
                         </button>
                     </div>
@@ -37,6 +39,7 @@
                 </div>
                 <div class="magic-book">📖</div>
             </div>
+            
             <div class="characters">
                 <div class="char-box">👧 น้องน้อยหน่า</div>
                 <div class="char-box">👧 น้องมานี</div>
@@ -65,6 +68,12 @@
                 <div class="hearts" id="hearts-display">❤️❤️❤️</div>
             </div>
 
+            <div id="boss-ui" class="boss-zone" style="display: none;">
+                <h2 class="boss-name">🔥 BOSS: TJ ROBERT 🔥</h2>
+                <div class="boss-img">😈</div>
+                <p class="boss-quote">"คิดว่าจะรอดไปได้เหรอเด็กๆ!"</p>
+            </div>
+
             <div class="question-box">
                 <button id="btn-speak-q" class="tts-btn" style="display: none;" onclick="speakQuestion()">🔊 ฟังเสียงครู</button>
                 <h3 id="question-text">คำถามจะแสดงที่นี่</h3>
@@ -73,9 +82,9 @@
             <div class="choices-grid" id="choices-container"></div>
 
             <div id="speech-container" class="speech-zone" style="display: none;">
-                <p style="color: yellow; margin-bottom: 10px;">กดปุ่มไมค์แล้วพูดคำตอบได้เลย!</p>
+                <p style="color: yellow; margin-bottom: 10px; font-weight: bold;">กดปุ่มไมค์แล้วพูดคำตอบให้ชัดเจนนะ!</p>
                 <button id="btn-mic" class="mic-btn" onclick="startRecording()">🎤 กดเพื่อพูด</button>
-                <p id="speech-result" style="margin-top: 15px; font-size: 18px;"></p>
+                <p id="speech-result" style="margin-top: 15px; font-size: 20px; font-weight: bold; color: #00ffff;"></p>
             </div>
         </div>
     </div>

@@ -122,10 +122,18 @@ const thaiLevels = [
     ]}
 ];
 
-// ================= ระบบแผนที่ & เซฟ =================
+// ================= ระบบแผนที่ (อัปเดตจุด x,y ตามลายแทงกระดาษ) =================
 const mapPositions = [
-    {x: 15, y: 70}, {x: 30, y: 60}, {x: 45, y: 75}, {x: 65, y: 65}, {x: 80, y: 80},
-    {x: 85, y: 50}, {x: 60, y: 40}, {x: 35, y: 30}, {x: 20, y: 15}, {x: 50, y: 10} // Boss
+    {x: 28, y: 65}, // ด่าน 1
+    {x: 30, y: 52}, // ด่าน 2
+    {x: 45, y: 62}, // ด่าน 3
+    {x: 35, y: 35}, // ด่าน 4
+    {x: 60, y: 55}, // ด่าน 5 (มิดบอสเงาดำ)
+    {x: 50, y: 38}, // ด่าน 6
+    {x: 70, y: 70}, // ด่าน 7
+    {x: 82, y: 62}, // ด่าน 8
+    {x: 72, y: 48}, // ด่าน 9
+    {x: 85, y: 35}  // ด่าน 10 (Last Boss เตาหลอม)
 ];
 
 let userProgress = { thai: 1 };
@@ -139,6 +147,7 @@ function showScreen(id) {
 }
 function returnToMenu() { showScreen('menu-screen'); }
 function returnToMap() { showScreen('map-screen'); buildMap(); }
+function alertLockedSubject() { alert("ต้องผ่านวิชาภาษาไทยให้หมดก่อนนะ!"); }
 
 function enterSubject(subject) {
     showScreen('map-screen');
@@ -148,18 +157,32 @@ function enterSubject(subject) {
 function buildMap() {
     const container = document.getElementById('nodes-container');
     const svg = document.getElementById('path-svg');
-    container.innerHTML = ""; svg.innerHTML = "";
+    container.innerHTML = ""; 
+    svg.innerHTML = "";
+    
+    // ดึงขนาดของพื้นที่แผนที่มาเพื่อคำนวณวาดเส้นให้ตรงเป๊ะกับหน้าจอ
+    const mapArea = document.getElementById('map-area');
+    const width = mapArea.clientWidth;
+    const height = mapArea.clientHeight;
+
     document.getElementById('current-save').innerText = userProgress.thai;
     
     let pathD = "";
     thaiLevels.forEach((lvl, index) => {
         const pos = mapPositions[index];
-        if (index === 0) pathD += `M ${pos.x}% ${pos.y}% `;
-        else pathD += `L ${pos.x}% ${pos.y}% `;
+        
+        // คำนวณ % ให้กลายเป็นพิกเซล (Pixel) เพื่อให้เส้นเชื่อมตรงกับจุดกลางของปุ่มพอดี
+        const pixelX = (pos.x / 100) * width;
+        const pixelY = (pos.y / 100) * height;
 
+        if (index === 0) pathD += `M ${pixelX} ${pixelY} `;
+        else pathD += `L ${pixelX} ${pixelY} `;
+
+        // สร้างปุ่มด่าน
         const btn = document.createElement('div');
         btn.className = 'stage-node';
-        btn.style.left = `${pos.x}%`; btn.style.top = `${pos.y}%`;
+        btn.style.left = `${pos.x}%`; 
+        btn.style.top = `${pos.y}%`;
         btn.setAttribute('data-label', lvl.isBoss ? "BOSS" : `ด่าน ${lvl.id}`);
 
         if (lvl.id < userProgress.thai) {
@@ -175,8 +198,17 @@ function buildMap() {
         }
         container.appendChild(btn);
     });
-    svg.innerHTML = `<path d="${pathD}" fill="none" stroke="#7bed9f" stroke-width="8" stroke-dasharray="10, 10" />`;
+
+    // วาดเส้นปะสีน้ำตาลเข้ม (ไม้) ให้เห็นชัดเจนและเข้ากับแผนที่กระดาษ
+    svg.innerHTML = `<path d="${pathD}" fill="none" stroke="#5c2a16" stroke-width="5" stroke-dasharray="12, 10" stroke-linecap="round" stroke-linejoin="round" />`;
 }
+
+// ผูกอีเวนต์ ถ้ามีการย่อ/ขยายหน้าจอ ให้วาดเส้นใหม่เพื่อไม่ให้เส้นเบี้ยว
+window.addEventListener('resize', () => {
+    if (document.getElementById('map-screen').classList.contains('active')) {
+        buildMap();
+    }
+});
 
 // ================= ระบบเกม & เสียง (Web Speech API) =================
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -192,6 +224,19 @@ function startLevel(index) {
     hearts = 3; updateHearts();
     document.getElementById('level-title').innerText = `ด่าน ${thaiLevels[playingLevelIndex].id} - ${thaiLevels[playingLevelIndex].title}`;
     currentQuestionIndex = 0;
+    
+    const lvl = thaiLevels[playingLevelIndex];
+    const bossUI = document.getElementById('boss-ui');
+    const gameBoard = document.querySelector('.game-container');
+    
+    if (lvl.isBoss) {
+        bossUI.style.display = 'block';
+        gameBoard.style.border = "4px solid #ff4757";
+    } else {
+        bossUI.style.display = 'none';
+        gameBoard.style.border = "4px solid #00ffff";
+    }
+
     showScreen('game-screen');
     renderQuestion();
 }
@@ -204,11 +249,10 @@ function renderQuestion() {
     const q = thaiLevels[playingLevelIndex].questions[currentQuestionIndex];
     document.getElementById('question-text').innerText = `ข้อ ${currentQuestionIndex+1}: ` + q.q;
     
-    // จัดการปุ่มฟังเสียงครู (TTS)
     const ttsBtn = document.getElementById('btn-speak-q');
     if (q.tts) {
         ttsBtn.style.display = 'block';
-        speakQuestion(); // เล่นเสียงอัตโนมัติ 1 รอบ
+        speakQuestion(); 
     } else {
         ttsBtn.style.display = 'none';
     }
@@ -243,7 +287,7 @@ function speakQuestion() {
 }
 
 function startRecording() {
-    if (!recognition) { alert("เบราว์เซอร์ของคุณไม่รองรับระบบไมโครโฟน แนะนำให้ใช้ Google Chrome ครับ"); return; }
+    if (!recognition) { alert("เบราว์เซอร์ไม่รองรับระบบไมโครโฟน แนะนำให้ใช้ Google Chrome ครับ"); return; }
     
     const micBtn = document.getElementById('btn-mic');
     micBtn.classList.add('recording');
@@ -258,7 +302,6 @@ function startRecording() {
         micBtn.innerText = "🎤 กดเพื่อพูดใหม่";
         
         const q = thaiLevels[playingLevelIndex].questions[currentQuestionIndex];
-        // ตรวจคำตอบแบบยืดหยุ่น ถ้ามีคำตอบอยู่ในประโยคถือว่าถูก
         if (transcript.includes(q.ansText)) {
             setTimeout(() => checkAnswer(true), 1500);
         } else {
@@ -269,7 +312,17 @@ function startRecording() {
     recognition.onerror = function(event) {
         micBtn.classList.remove('recording');
         micBtn.innerText = "🎤 กดเพื่อพูด";
-        alert("ไม่ได้ยินเสียงเลย ลองกดพูดใหม่อีกครั้งนะ!");
+        
+        // เช็กว่าพังเพราะอะไร แล้วแจ้งเตือนให้ตรงจุด
+        if (event.error === 'not-allowed') {
+            alert("⚠️ เบราว์เซอร์บล็อกไมค์อยู่ครับ! อย่าลืมกดอนุญาตการใช้ไมค์ที่มุมขวาบน หรือต้องเปิดผ่าน Live Server (localhost) นะครับ");
+        } else if (event.error === 'no-speech') {
+            alert("ไม่ได้ยินเสียงเลย ลองพูดให้ดังขึ้น หรือขยับเข้าใกล้ไมค์อีกนิดนะ!");
+        } else if (event.error === 'network') {
+            alert("⚠️ ฟังก์ชันนี้ต้องต่ออินเทอร์เน็ตเพื่อแปลงเสียงเป็นข้อความครับ ลองเช็กเน็ตดูนะ!");
+        } else {
+            alert("เกิดข้อผิดพลาดกับไมโครโฟน: " + event.error);
+        }
     };
 }
 
@@ -280,10 +333,9 @@ function checkAnswer(isCorrect) {
     } else {
         hearts--; updateHearts();
         if (hearts <= 0) {
-            // ระบบ Permadeath หัวใจหมด กลับไปเริ่มด่าน 1 ใหม่
             setTimeout(() => {
                 alert("💔 หัวใจหมดแล้ว!! น้องๆ โดนมอนสเตอร์ตีกลับไปจุดเริ่มต้น ต้องเริ่มลุยด่าน 1 ใหม่ทั้งหมดเลยนะ!");
-                userProgress.thai = 1; // ล้างเซฟกลับด่าน 1
+                userProgress.thai = 1; 
                 returnToMap();
             }, 500);
         } else {
@@ -297,7 +349,11 @@ function handleLevelComplete() {
     if (lvl.id === userProgress.thai) userProgress.thai++;
     
     if (lvl.isBoss) {
-        alert("🎉 ยินดีด้วย! ปราบ Last Boss สำเร็จ ปลดล็อกวิชาต่อไปได้แล้ว!");
+        alert("🎉 ยินดีด้วย! ปราบ Last Boss (มุกตา) สำเร็จ ปลดล็อกวิชาต่อไปได้แล้ว!");
+        const btnMath = document.getElementById('btn-math');
+        btnMath.classList.remove('locked');
+        btnMath.classList.add('unlocked');
+        btnMath.onclick = () => alert("วิชาคณิตศาสตร์ปลดล็อกแล้ว! (เตรียมสร้างไฟล์ math.html ต่อได้เลย)");
         returnToMenu();
     } else {
         alert(`⭐ ผ่านด่าน ${lvl.id} แล้ว! ไปลุยด่านต่อไปกันเลย!`);
