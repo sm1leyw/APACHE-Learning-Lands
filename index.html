@@ -9,45 +9,40 @@
 <body>
 
     <div id="menu-screen" class="screen active">
-        
         <video autoplay loop muted playsinline class="bg-video">
             <source src="BG/Children_amazed_excited_202603221444.mp4" type="video/mp4">
         </video>
-
+        
         <div class="menu-content">
             <div class="characters">
-                <!-- <div class="char-box">👦 น้องสมหมาย</div>
-                <div class="char-box">👦 น้องจุก</div> -->
+                <div class="char-box">👦 น้องสมหมาย</div>
+                <div class="char-box">👦 น้องจุก</div>
             </div>
-
+            
             <div class="center-stage">
                 <div class="hologram-container">
                     <div class="hologram-grid">
                         <button id="btn-thai" class="subject-btn unlocked" onclick="enterSubject('thai')">
-                            <span class="icon">📝</span>
-                            <p>ภาษาไทย</p>
+                            <span class="icon">📝</span><p>ภาษาไทย</p>
                         </button>
                         <button id="btn-math" class="subject-btn locked" onclick="alertLockedSubject()">
-                            <span class="icon">📐</span>
-                            <p>คณิตศาสตร์</p>
+                            <span class="icon">📐</span><p>คณิตศาสตร์</p>
                         </button>
                         <button id="btn-science" class="subject-btn locked" onclick="alertLockedSubject()">
-                            <span class="icon">🔬</span>
-                            <p>วิทยาศาสตร์</p>
+                            <span class="icon">🔬</span><p>วิทยาศาสตร์</p>
                         </button>
                         <button id="btn-english" class="subject-btn locked" onclick="alertLockedSubject()">
-                            <span class="icon">🔤</span>
-                            <p>ภาษาอังกฤษ</p>
+                            <span class="icon">🔤</span><p>ภาษาอังกฤษ</p>
                         </button>
                     </div>
                     <div class="hologram-base"></div>
                 </div>
                 <div class="magic-book">📖</div>
             </div>
-
+            
             <div class="characters">
-                <!-- <div class="char-box">👧 น้องน้อยหน่า</div>
-                <div class="char-box">👧 น้องมานี</div> -->
+                <div class="char-box">👧 น้องน้อยหน่า</div>
+                <div class="char-box">👧 น้องมานี</div>
             </div>
         </div>
     </div>
@@ -55,7 +50,8 @@
     <div id="map-screen" class="screen">
         <div class="map-header">
             <button class="back-btn" onclick="returnToMenu()">⬅ กลับเมนูหลัก</button>
-            <h2 id="map-title" class="map-title-text">แผนที่ผจญภัย: วิชา...</h2>
+            <h2 id="map-title" class="map-title-text">แผนที่: ดินแดนภาษาไทย</h2>
+            <div class="progress-badge">จุดเซฟ: ด่าน <span id="current-save">1</span></div>
         </div>
         
         <div class="map-area" id="map-area">
@@ -67,7 +63,7 @@
     <div id="game-screen" class="screen">
         <div class="game-container">
             <div class="game-header">
-                <button class="back-btn" onclick="returnToMap()">⬅ ถอยทัพ (กลับแผนที่)</button>
+                <button class="back-btn" onclick="returnToMap()">⬅ ถอยทัพ</button>
                 <h2 id="level-title">ด่านที่...</h2>
                 <div class="hearts" id="hearts-display">❤️❤️❤️</div>
             </div>
@@ -75,15 +71,24 @@
             <div id="boss-ui" class="boss-zone" style="display: none;">
                 <h2 class="boss-name">🔥 BOSS: TJ ROBERT 🔥</h2>
                 <div class="boss-img">😈</div>
-                <p class="boss-quote">"เข้ามาเลยเด็กๆ!"</p>
+                <p class="boss-quote">"คิดว่าจะรอดไปได้เหรอเด็กๆ!"</p>
             </div>
 
             <div class="question-box">
+                <button id="btn-speak-q" class="tts-btn" style="display: none;" onclick="speakQuestion()">🔊 ฟังเสียงครู</button>
                 <h3 id="question-text">คำถามจะแสดงที่นี่</h3>
             </div>
+            
             <div class="choices-grid" id="choices-container"></div>
+
+            <div id="speech-container" class="speech-zone" style="display: none;">
+                <p style="color: yellow; margin-bottom: 10px; font-weight: bold;">กดปุ่มไมค์แล้วพูดคำตอบให้ชัดเจนนะ!</p>
+                <button id="btn-mic" class="mic-btn" onclick="startRecording()">🎤 กดเพื่อพูด</button>
+                <p id="speech-result" style="margin-top: 15px; font-size: 20px; font-weight: bold; color: #00ffff;"></p>
+            </div>
         </div>
     </div>
+
     <script src="JS/script.js"></script>
 </body>
 </html>
