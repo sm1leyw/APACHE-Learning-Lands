@@ -22,7 +22,7 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
 /* ================= Map Screen ================= */
-#map-screen { flex-direction: column; background: url('apachebackground_thai.jpg') no-repeat center center; background-size: cover; }
+#map-screen { flex-direction: column; background: url('bg-selecttor/apachebackground_thai.png') no-repeat center center; background-size: cover; }
 .map-header { padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; background: rgba(139, 69, 19, 0.8); z-index: 10; border-bottom: 3px solid #f1c40f; }
 .map-title-text { color: #f1c40f; text-shadow: 0 0 10px #000; font-size: 28px; }
 .progress-badge { background: #e74c3c; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }

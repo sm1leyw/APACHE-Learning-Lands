@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คณิตศาสตร์ - APACHE Learning Lands</title>
+    <link rel="stylesheet" href="CSS/match.css">
+</head>
+<body>
+
+    <div id="map-screen" class="screen active">
+        <button class="back-btn" onclick="window.location.href='index.html'">⬅️ กลับเมนูหลัก</button>
+        <div id="map-area">
+            <svg id="path-svg"></svg>
+            <div id="nodes-container"></div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="top-bar">
+            <button onclick="returnToMap()">🏃 หนีออกจากด่าน</button>
+            <h2 id="level-title">ด่าน ...</h2>
+            <div class="status-bar">
+                <span id="hearts-display">❤️❤️❤️</span>
+                <span id="score-display">คะแนน: 0</span>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <div id="interactive-area"></div>
+            
+        <div id="question-text" class="question-box">คำถาม...</div>
+        <div id="choices-container" class="choices-grid"></div>
+        </div>
+    </div>
+
+    <audio id="sound-correct" src="correct.mp3"></audio>
+    <audio id="sound-wrong" src="wrong.mp3"></audio>
+    <audio id="sound-attack" src="attack.mp3"></audio>
+
+    <script src="JS/match.js"></script>
+</body>
+</html>

@@ -438,7 +438,9 @@ function handleLevelComplete() {
         if(btnMath) {
             btnMath.classList.remove('locked');
             btnMath.classList.add('unlocked');
-            btnMath.onclick = () => alert("วิชาคณิตศาสตร์ปลดล็อกแล้ว! (เตรียมสร้างไฟล์ math.html ต่อได้เลย)");
+            btnMath.onclick = () => {
+                window.location.href = "match.html";
+            };
         }
         returnToMenu();
     } else {

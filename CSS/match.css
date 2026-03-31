@@ -1,0 +1,51 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Sarabun', Tahoma, sans-serif; }
+body { background-color: #1a1a2e; color: white; overflow: hidden; }
+.screen { display: none; width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
+.screen.active { display: flex; }
+
+/* ================= Map Screen ================= */
+#map-screen { flex-direction: column; background: url('bg-selecttor/apachebackground_match.png') no-repeat center center; background-size: cover; }
+.map-header { padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; background: rgba(139, 69, 19, 0.8); z-index: 10; border-bottom: 3px solid #f1c40f; }
+#map-area { position: relative; flex-grow: 1; width: 100%; overflow: hidden; }
+#path-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+.stage-node { position: absolute; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 24px; z-index: 2; transform: translate(-50%, -50%); transition: 0.3s; box-shadow: 0 8px 15px rgba(0,0,0,0.5); background: #f1c40f; border: 4px solid #e67e22; color: #8e44ad; cursor: pointer; }
+.stage-node::after { content: attr(data-label); position: absolute; bottom: -30px; font-size: 16px; white-space: nowrap; color: white; text-shadow: 1px 1px 2px black; font-weight: bold; }
+.stage-node.locked { background: #7f8c8d; border-color: #2c3e50; color: #bdc3c7; cursor: not-allowed; }
+.stage-node.current { background: #00a8ff; border-color: #fbc531; color: white; animation: bounceNode 1.5s infinite; box-shadow: 0 0 20px #00a8ff; }
+.stage-node.passed { background: #2ed573; border-color: #ffffff; color: white; }
+.stage-node.boss { width: 90px; height: 90px; background: #ff4757; border: 5px solid yellow; color: white; font-size: 35px; }
+@keyframes bounceNode { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -60%) scale(1.1); } }
+
+/* ================= Game Screen ================= */
+#game-screen { flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+.top-bar { display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 800px; margin-bottom: 20px; font-size: 20px; }
+.back-btn { padding: 10px 20px; background: #ff4757; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.game-container { width: 90%; max-width: 800px; background: rgba(30, 60, 114, 0.9); border: 4px solid #00ffff; border-radius: 20px; padding: 30px; box-shadow: 0 0 30px rgba(0,255,255,0.3); }
+
+.question-box { background: white; color: #333; padding: 20px; border-radius: 15px; font-size: 26px; text-align: center; margin-bottom: 30px; min-height: 80px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.choices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.choice-btn { padding: 20px; font-size: 24px; background: #2ed573; color: white; border: none; border-radius: 10px; cursor: pointer; transition: 0.2s; font-weight: bold; box-shadow: 0 5px #26ae60; }
+.choice-btn:hover { background: #26ae60; transform: translateY(-3px); }
+.choice-btn:active { transform: translateY(5px); box-shadow: 0 0; }
+
+/* ================= ลูกเล่นพิเศษวิชาคณิตศาสตร์ ================= */
+#interactive-area { min-height: 150px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+
+/* ผลไม้เด้ง */
+.bounce-item { font-size: 70px; animation: bounceFruit 0.8s infinite alternate; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
+@keyframes bounceFruit { from { transform: translateY(0); } to { transform: translateY(-20px); } }
+
+/* ระบบต่อสู้ RPG */
+.combat-area { display: flex; justify-content: space-between; width: 100%; align-items: center; padding: 0 40px; }
+.character { font-size: 90px; transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6)); }
+.player.attack { transform: translateX(100px) rotate(20deg) scale(1.2); }
+.enemy { position: relative; }
+.enemy.hurt { animation: shakeEnemy 0.4s; filter: drop-shadow(0 0 25px #ff4757); }
+@keyframes shakeEnemy { 0% { transform: translateX(0); } 25% { transform: translateX(-15px) rotate(-5deg); } 50% { transform: translateX(15px) rotate(5deg); } 75% { transform: translateX(-15px) rotate(-5deg); } 100% { transform: translateX(0); } }
+
+/* พิซซ่าเศษส่วน */
+.pizza-container { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+.pizza-slice { font-size: 80px; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
+.pizza-slice:hover { transform: translateY(-10px) scale(1.1); }
+.pizza-slice.eaten { opacity: 0; pointer-events: none; transform: scale(0) rotate(180deg); }
