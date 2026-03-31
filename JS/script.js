@@ -1,3 +1,60 @@
+// ================= ระบบ Admin Role =================
+let isAdmin = false;
+let clickCount = 0;
+let clickTimer;
+
+// ฟังก์ชันนับการคลิกหนังสือเวทมนตร์
+function triggerAdminLogin() {
+    clickCount++;
+    clearTimeout(clickTimer);
+    
+    // ถ้าคลิกครบ 5 ครั้งติดกัน ให้โชว์หน้า Login
+    if (clickCount >= 5) {
+        document.getElementById('admin-modal').style.display = 'flex';
+        document.getElementById('admin-password').value = '';
+        clickCount = 0;
+    }
+    
+    // ถ้ารีรอไม่กดต่อภายใน 1 วินาที ให้รีเซ็ตการนับใหม่ (กันเด็กกดมั่ว)
+    clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+}
+
+function closeAdminModal() {
+    document.getElementById('admin-modal').style.display = 'none';
+}
+
+function verifyAdmin() {
+    const pass = document.getElementById('admin-password').value;
+    if (pass === 'apache2026') { // <--- เปลี่ยนรหัสผ่านตรงนี้ได้เลยครับ!
+        isAdmin = true;
+        closeAdminModal();
+        alert("✅ เข้าสู่โหมด Admin สำเร็จ! ปลดล็อกทุกวิชาและทุกด่านแล้ว");
+        unlockAllSubjectsForAdmin();
+        if (document.getElementById('map-screen').classList.contains('active')) {
+            buildMap(); // รีเฟรชแผนที่ถ้าเปิดอยู่
+        }
+    } else {
+        alert("❌ รหัสผ่านไม่ถูกต้อง!");
+    }
+}
+
+// ปลดล็อกวิชาทั้งหมดในหน้าแรก
+function unlockAllSubjectsForAdmin() {
+    document.querySelectorAll('.subject-btn').forEach(btn => {
+        btn.classList.remove('locked');
+        btn.classList.add('unlocked');
+        // ดึงชื่อวิชาจาก id (เช่น btn-math ตัดเหลือ math)
+        let subj = btn.id.replace('btn-', '');
+        btn.onclick = () => {
+            // ถ้าเป็นวิชาที่ยังไม่ได้สร้างข้อมูลไว้ให้แจ้งเตือน
+            if (!subjectData[subj]) {
+                alert(`วิชา ${subj} กำลังอยู่ระหว่างการสร้างข้อมูลครับ!`);
+                return;
+            }
+            enterSubject(subj);
+        };
+    });
+}
 // ================= ข้อมูลโจทย์ 10 ด่าน 100 ข้อ =================
 const thaiLevels = [
     { id: 1, title: "ตัวสะกด", questions: [

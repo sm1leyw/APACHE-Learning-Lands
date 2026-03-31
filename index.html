@@ -37,7 +37,7 @@
                     </div>
                     <div class="hologram-base"></div>
                 </div>
-                <div class="magic-book">📖</div>
+                <div class="magic-book" onclick="triggerAdminLogin()" style="pointer-events: auto; cursor: pointer;">📖</div>
             </div>
             
             <div class="characters">
@@ -91,4 +91,14 @@
 
     <script src="JS/script.js"></script>
 </body>
+<div id="admin-modal" class="admin-modal">
+        <div class="admin-box">
+            <h3 style="color: #ff4757; margin-bottom: 15px;">🔒 ระบบผู้ดูแล (Admin)</h3>
+            <input type="password" id="admin-password" placeholder="ใส่รหัสผ่าน..." class="admin-input">
+            <div style="margin-top: 15px;">
+                <button onclick="verifyAdmin()" class="admin-btn login">เข้าสู่ระบบ</button>
+                <button onclick="closeAdminModal()" class="admin-btn cancel">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
 </html>
