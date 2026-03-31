@@ -43,15 +43,23 @@ function unlockAllSubjectsForAdmin() {
     document.querySelectorAll('.subject-btn').forEach(btn => {
         btn.classList.remove('locked');
         btn.classList.add('unlocked');
+        
         // ดึงชื่อวิชาจาก id (เช่น btn-math ตัดเหลือ math)
         let subj = btn.id.replace('btn-', '');
+        
         btn.onclick = () => {
-            // ถ้าเป็นวิชาที่ยังไม่ได้สร้างข้อมูลไว้ให้แจ้งเตือน (กันบั๊กกรณีตัวแปร subjectData ยังไม่มี)
-            if (typeof subjectData !== 'undefined' && !subjectData[subj]) {
+            if (subj === 'math' || subj === 'match') {
+                // ถ้ากดปุ่มคณิตศาสตร์ ให้กระโดดไปไฟล์ match.html
+                window.location.href = 'match.html'; 
+                
+            } else if (subj === 'thai') {
+                // ถ้ากดปุ่มภาษาไทย ให้เข้าเล่นในไฟล์เดิม
+                enterSubject('thai');
+                
+            } else {
+                // วิชาอื่นๆ (วิทย์, อังกฤษ) ที่ยังไม่ทำ
                 alert(`วิชา ${subj} กำลังอยู่ระหว่างการสร้างข้อมูลครับ!`);
-                return;
             }
-            enterSubject(subj);
         };
     });
 }
