@@ -46,8 +46,8 @@ function unlockAllSubjectsForAdmin() {
         // ดึงชื่อวิชาจาก id (เช่น btn-math ตัดเหลือ math)
         let subj = btn.id.replace('btn-', '');
         btn.onclick = () => {
-            // ถ้าเป็นวิชาที่ยังไม่ได้สร้างข้อมูลไว้ให้แจ้งเตือน
-            if (!subjectData[subj]) {
+            // ถ้าเป็นวิชาที่ยังไม่ได้สร้างข้อมูลไว้ให้แจ้งเตือน (กันบั๊กกรณีตัวแปร subjectData ยังไม่มี)
+            if (typeof subjectData !== 'undefined' && !subjectData[subj]) {
                 alert(`วิชา ${subj} กำลังอยู่ระหว่างการสร้างข้อมูลครับ!`);
                 return;
             }
@@ -55,6 +55,7 @@ function unlockAllSubjectsForAdmin() {
         };
     });
 }
+
 // ================= ข้อมูลโจทย์ 10 ด่าน 100 ข้อ =================
 const thaiLevels = [
     { id: 1, title: "ตัวสะกด", questions: [
@@ -242,17 +243,42 @@ function buildMap() {
         btn.style.top = `${pos.y}%`;
         btn.setAttribute('data-label', lvl.isBoss ? "BOSS" : `ด่าน ${lvl.id}`);
 
-        if (lvl.id < userProgress.thai) {
-            btn.classList.add('passed'); btn.innerHTML = "⭐"; btn.onclick = () => startLevel(index);
-        } else if (lvl.id === userProgress.thai) {
-            btn.classList.add('current'); btn.innerHTML = lvl.isBoss ? "😈" : lvl.id;
-            if(lvl.isBoss) btn.classList.add('boss');
+        // ==========================================
+        // ส่วนที่แก้แล้ว: เช็คสิทธิ์ด้วยระบบ Admin
+        // ==========================================
+        const isUnlocked = isAdmin || lvl.id <= userProgress.thai;
+
+        if (isUnlocked) {
+            // ด่านปัจจุบัน (ไม่ได้เปิดแอดมิน) ให้เป็นคลาส current
+            if (lvl.id === userProgress.thai && !isAdmin) {
+                btn.classList.add('current');
+            } else {
+                btn.classList.add('passed'); // ด่านที่ผ่านแล้ว หรือ แอดมินปลดล็อก
+            }
+
+            // ใส่ไอคอน/ตัวเลขให้ตรง
+            if (lvl.isBoss) {
+                btn.classList.add('boss');
+                btn.innerHTML = "😈";
+            } else if (lvl.id < userProgress.thai) {
+                btn.innerHTML = "⭐"; // ผ่านแล้ว
+            } else {
+                btn.innerHTML = lvl.id; // ด่านปัจจุบัน หรือ แอดมินปลด
+            }
+
             btn.onclick = () => startLevel(index);
+
         } else {
-            btn.classList.add('locked'); btn.innerHTML = "🔒";
+            // โหมดปกติที่ด่านยังล็อกอยู่
+            btn.classList.add('locked'); 
+            btn.innerHTML = "🔒";
             btn.onclick = () => alert("ด่านถูกล็อก! ต้องเคลียร์ด่านก่อนหน้า หรือคุณอาจจะโดนตีกลับมาจุดเซฟ!");
-            if(lvl.isBoss) { btn.classList.add('boss'); btn.innerHTML = "😈"; }
+            if(lvl.isBoss) { 
+                btn.classList.add('boss'); 
+                btn.innerHTML = "😈"; 
+            }
         }
+        
         container.appendChild(btn);
     });
 
@@ -408,9 +434,12 @@ function handleLevelComplete() {
     if (lvl.isBoss) {
         alert("🎉 ยินดีด้วย! ปราบ Last Boss (มุกตา) สำเร็จ ปลดล็อกวิชาต่อไปได้แล้ว!");
         const btnMath = document.getElementById('btn-math');
-        btnMath.classList.remove('locked');
-        btnMath.classList.add('unlocked');
-        btnMath.onclick = () => alert("วิชาคณิตศาสตร์ปลดล็อกแล้ว! (เตรียมสร้างไฟล์ math.html ต่อได้เลย)");
+        // เพิ่มเช็คเผื่อมีปุ่มเลขคณิต
+        if(btnMath) {
+            btnMath.classList.remove('locked');
+            btnMath.classList.add('unlocked');
+            btnMath.onclick = () => alert("วิชาคณิตศาสตร์ปลดล็อกแล้ว! (เตรียมสร้างไฟล์ math.html ต่อได้เลย)");
+        }
         returnToMenu();
     } else {
         alert(`⭐ ผ่านด่าน ${lvl.id} แล้ว! ไปลุยด่านต่อไปกันเลย!`);

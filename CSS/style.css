@@ -10,7 +10,7 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 .characters { display: flex; flex-direction: column; gap: 20px; }
 .char-box { width: 100px; height: 120px; background: rgba(255, 255, 255, 0.1); border: 2px dashed #aaa; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; backdrop-filter: blur(5px); }
 .center-stage { display: flex; flex-direction: column; align-items: center; position: relative; margin-top: -50px; }
-.magic-book { font-size: 120px; text-shadow: 0 0 30px #00ffff; z-index: 2; pointer-events: none; }
+.magic-book { font-size: 120px; text-shadow: 0 0 30px #00ffff; z-index: 2; }
 .hologram-container { position: relative; margin-bottom: -40px; animation: float 3s ease-in-out infinite; }
 .hologram-base { width: 0; height: 0; border-left: 160px solid transparent; border-right: 160px solid transparent; border-top: 100px solid rgba(0, 255, 255, 0.25); position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); filter: blur(8px); z-index: 0; pointer-events: none; }
 .hologram-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: rgba(0, 40, 70, 0.7); border: 2px solid #00ffff; border-radius: 15px; padding: 25px; box-shadow: 0 0 25px rgba(0, 255, 255, 0.6); backdrop-filter: blur(3px); z-index: 1; }
@@ -21,21 +21,14 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 .subject-btn.locked .icon { filter: grayscale(100%); }
 @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-/* ================= Map Screen (เปลี่ยนเป็นรูปลายแทงแล้ว!) ================= */
-#map-screen { 
-    flex-direction: column; 
-    /* ดึงภาพกระดาษแผนที่มาใช้ */
-    background: url('bg-selecttor/apachebackground_thai.png') no-repeat center center; 
-    background-size: cover; 
-}
-/* ปรับกรอบเมนูแผนที่ให้เข้ากับสีกระดาษ */
+/* ================= Map Screen ================= */
+#map-screen { flex-direction: column; background: url('apachebackground_thai.jpg') no-repeat center center; background-size: cover; }
 .map-header { padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; background: rgba(139, 69, 19, 0.8); z-index: 10; border-bottom: 3px solid #f1c40f; }
 .map-title-text { color: #f1c40f; text-shadow: 0 0 10px #000; font-size: 28px; }
 .progress-badge { background: #e74c3c; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
 .map-area { position: relative; flex-grow: 1; width: 100%; overflow: hidden; }
 .path-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
-/* โหนดด่านแผนที่ */
 .stage-node { position: absolute; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 24px; z-index: 2; transform: translate(-50%, -50%); transition: 0.3s; box-shadow: 0 8px 15px rgba(0,0,0,0.5); background: #f1c40f; border: 4px solid #e67e22; color: #8e44ad; }
 .stage-node::after { content: attr(data-label); position: absolute; bottom: -30px; font-size: 16px; white-space: nowrap; color: #333; text-shadow: 1px 1px 2px white; font-weight: bold; }
 .stage-node.locked { background: #7f8c8d; border-color: #2c3e50; color: #bdc3c7; cursor: not-allowed; }
@@ -71,7 +64,7 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 
 /* ================= Admin Modal ================= */
 .admin-modal {
-    display: none; /* ซ่อนไว้เป็นค่าเริ่มต้น */
+    display: none; 
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0, 0, 0, 0.8);
     z-index: 9999;
@@ -89,6 +82,7 @@ body { background-color: #1a1a2e; color: white; overflow: hidden; }
 .admin-btn {
     padding: 10px 20px; border: none; border-radius: 8px; font-size: 16px;
     cursor: pointer; font-weight: bold; margin: 0 5px; transition: 0.2s;
+    margin-top: 15px;
 }
 .admin-btn.login { background: #2ed573; color: white; }
 .admin-btn.login:hover { background: #26ae60; }
