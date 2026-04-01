@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วิชาภาษาไทย | เรียนรู้แดนมหัศจรรย์</title>
+    <link rel="stylesheet" href="CSS/03science.css">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="video-zone" class="container-view">
+        <header class="zone-header">
+            <button class="back-home-btn" onclick="location.href='index.html'">หน้าหลัก</button>
+            <h1>แดนเรียนรู้วิชาภาษาไทย</h1>
+            <p>ดูวิดีโอนี้เพื่อวอร์มอัพก่อนเข้าผจญภัย!</p>
+        </header>
+        
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/9Deg7VrpHbM?si=yjlr6UIxhKb-25uL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <button class="goto-quiz-btn" onclick="showQuizZone()">ฉันพร้อมผจญภัยแล้ว!</button>
+    </div>
+
+    <div id="quiz-zone" class="container-view hidden">
+        
+        <div class="game-hud">
+            <button class="back-video-btn" onclick="showVideoZone()"><i class="fas fa-video"></i> กลับดูวิดีโอ</button>
+            
+            <div id="current-stage-title">แผนที่ผจญภัย</div>
+            
+            <div class="hearts-container">
+                <div class="heart full" id="heart-1">❤️</div>
+                <div class="heart full" id="heart-2">❤️</div>
+                <div class="heart full" id="heart-3">❤️</div>
+            </div>
+        </div>
+
+        <div id="map-screen" class="screen">
+            <h2>ป่าแห่งการเรียนรู้</h2>
+            <div class="map-container">
+                <svg id="path-svg" class="map-path-svg">
+                    </svg>
+                <div id="stages-layer" class="stages-layer">
+                    </div>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            
+            <div class="question-layout">
+                <div class="guide-area">
+                    <img src="ตัวละคร/dreambull.png" alt="พี่ช้าง Dreambull" class="dreambull-img">
+                    <div class="bubble hint-bubble" id="hint-bubble">
+                        สวัสดีจ้ะ! พี่ช้างจะคอยช่วยนะ
+                    </div>
+                </div>
+
+                <div class="quiz-area">
+                    <div class="stage-info">ด่านที่ <span id="stage-num">X</span> : <span id="stage-name">X</span></div>
+                    <div class="question-info">ข้อที่ <span id="question-num">Y</span> / <span id="total-questions">5</span></div>
+                    
+                    <div class="question-box">
+                        <p id="question-text">โจทย์กำลังโหลด...</p>
+                    </div>
+                    
+                    <div class="options-container" id="options-container">
+                        </div>
+
+                    <div id="special-input-container" class="hidden">
+                        <p class="special-instruction"></p>
+                    </div>
+                </div>
+
+                <div class="progress-area">
+                    <div id="boss-container" class="hidden">
+                        <img src="" alt="Boss" id="boss-img" class="boss-img">
+                        <div class="bubble boss-bubble" id="boss-bubble">ย้าก! รับมือ!</div>
+                        <div class="boss-name" id="boss-display-name">TJ Robert</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="end-overlay" class="overlay hidden">
+            <div class="overlay-content">
+                <div id="end-icon">🎉</div>
+                <h1 id="end-title">สุดยอดไปเลย!</h1>
+                <p id="end-msg">คุณผ่านด่านแล้ว</p>
+                <div class="end-btns">
+                    <button id="end-main-btn" onclick="resetToMap()">กลับไปที่แผนที่</button>
+                    <button id="retry-btn" class="hidden" onclick="retryCurrentStage()">เริ่มด่านนี้ใหม่</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="JS/scienceData.js"></script>
+    <script src="JS/03science.js"></script>
+</body>
+</html>
