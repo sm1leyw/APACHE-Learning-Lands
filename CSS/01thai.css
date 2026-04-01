@@ -1,0 +1,459 @@
+:root {
+    --primary-color: #FF7B93; /* Thai theme */
+    --forest-green: #4CAF50;
+    --dirt-path: #8D6E63;
+    --font-family: 'Itim', cursive;
+    --text-color: #5D4037;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: #E8F5E9; /* Light green forest bg */
+    overflow-x: hidden;
+}
+
+.container-view {
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden { display: none !important; }
+
+/* View 1: Video Zone */
+#video-zone {
+    background: linear-gradient(180deg, #FCE4EC, #E8F5E9);
+}
+
+.zone-header {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.zone-header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.back-home-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #FFB74D;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-family);
+}
+
+.video-container {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.goto-quiz-btn {
+    background-color: #FF5252;
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-family);
+    cursor: pointer;
+    box-shadow: 0 6px 0 #D32F2F;
+    transition: transform 0.1s;
+}
+
+.goto-quiz-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #D32F2F;
+}
+
+/* View 2: Quiz Zone - Game HUD */
+.game-hud {
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+#current-stage-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--forest-green);
+}
+
+.back-video-btn {
+    background: #90A4AE;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-family: var(--font-family);
+    cursor: pointer;
+}
+
+.hearts-container {
+    display: flex;
+    gap: 5px;
+    font-size: 1.5rem;
+}
+
+.heart {
+    transition: opacity 0.3s;
+}
+.heart.empty {
+    opacity: 0.3;
+}
+
+/* 2A: Map Screen (Pai Adventure) */
+#map-screen {
+    width: 100%;
+    height: 80vh; /* Adjust for viewport */
+    background: url('../assets/forest_ground.png') center/cover; /* Fallback green */
+    background-color: #C8E6C9;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#map-screen h2 {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 0 var(--dirt-path);
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.map-path-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to stages */
+}
+
+/* Forest Path Styles (Winding path example data defined in JS) */
+.map-line {
+    fill: none;
+    stroke: var(--dirt-path);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 15; /* Makes it dashed */
+}
+
+.stages-layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Circular Stage Icons */
+.stage-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    border: 5px solid white;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: transform 0.2s, background 0.3s;
+    z-index: 10;
+    transform: translate(-50%, -50%); /* Center on coordinates */
+}
+
+.stage-icon:hover:not(.locked) {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Stage Status Styles */
+.stage-icon.passed {
+    background-color: #AED581; /* Passed Green */
+    color: white;
+    border-color: #AED581;
+}
+.stage-icon.current {
+    background-color: #FFF176; /* Current Yellow */
+    color: var(--dirt-path);
+    border-color: white;
+    animation: pulse 1.5s infinite;
+}
+.stage-icon.boss {
+    width: 70px; height: 70px;
+    background-color: #E57373; /* Boss Red */
+    color: white;
+    border-color: #D32F2F;
+    font-size: 2rem;
+}
+.stage-icon.boss.passed { background-color: #558B2F; border-color: #558B2F; }
+
+.stage-icon.locked {
+    background-color: #BDBDBD;
+    color: #757575;
+    border-color: #BDBDBD;
+    cursor: not-allowed;
+    filter: grayscale(80%);
+}
+.stage-icon.locked::after {
+    content: "🔒";
+    position: absolute;
+    font-size: 1rem;
+    bottom: -5px;
+    right: -5px;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 241, 118, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 241, 118, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 241, 118, 0); }
+}
+
+/* 2B: Gameplay Screen */
+#game-screen {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.question-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px; /* Guide | Quiz | Boss/Progress */
+    gap: 20px;
+}
+
+/* Guide Area (Left) */
+.guide-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dreambull-img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Chat Bubbles */
+.bubble {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    position: relative;
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,0.05));
+    font-size: 0.9rem;
+}
+.bubble::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 0;
+    border: 15px solid transparent;
+}
+
+.hint-bubble {
+    border-top-left-radius: 0;
+    color: #33691E;
+}
+.hint-bubble::after {
+    top: 0;
+    left: -15px;
+    border-top-color: white;
+}
+
+/* Quiz Area (Center) */
+.quiz-area {
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.stage-info { font-size: 1.1rem; color: #795548; }
+.question-info { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); margin-bottom: 15px; }
+
+.question-box {
+    background: #FAFAFA;
+    border: 2px dashed #BDBDBD;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.question-box p {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Options */
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.option-btn {
+    background: white;
+    border: 3px solid #E0E0E0;
+    border-radius: 15px;
+    padding: 15px;
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+.option-btn:hover:not(:disabled) {
+    background: #F9FBE7;
+    border-color: #AED581;
+    transform: translateY(-2px);
+}
+.option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+/* Feedback Styles */
+.option-btn.correct {
+    background: #AED581;
+    color: white;
+    border-color: #AED581;
+}
+.option-btn.wrong {
+    background: #EF9A9A;
+    color: white;
+    border-color: #EF9A9A;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* For non-multiple choice prompts */
+.special-instruction {
+    color: #FF5722;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* Boss Area (Right) - Stage 10 only */
+.progress-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#boss-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boss-img {
+    width: 180px;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: filter 0.3s;
+}
+
+.boss-img.transforming {
+    filter: invert(1) hue-rotate(90deg) blur(5px);
+}
+
+.boss-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #D32F2F;
+    background: rgba(255,255,255,0.7);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.boss-bubble {
+    border-top-right-radius: 0;
+    color: #D32F2F;
+    border-color: #D32F2F;
+    margin-bottom: 10px;
+}
+.boss-bubble::after {
+    top: 0;
+    right: -15px;
+    border-top-color: white;
+}
+
+/* End Overlay */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.overlay-content {
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    width: 90%; max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+#end-icon { font-size: 5rem; margin-bottom: 20px; }
+#end-title { font-size: 2.5rem; margin: 10px 0; color: var(--primary-color); }
+#end-msg { font-size: 1.2rem; margin-bottom: 30px; }
+
+.end-btns button {
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 5px;
+}
+#end-main-btn { background-color: var(--primary-color); color: white; }
+#retry-btn { background-color: #90A4AE; color: white; }

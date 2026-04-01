@@ -1,0 +1,127 @@
+:root {
+    --thai-color: #FF7B93;
+    --math-color: #FFCA4B;
+    --science-color: #6CD7C8;
+    --eng-color: #8C8CFF;
+    --bg-color: #FFF8E1;
+    --text-color: #5D4037;
+    --font-family: 'Itim', cursive;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.site-title {
+    font-size: 3rem;
+    color: #FFA726;
+    text-shadow: 3px 3px 0 #FFF, 5px 5px 0 #FF7043;
+    margin-bottom: 10px;
+}
+
+.grade-banner {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(255,167,38,0.4);
+}
+
+/* Subject Grid */
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+/* Subject Card */
+.subject-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.subject-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    background: #ccc; /* fallback */
+}
+
+/* Specific Card Colors matched from image doodles */
+.card-thai { border-top: 10px solid var(--thai-color); }
+.card-thai .card-icon { background: linear-gradient(135deg, #FF8A9A, #FF7B93); box-shadow: 0 10px 20px rgba(255,123,147,0.3); }
+
+.card-math { border-top: 10px solid var(--math-color); }
+.card-math .card-icon { background: linear-gradient(135deg, #FFD56B, #FFCA4B); box-shadow: 0 10px 20px rgba(255,202,75,0.3); }
+
+.card-science { border-top: 10px solid var(--science-color); }
+.card-science .card-icon { background: linear-gradient(135deg, #81E2D6, #6CD7C8); box-shadow: 0 10px 20px rgba(108,215,200,0.3); }
+
+.card-eng { border-top: 10px solid var(--eng-color); }
+.card-eng .card-icon { background: linear-gradient(135deg, #9F9FFF, #8C8CFF); box-shadow: 0 10px 20px rgba(140,140,255,0.3); }
+
+.card-content h2 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.card-content p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    color: #795548;
+}
+
+.start-btn {
+    background-color: #8BC34A;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.start-btn:hover {
+    background-color: #7CB342;
+}
