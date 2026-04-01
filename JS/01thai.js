@@ -24,6 +24,7 @@ const optionContainer = document.getElementById('options-container');
 const hintBubble = document.getElementById('hint-bubble');
 const endOverlay = document.getElementById('end-overlay');
 
+
 // Initialize Game on Load
 document.addEventListener('DOMContentLoaded', () => {
     loadProgression();
@@ -350,16 +351,13 @@ function resetToMapOnGameOver() {
     showMapScreen();
 }
 
-function retryCurrentStage() {
-    endOverlay.classList.add('hidden');
-    startStage(currentStageIndex);
-}
-
 // --- Boss Stage Specifics (Transformation) ---
 function resetBossVisuals() {
     isBossTransformed = false;
     document.getElementById('boss-display-name').innerText = thaiQuizData[9].bossName; // TJ Robert
-    document.getElementById('boss-img').src = 'ตัวละคร/tj_robert.png';
+    
+    // 🔴 แก้ชื่อไฟล์รูปให้ตรงกับในโฟลเดอร์
+    document.getElementById('boss-img').src = 'ตัวละคร/TJ(Boss)_Thai.png'; 
 }
 
 function triggerBossTransformation() {
@@ -374,7 +372,10 @@ function triggerBossTransformation() {
     setTimeout(() => {
         bossImg.classList.remove('transforming');
         document.getElementById('boss-display-name').innerText = "งูบุญดา";
-        bossImg.src = 'ตัวละคร/bunda_snake.png';
+        
+        // 🔴 แก้ชื่อไฟล์รูปให้ตรงกับในโฟลเดอร์
+        bossImg.src = 'ตัวละคร/บุญดา(Boss)_Thai.png';
+        
         bossBubble.innerText = "ฟู่ๆๆ! ฉันคือบุญดา!";
     }, 1000); // 1s transformation
 }

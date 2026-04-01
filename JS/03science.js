@@ -45,7 +45,7 @@ function loadProgression() {
 function saveProgression(stageNumberPassed) {
     if (stageNumberPassed >= unlockedStages && stageNumberPassed < totalStages) {
         unlockedStages = stageNumberPassed + 1;
-        localStorage.setItem('magic_science_progress', unlockedStages);
+        localStorage.setItem('magic_thai_progress', unlockedStages);
     }
 }
 
