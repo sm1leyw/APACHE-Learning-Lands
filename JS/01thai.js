@@ -175,8 +175,7 @@ function startStage(index) {
     }
     
     updateHeartsDisplay();
-    showGameScreen();
-    loadQuestion();
+    showVideoZone();
 }
 
 function loadQuestion() {
@@ -390,4 +389,16 @@ function DreambullAnimate(state) {
         img.style.transform = 'translateX(-5px)'; // shiver
         setTimeout(() => img.style.transform = 'translateX(0)', 300);
     }
+}
+function enterGame() {
+    videoZone.classList.add('hidden');
+    quizZone.classList.remove('hidden');
+
+    showGameScreen();
+    loadQuestion();
+}
+function backToMap() {
+    videoZone.classList.add('hidden');
+    quizZone.classList.remove('hidden');
+    showMapScreen();
 }
