@@ -46,7 +46,8 @@ function loadProgression() {
 function saveProgression(stageNumberPassed) {
     if (stageNumberPassed >= unlockedStages && stageNumberPassed < totalStages) {
         unlockedStages = stageNumberPassed + 1;
-        localStorage.setItem('magic_thai_progress', unlockedStages);
+        // แก้ตรงนี้ไม่ให้เซฟทับกับวิชาภาษาไทย
+        localStorage.setItem('magic_match_progress', unlockedStages);
     }
 }
 
@@ -98,7 +99,7 @@ function generateMap() {
     pathSvg.innerHTML = `<path class="map-line" d="${convertCoordsToSvgPath(stageCoords)}" />`;
 
     // 3. Draw Stage Dots (Divs)
-    thaiQuizData.forEach((stage, index) => {
+    matchQuizData.forEach((stage, index) => {
         const coords = stageCoords[index];
         const stageDot = document.createElement('div');
         const stageNum = stage.id;
@@ -156,7 +157,7 @@ function startStage(index) {
     currentHearts = maxHearts; // Reset hearts for a NEW attempt
     isBossTransformed = false; // Reset boss phase
     
-    const stage = thaiQuizData[index];
+    const stage = matchQuizData[index];
     
     // Update HUD
     document.getElementById('current-stage-title').innerText = stage.name;
@@ -180,7 +181,7 @@ function startStage(index) {
 }
 
 function loadQuestion() {
-    const stage = thaiQuizData[currentStageIndex];
+    const stage = matchQuizData[currentStageIndex];
     const questionData = stage.questions[currentQuestionIndex];
     
     document.getElementById('question-num').innerText = currentQuestionIndex + 1;
@@ -227,7 +228,7 @@ function hideSpecialInput() {
 
 // --- Logic ---
 function checkAnswer(selectedIndex, selectedBtn) {
-    const stage = thaiQuizData[currentStageIndex];
+    const stage = matchQuizData[currentStageIndex];
     const questionData = stage.questions[currentQuestionIndex];
     const isCorrect = (selectedIndex === questionData.correct);
 
@@ -260,7 +261,7 @@ function checkAnswer(selectedIndex, selectedBtn) {
 
 function moveNext() {
     currentQuestionIndex++;
-    const stage = thaiQuizData[currentStageIndex];
+    const stage = matchQuizData[currentStageIndex];
     const totalQ = stage.isBoss ? 10 : 5;
 
     if (currentQuestionIndex < totalQ) {
@@ -320,11 +321,11 @@ function endStage(isPassed) {
     const mainBtn = document.getElementById('end-main-btn');
 
     if (isPassed) {
-        saveProgression(thaiQuizData[currentStageIndex].id);
+        saveProgression(matchQuizData[currentStageIndex].id);
         
         endIcon.innerText = "🎉";
         endTitle.innerText = "สุดยอดไปเลย!";
-        endMsg.innerText = `คุณผ่านด่าน ${thaiQuizData[currentStageIndex].name} แล้ว!`;
+        endMsg.innerText = `คุณผ่านด่าน ${matchQuizData[currentStageIndex].name} แล้ว!`;
         retryBtn.classList.add('hidden');
         mainBtn.innerText = "กลับไปที่แผนที่เพื่อไปต่อ";
         mainBtn.onclick = resetToMap;
@@ -354,9 +355,8 @@ function resetToMapOnGameOver() {
 // --- Boss Stage Specifics (Transformation) ---
 function resetBossVisuals() {
     isBossTransformed = false;
-    document.getElementById('boss-display-name').innerText = thaiQuizData[9].bossName; // TJ Robert
+    document.getElementById('boss-display-name').innerText = matchQuizData[9].bossName; // King Nasir
     
-    // 🔴 แก้ชื่อไฟล์รูปให้ตรงกับในโฟลเดอร์
     document.getElementById('boss-img').src = 'ตัวละคร/TJ(Boss)_Thai.png'; 
 }
 
@@ -373,7 +373,6 @@ function triggerBossTransformation() {
         bossImg.classList.remove('transforming');
         document.getElementById('boss-display-name').innerText = "งูบุญดา";
         
-        // 🔴 แก้ชื่อไฟล์รูปให้ตรงกับในโฟลเดอร์
         bossImg.src = 'ตัวละคร/บุญดา(Boss)_Thai.png';
         
         bossBubble.innerText = "ฟู่ๆๆ! ฉันคือบุญดา!";
