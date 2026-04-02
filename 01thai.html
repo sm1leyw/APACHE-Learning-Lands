@@ -13,30 +13,36 @@
 <body>
 
     <div id="video-zone" class="container-view hidden">
+
         <header class="zone-header">
-            <button class="back-home-btn" onclick="backToMap()">
-    ⬅ กลับหน้าด่าน
-</button>
+
+            <button class="back-home-btn" onclick="backToMap()">⬅ กลับหน้าด่าน</button>
+
             <h1>แดนเรียนรู้วิชาภาษาไทย</h1>
+
             <p>ดูวิดีโอนี้เพื่อวอร์มอัพก่อนเข้าผจญภัย!</p>
+
         </header>
 
         <div class="video-container">
+
             <iframe width="560" height="315"
                 src="https://www.youtube-nocookie.com/embed/9Deg7VrpHbM?si=yjlr6UIxhKb-25uL"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
         </div>
 
         <button class="goto-quiz-btn" onclick="enterGame()">ฉันพร้อมผจญภัยแล้ว!</button>
     </div>
-
+    
+<!-- -------------------------------------------------------- -->
     <div id="quiz-zone" class="container-view">
 
         <div class="game-hud">
             <button class="back-video-btn" onclick="location.href='index.html'">
-                ⬅ กลับหน้าหลัก
+                <span>⬅</span> กลับหน้าหลัก
             </button>
 
             <div id="current-stage-title">แผนที่ผจญภัย</div>
@@ -49,7 +55,6 @@
         </div>
 
         <div id="map-screen" class="screen">
-            <h2>ป่าแห่งการเรียนรู้</h2>
             <div class="map-container">
                 <svg id="path-svg" class="map-path-svg">
                 </svg>
