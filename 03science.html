@@ -4,116 +4,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>วิชาวิทยาศาสตร์ | เรียนรู้แดนมหัศจรรย์</title>
-    <link rel="stylesheet" href="CSS/game-common.css">
-    <link rel="stylesheet" href="CSS/03science.css">
+
+    <link rel="stylesheet" href="CSS/game-common.css"> <!-- CSS หลัก -->
+    <link rel="stylesheet" href="CSS/03science.css">  <!-- CSS วิทยาศาสตร์ -->
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+    <!-- 🎬 VIDEO ZONE -->
     <div id="video-zone" class="container-view hidden">
+
         <header class="zone-header">
+
+            <!-- ปุ่มกลับ -->
             <button class="back-home-btn" onclick="backToMap()">
-                ⬅ กลับหน้าด่าน
+                <span>⬅</span> กลับหน้าด่าน
             </button>
+
+            <!-- หัวข้อ -->
             <h1>แดนเรียนรู้วิชาวิทยาศาสตร์</h1>
+
+            <!-- คำอธิบาย -->
             <p>ดูวิดีโอนี้เพื่อวอร์มอัพก่อนเข้าผจญภัย!</p>
+
         </header>
 
+        <!-- วิดีโอ -->
         <div class="video-container">
-            <iframe width="560" height="315"
+            <iframe
+                width="560"
+                height="315"
                 src="https://www.youtube-nocookie.com/embed/9Deg7VrpHbM?si=yjlr6UIxhKb-25uL"
-                title="YouTube video player" frameborder="0"
+                title="YouTube video player"
+                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <button class="goto-quiz-btn" onclick="enterGame()">ฉันพร้อมผจญภัยแล้ว!</button>
+        <!-- ปุ่มเริ่ม -->
+        <button class="goto-quiz-btn" onclick="enterGame()">
+            ฉันพร้อมผจญภัยแล้ว!
+        </button>
+
     </div>
 
+    <!-- 🎮 QUIZ ZONE -->
     <div id="quiz-zone" class="container-view">
 
+        <!-- ================== HUD ================== -->
         <div class="game-hud">
+
+            <!-- กลับหน้าหลัก -->
             <button class="back-video-btn" onclick="location.href='index.html'">
-                ⬅ กลับหน้าหลัก
+                <span>⬅</span> กลับหน้าหลัก
             </button>
 
-            <div id="current-stage-title">แผนที่ผจญภัย</div>
+            <!-- ชื่อด่าน -->
+            <div id="current-stage-title">
+                แผนที่ผจญภัย วิชาวิทยาศาสตร์
+            </div>
 
+            <!-- หัวใจ -->
             <div id="hearts-container" class="hearts-container">
                 <div class="heart full" id="heart-1">❤️</div>
                 <div class="heart full" id="heart-2">❤️</div>
                 <div class="heart full" id="heart-3">❤️</div>
             </div>
+
         </div>
 
+        <!-- ================== MAP ================== -->
         <div id="map-screen" class="screen">
 
             <div class="map-container">
-                <svg id="path-svg" class="map-path-svg">
-                </svg>
-                <div id="stages-layer" class="stages-layer">
-                </div>
+
+                <!-- เส้นทาง -->
+                <svg id="path-svg" class="map-path-svg"></svg>
+
+                <!-- ด่าน -->
+                <div id="stages-layer" class="stages-layer"></div>
+
             </div>
+
         </div>
 
+        <!-- ================== GAME ================== -->
         <div id="game-screen" class="screen hidden">
 
             <div class="question-layout">
+
+                <!-- 🧑‍🏫 ตัวช่วย -->
                 <div class="guide-area">
-                    <img src="ตัวละคร/Dreambull(Main).png" alt="พี่ช้าง Dreambull" class="dreambull-img">
+                    <img
+                        src="ตัวละคร/Dreambull(Main).png"
+                        alt="พี่ช้าง Dreambull"
+                        class="dreambull-img">
+
                     <div class="bubble hint-bubble" id="hint-bubble">
                         สวัสดีจ้ะ! พี่ช้างจะคอยช่วยนะ
                     </div>
                 </div>
 
+                <!-- ❓ คำถาม -->
                 <div class="quiz-area">
-                    <div class="stage-info">ด่านที่ <span id="stage-num">X</span> : <span id="stage-name">X</span></div>
-                    <div class="question-info">ข้อที่ <span id="question-num">Y</span> / <span
-                            id="total-questions">5</span></div>
 
+                    <!-- ด่าน -->
+                    <div class="stage-info">
+                        ด่านที่ <span id="stage-num">X</span> :
+                        <span id="stage-name">X</span>
+                    </div>
+
+                    <!-- ลำดับข้อ -->
+                    <div class="question-info">
+                        ข้อที่ <span id="question-num">Y</span> /
+                        <span id="total-questions">5</span>
+                    </div>
+
+                    <!-- กล่องคำถาม -->
                     <div class="question-box">
-                        <p id="question-text">โจทย์กำลังโหลด...</p>
+                        <p id="question-text">
+                            โจทย์กำลังโหลด...
+                        </p>
                     </div>
 
-                    <div class="options-container" id="options-container">
-                    </div>
+                    <!-- ตัวเลือก -->
+                    <div id="options-container" class="options-container"></div>
 
+                    <!-- input พิเศษ -->
                     <div id="special-input-container" class="hidden">
                         <p class="special-instruction"></p>
                     </div>
+
                 </div>
 
+                <!-- 👾 Boss -->
                 <div class="progress-area">
                     <div id="boss-container" class="hidden">
-                        <img src="" alt="Boss" id="boss-img" class="boss-img">
-                        <div class="bubble boss-bubble" id="boss-bubble">ย้าก! รับมือ!</div>
-                        <div class="boss-name" id="boss-display-name">TJ Robert</div>
+
+                        <img
+                            src=""
+                            alt="Boss"
+                            id="boss-img"
+                            class="boss-img">
+
+                        <div class="bubble boss-bubble" id="boss-bubble">
+                            ย้าก! รับมือ!
+                        </div>
+
+                        <div class="boss-name" id="boss-display-name">
+                            TJ Robert
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
 
+        <!-- ================== END SCREEN ================== -->
         <div id="end-overlay" class="overlay hidden">
+
             <div class="overlay-content">
+
+                <!-- ไอคอน -->
                 <div id="end-icon">🎉</div>
+
+                <!-- หัวข้อ -->
                 <h1 id="end-title">สุดยอดไปเลย!</h1>
+
+                <!-- ข้อความ -->
                 <p id="end-msg">คุณผ่านด่านแล้ว</p>
+
+                <!-- ปุ่ม -->
                 <div class="end-btns">
-                    <button id="end-main-btn" onclick="resetToMap()">กลับไปที่แผนที่</button>
-                    <button id="retry-btn" class="hidden" onclick="retryCurrentStage()">เริ่มด่านนี้ใหม่</button>
+
+                    <button id="end-main-btn" onclick="resetToMap()">
+                        กลับไปที่แผนที่
+                    </button>
+
+                    <button
+                        id="retry-btn"
+                        class="hidden"
+                        onclick="retryCurrentStage()">
+                        เริ่มด่านนี้ใหม่
+                    </button>
+
                 </div>
+
             </div>
         </div>
 
     </div>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- ================== ICON ================== -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <script src="JS/scienceData.js"></script>
-    <script src="JS/gameEngine.js"></script>
-    <script src="JS/03science.js"></script>
+    <!-- ================== JS ================== -->
+    <script src="JS/scienceData.js"></script> <!-- ข้อมูล -->
+    <script src="JS/gameEngine.js"></script> <!-- ระบบเกม -->
+    <script src="JS/03science.js"></script> <!-- Logic วิทย์ -->
+
 </body>
 
 </html>
