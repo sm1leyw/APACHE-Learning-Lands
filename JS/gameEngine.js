@@ -194,29 +194,40 @@
             dom.bossBubble.innerText = 'รับมือ!';
         }
 
-        function startStage(index) {
-            const stage = quizData[index];
+// gameEngine.js (ส่วนที่แก้ไขในฟังก์ชัน startStage)
 
-            state.currentStageIndex = index;
-            state.currentQuestionIndex = 0;
-            state.score = 0;
-            state.currentHearts = maxHearts;
-            state.isBossTransformed = false;
+    function startStage(index) {
+        const stage = quizData[index];
 
-            dom.currentStageTitle.innerText = stage.name;
-            dom.stageNum.innerText = stage.id;
-            dom.stageName.innerText = stage.name;
-            dom.totalQuestions.innerText = String(getStageQuestionCount(stage));
+        state.currentStageIndex = index;
+        state.currentQuestionIndex = 0;
+        state.score = 0;
+        state.currentHearts = maxHearts;
+        state.isBossTransformed = false;
 
-            if (stage.isBoss) {
-                dom.bossContainer.classList.remove('hidden');
-                resetBossVisuals(stage);
-            } else {
-                dom.bossContainer.classList.add('hidden');
-            }
+        dom.currentStageTitle.innerText = stage.name;
+        dom.stageNum.innerText = stage.id;
+        dom.stageName.innerText = stage.name;
+        dom.totalQuestions.innerText = String(getStageQuestionCount(stage));
 
-            updateHeartsDisplay();
-            showVideoZone();
+        // --- ส่วนที่เพิ่มเข้าไปเพื่อเปลี่ยนวิดีโอตามด่าน ---
+        const videoIframe = dom.videoZone.querySelector('iframe');
+        if (videoIframe && stage.vdoId) {
+            // ลบวิดีโอเดิม (Michael Jackson) ออก แล้วใส่ URL ใหม่ของด่านนั้นๆ
+            videoIframe.src = `https://www.youtube.com/embed/${stage.vdoId}?autoplay=0&rel=0`;
+        }
+        // ------------------------------------------
+
+        if (stage.isBoss) {
+            dom.bossContainer.classList.remove('hidden');
+            resetBossVisuals(stage);
+        } else {
+            dom.bossContainer.classList.add('hidden');
+    }
+    
+
+        updateHeartsDisplay();
+        showVideoZone(); // แสดงหน้าวิดีโอก่อนเริ่มผจญภัย
         }
 
         function showSpecialInput({
