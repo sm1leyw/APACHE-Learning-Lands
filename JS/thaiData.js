@@ -7,7 +7,7 @@ const thaiQuizData = [
     {
         id: 1,
         name: "ตัวสะกด",
-        vdoId: "JbHI1yI1Ndk", // ใส่ YouTube Video ID สำหรับด่านที่ 1 ที่นี่
+        vdoId: "jVnzDFYfPFk", // ใส่ YouTube Video ID
         questions: [
             { q: "คำว่า “แมว” ลงท้ายด้วยตัวสะกดอะไร", a: ["ว", "ม", "น"], correct: 0, hint: "ลองออกเสียงสิ ม-แอ-ว" },
             { q: "“บ้าน” มีตัวสะกดไหม", a: ["มี", "ไม่มี"], correct: 0, hint: "ลองสะกดดู บ-อา-น-บาน-ไม้โท" },
@@ -21,7 +21,7 @@ const thaiQuizData = [
     {
         id: 2,
         name: "การฟัง",
-        vdoId: "_UH6Hj_1eDQ", // ใส่ YouTube Video ID สำหรับด่านที่ 2
+        vdoId: "0cDFGY1p-Dg",
         questions: [
             // Assuming teacher/parent reads, user taps heard word
             {
@@ -40,6 +40,7 @@ const thaiQuizData = [
     {
         id: 3,
         name: "การอ่าน",
+        vdoId: "4RUCUs7vzLw",
         questions: [
             { q: "อ่านออกเสียงคำว่า “ปลา”", a: ["ปลา"], correct: 0, type: "speech" },
             { q: "อ่านออกเสียงคำว่า “หมา”", a: ["หมา"], correct: 0, type: "speech" },
@@ -52,6 +53,7 @@ const thaiQuizData = [
     {
         id: 4,
         name: "การเขียน",
+        vdoId: "uH4lkfdbSLc",
         questions: [
             {
                 q: "พิมพ์คำว่า “แมว”",
@@ -89,6 +91,7 @@ const thaiQuizData = [
     {
         id: 5,
         name: "มารยาท",
+        vdoId: "wTWwPT7DdeI",
         questions: [
             { q: "เวลาเจอครูควรพูดว่าอะไร", a: ["สวัสดีครับ/ค่ะ", "ไปละนะ", "กินไรมา"], correct: 0, hint: "ทักทายผู้ใหญ่ด้วยความเคารพ" },
             { q: "ถ้าจะขอของ ต้องพูดยังไง", a: ["ขอนะ", "เอามา", "ขอ...หน่อยครับ/ค่ะ"], correct: 2, hint: "มีคำลงท้ายเพราะๆ" },
@@ -101,6 +104,7 @@ const thaiQuizData = [
     {
         id: 6,
         name: "คำควบกล้ำ",
+        vdoId: "PaPECvZp4lo",
         questions: [
             { q: "คำว่า “ปลา” มีคำควบกล้ำไหม", a: ["มี", "ไม่มี"], correct: 0, hint: "เสียง ป กับ ล ออกพร้อมกัน" },
             { q: "“กรง” มีเสียงควบอะไร", a: ["กร", "กล", "กย"], correct: 0, hint: "ก ไก่ ร เรือ" },
@@ -114,6 +118,7 @@ const thaiQuizData = [
     {
         id: 7,
         name: "คำนาม (ชื่อคน สัตว์ สิ่งของ สถานที่)",
+        vdoId: "oPWu37fWayM",
         questions: [
             { q: "“หมา” เป็นอะไร", a: ["คำนาม", "คำกริยา", "คำสรรพนาม"], correct: 0, hint: "ชื่อเรียกสัตว์" },
             { q: "“โรงเรียน” เป็นอะไร", a: ["คำนาม", "คำกริยา", "คำสรรพนาม"], correct: 0, hint: "ชื่อเรียกสถานที่" },
@@ -126,6 +131,7 @@ const thaiQuizData = [
     {
         id: 8,
         name: "คำสรรพนาม (คำใช้แทนชื่อ)",
+        vdoId: "i5RAXO_R3Q0",
         questions: [
             { q: "ถ้าแทนคำว่า “ครู” ใช้คำว่าอะไรได้", a: ["ท่าน", "มัน", "ฉัน"], correct: 0, hint: "ใช้กับผู้ที่เราเคารพ" },
             { q: "“ฉัน” ใช้แทนใคร", a: ["ตัวเอง", "เพื่อน", "คนอื่น"], correct: 0, hint: "ผู้พูด" },
@@ -138,6 +144,7 @@ const thaiQuizData = [
     {
         id: 9,
         name: "คำกริยา (การกระทำ)",
+        vdoId: "OESKebLmaIo",
         questions: [
             { q: "“กิน” คือทำอะไร", a: ["การกระทำ", "ชื่อของ"], correct: 0, hint: "หม่ำๆๆ" },
             { q: "“วิ่ง” คือทำอะไร", a: ["การกระทำ", "ชื่อคน"], correct: 0, hint: "เคลื่อนที่เร็วๆ" },
@@ -150,6 +157,7 @@ const thaiQuizData = [
     {
         id: 10,
         name: "ศึกสุดท้ายในป่า",
+        vdoId: "vV_6Ad_XHz0",
         isBoss: true,
         bossName: "TJ Robert",
         questions: [
