@@ -19,4 +19,7 @@ v                                                               |        |
                                                              /      \/      \   
                                                              \______/\______/ 
 
-
+13/4/2569 #Phuvaness
+ทำฟังก์ชั่นแยกคลิปแต่ละด่าน ใน JS/gameEngine.js --> แก้ไขการดูคลิปก่อนเริ่มด่านให้แยกเป็นคลิป ตั้งแต่บรรทัดที่ 202 -239 function("startStage")
+เพิ่ม id="levelVideoIframe" ใน 01thai.html
+เพิ่ม vdoId: "", เอาไว้ใส่ YouTube Video ID ใน JS/thaiData.js
