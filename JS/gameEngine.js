@@ -38,6 +38,7 @@
 
         const dom = {
             videoZone: document.getElementById('video-zone'),
+            levelVideoIframe: document.getElementById('levelVideoIframe'),
             quizZone: document.getElementById('quiz-zone'),
             mapScreen: document.getElementById('map-screen'),
             gameScreen: document.getElementById('game-screen'),
@@ -58,6 +59,8 @@
             bossImg: document.getElementById('boss-img'),
             bossBubble: document.getElementById('boss-bubble'),
             bossDisplayName: document.getElementById('boss-display-name')
+            
+            
         };
 
         function formatQuestionText(text) {
@@ -194,40 +197,45 @@
             dom.bossBubble.innerText = 'รับมือ!';
         }
 
-// gameEngine.js (ส่วนที่แก้ไขในฟังก์ชัน startStage)
 
-    function startStage(index) {
-        const stage = quizData[index];
 
-        state.currentStageIndex = index;
-        state.currentQuestionIndex = 0;
-        state.score = 0;
-        state.currentHearts = maxHearts;
-        state.isBossTransformed = false;
+        function startStage(index) {
+            const stage = quizData[index];
 
-        dom.currentStageTitle.innerText = stage.name;
-        dom.stageNum.innerText = stage.id;
-        dom.stageName.innerText = stage.name;
-        dom.totalQuestions.innerText = String(getStageQuestionCount(stage));
+            state.currentStageIndex = index;
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.currentHearts = maxHearts;
+            state.isBossTransformed = false;
 
-        // --- ส่วนที่เพิ่มเข้าไปเพื่อเปลี่ยนวิดีโอตามด่าน ---
-        const videoIframe = dom.videoZone.querySelector('iframe');
-        if (videoIframe && stage.vdoId) {
-            // ลบวิดีโอเดิม (Michael Jackson) ออก แล้วใส่ URL ใหม่ของด่านนั้นๆ
-            videoIframe.src = `https://www.youtube.com/embed/${stage.vdoId}?autoplay=0&rel=0`;
-        }
-        // ------------------------------------------
+            dom.currentStageTitle.innerText = stage.name;
+            dom.stageNum.innerText = stage.id;
+            dom.stageName.innerText = stage.name;
+            dom.totalQuestions.innerText = String(getStageQuestionCount(stage));
 
-        if (stage.isBoss) {
-            dom.bossContainer.classList.remove('hidden');
-            resetBossVisuals(stage);
-        } else {
-            dom.bossContainer.classList.add('hidden');
-    }
+            // ---------- ส่วนที่แก้ไข: ดึงวิดีโอตามด่าน ----------
+            const videoIframe = document.getElementById('levelVideoIframe');
     
+            // เช็กว่ามีกล่องวิดีโอในหน้าเว็บไหม และด่านนี้มี vdoId หรือเปล่า
+            if (videoIframe && stage.vdoId) {
+                // อัปเดตลิงก์ YouTube เป็นด่านนั้นๆ 
+                videoIframe.src = `https://www.youtube.com/embed/${stage.vdoId}?rel=0&autoplay=0`;
+                console.log(`กำลังโหลดวิดีโอสำหรับด่าน ${stage.id} ID: ${stage.vdoId}`);
+            } else if (videoIframe) {
+                // ถ้าด่านไหนไม่ได้ใส่ vdoId ไว้ ให้เคลียร์หน้าจอว่าง
+                videoIframe.src = "";
+            }
+            // ------------------------------------------------
 
-        updateHeartsDisplay();
-        showVideoZone(); // แสดงหน้าวิดีโอก่อนเริ่มผจญภัย
+            if (stage.isBoss) {
+                dom.bossContainer.classList.remove('hidden');
+                resetBossVisuals(stage);
+            } else {
+                dom.bossContainer.classList.add('hidden');
+            }
+
+            updateHeartsDisplay();
+            showVideoZone();
         }
 
         function showSpecialInput({
@@ -541,9 +549,14 @@
         }
 
         function backToMap() {
-            dom.videoZone.classList.add('hidden');
-            dom.quizZone.classList.remove('hidden');
-            showMapScreen();
+            // โค้ดเดิมของคุณ (สลับซ่อน/แสดงหน้าจอ)
+            // ...
+
+            // เพิ่มบรรทัดนี้ลงไปเพื่อปิดวิดีโอตอนกดย้อนกลับ จะได้ไม่มีเสียงแทรก
+            const videoIframe = document.getElementById('levelVideoIframe');
+            if (videoIframe) {
+                videoIframe.src = ""; 
+            }
         }
 
         function init() {

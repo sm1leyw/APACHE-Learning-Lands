@@ -7,7 +7,7 @@ const thaiQuizData = [
     {
         id: 1,
         name: "ตัวสะกด",
-        vdoId: "0J3vgcE5i2o", // ใส่ YouTube Video ID สำหรับด่านที่ 1 ที่นี่
+        vdoId: "JbHI1yI1Ndk", // ใส่ YouTube Video ID สำหรับด่านที่ 1 ที่นี่
         questions: [
             { q: "คำว่า “แมว” ลงท้ายด้วยตัวสะกดอะไร", a: ["ว", "ม", "น"], correct: 0, hint: "ลองออกเสียงสิ ม-แอ-ว" },
             { q: "“บ้าน” มีตัวสะกดไหม", a: ["มี", "ไม่มี"], correct: 0, hint: "ลองสะกดดู บ-อา-น-บาน-ไม้โท" },
