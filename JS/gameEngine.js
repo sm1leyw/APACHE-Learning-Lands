@@ -549,13 +549,13 @@
         }
 
         function backToMap() {
-            // โค้ดเดิมของคุณ (สลับซ่อน/แสดงหน้าจอ)
-            // ...
+            dom.videoZone.classList.add('hidden'); // ซ่อนหน้าวิดีโอ
+            dom.quizZone.classList.remove('hidden'); // แสดงหน้าเกม
+            showMapScreen(); // เรียกแสดงหน้าแผนที่ด่าน
 
-            // เพิ่มบรรทัดนี้ลงไปเพื่อปิดวิดีโอตอนกดย้อนกลับ จะได้ไม่มีเสียงแทรก
             const videoIframe = document.getElementById('levelVideoIframe');
             if (videoIframe) {
-                videoIframe.src = ""; 
+            videoIframe.src = ""; 
             }
         }
 
