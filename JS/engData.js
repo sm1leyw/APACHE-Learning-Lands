@@ -85,7 +85,7 @@ const engQuizData = [
     { id: 9, name: "ทายบุคคลดัง (Basic)", 
         vdoId: "kHUzNAt8YJw", 
         questions: [
-        { q: "Who is he? (มนุษย์แมงมุม 🕷️)", a: ["Spider-Man", "Batman"], correct: 0, hint: "พ่นใยได้" }, 
+        { q: "Who is he? (มนุษย์แมงมุม 🕷️)", a: ["Spider-Man", "Batman"], correct: 0, image: "ด่าน 9_ENG/SPIDERMAN.jpg", hint: "พ่นใยได้" }, 
         { q: "Who is he? (คนเหล็ก 🤖🔴)", a: ["Iron Man", "Superman"], correct: 0, hint: "ใส่ชุดเกราะสีแดง" }, 
         { q: "Who is she? (เจ้าหญิงน้ำแข็ง ❄️)", a: ["Elsa", "Anna"], correct: 0, hint: "Let it go~" }, 
         { q: "Who is he? (นักเตะหมายเลข 10 อาร์เจนติน่า ⚽)", a: ["Messi", "Ronaldo"], correct: 0, hint: "แชมป์โลก" }, 
