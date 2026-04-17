@@ -49,6 +49,7 @@
             hintBubble: document.getElementById('hint-bubble'),
             endOverlay: document.getElementById('end-overlay'),
             specialInputContainer: document.getElementById('special-input-container'),
+            questionBox: document.querySelector('.question-box'),
             questionText: document.getElementById('question-text'),
             questionNum: document.getElementById('question-num'),
             totalQuestions: document.getElementById('total-questions'),
@@ -75,6 +76,104 @@
 
         function formatChoiceText(text) {
             return normalizeText(text);
+        }
+
+        function ensureQuestionMediaElements() {
+            if (!dom.questionBox) {
+                return null;
+            }
+
+            let mediaContainer = dom.questionBox.querySelector('.question-media-container');
+
+            if (!mediaContainer) {
+                mediaContainer = document.createElement('div');
+                mediaContainer.className = 'question-media-container hidden';
+
+                const mediaImage = document.createElement('img');
+                mediaImage.className = 'question-media';
+                mediaImage.alt = '';
+                mediaImage.loading = 'lazy';
+
+                const mediaCaption = document.createElement('p');
+                mediaCaption.className = 'question-media-caption hidden';
+
+                mediaContainer.appendChild(mediaImage);
+                mediaContainer.appendChild(mediaCaption);
+                dom.questionBox.appendChild(mediaContainer);
+            }
+
+            return {
+                container: mediaContainer,
+                image: mediaContainer.querySelector('.question-media'),
+                caption: mediaContainer.querySelector('.question-media-caption')
+            };
+        }
+
+        function getQuestionImageConfig(questionData) {
+            const imageConfig = questionData?.image;
+
+            if (!imageConfig) {
+                return null;
+            }
+
+            if (typeof imageConfig === 'string') {
+                return {
+                    src: imageConfig,
+                    alt: questionData.imageAlt || formatQuestionText(questionData.q),
+                    caption: questionData.imageCaption || ''
+                };
+            }
+
+            if (typeof imageConfig === 'object' && typeof imageConfig.src === 'string') {
+                return {
+                    src: imageConfig.src,
+                    alt: imageConfig.alt || questionData.imageAlt || formatQuestionText(questionData.q),
+                    caption: imageConfig.caption || questionData.imageCaption || ''
+                };
+            }
+
+            return null;
+        }
+
+        function clearQuestionImage(mediaElements) {
+            if (!mediaElements) {
+                return;
+            }
+
+            mediaElements.container.classList.add('hidden');
+            mediaElements.image.removeAttribute('src');
+            mediaElements.image.alt = '';
+            mediaElements.image.onerror = null;
+            mediaElements.caption.innerText = '';
+            mediaElements.caption.classList.add('hidden');
+            dom.questionBox?.classList.remove('has-media');
+        }
+
+        function renderQuestionImage(questionData) {
+            const mediaElements = ensureQuestionMediaElements();
+            const imageConfig = getQuestionImageConfig(questionData);
+
+            if (!mediaElements || !imageConfig?.src) {
+                clearQuestionImage(mediaElements);
+                return;
+            }
+
+            mediaElements.image.onerror = () => {
+                clearQuestionImage(mediaElements);
+            };
+            mediaElements.image.src = imageConfig.src;
+            mediaElements.image.alt = imageConfig.alt;
+
+            if (imageConfig.caption) {
+                mediaElements.caption.innerText = imageConfig.caption;
+                mediaElements.caption.classList.remove('hidden');
+            } else {
+                mediaElements.caption.innerText = '';
+                mediaElements.caption.classList.add('hidden');
+            }
+
+            mediaElements.container.classList.remove('hidden');
+            dom.questionBox?.classList.add('has-media');
         }
 
         function getStage() {
@@ -309,6 +408,7 @@
 
             dom.questionNum.innerText = state.currentQuestionIndex + 1;
             dom.questionText.innerText = formatQuestionText(questionData.q);
+            renderQuestionImage(questionData);
 
             hideSpecialInput();
 

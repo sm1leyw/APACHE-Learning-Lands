@@ -440,8 +440,14 @@ body {
     margin-bottom: 20px;
     min-height: 80px;
     display: flex;
+    flex-direction: column;
+    gap: 16px;
     align-items: center;
     justify-content: center;
+}
+
+.question-box.has-media {
+    align-items: stretch;
 }
 
 .question-box p {
@@ -449,6 +455,32 @@ body {
     line-height: 1.5;
     color: var(--text-color);
     margin: 0;
+    width: 100%;
+}
+
+.question-media-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.question-media {
+    display: block;
+    width: min(100%, 320px);
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 16px;
+    background: white;
+    border: 3px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.question-media-caption {
+    margin: 0;
+    font-size: 1rem;
+    color: #795548;
 }
 
 .options-container {
@@ -801,6 +833,10 @@ body {
         font-size: 1.35rem;
     }
 
+    .question-media {
+        max-height: 240px;
+    }
+
     .options-container {
         grid-template-columns: 1fr;
     }
@@ -822,6 +858,11 @@ body {
 
     .question-box p {
         font-size: 1.2rem;
+    }
+
+    .question-media {
+        width: min(100%, 240px);
+        max-height: 200px;
     }
 
     .stage-info {
