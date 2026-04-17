@@ -11,6 +11,8 @@
         transformedName: 'งูบุญดา'
     };
 
+    const AUDIO_FILE_PATTERN = /\.(mp3|wav|ogg|m4a|aac|webm)(\?.*)?$/i;
+
     function normalizeText(value) {
         return String(value ?? '')
             .replace(/\s+/g, ' ')
@@ -31,7 +33,8 @@
             currentQuestionIndex: 0,
             unlockedStages: 1,
             isBossTransformed: false,
-            score: 0
+            score: 0,
+            currentAudioPlayer: null
         };
 
         const maxHearts = 3;
@@ -76,6 +79,65 @@
 
         function formatChoiceText(text) {
             return normalizeText(text);
+        }
+
+        function isAudioFileSource(value) {
+            const normalized = String(value ?? '').trim();
+
+            if (!normalized) {
+                return false;
+            }
+
+            return AUDIO_FILE_PATTERN.test(normalized)
+                || normalized.startsWith('data:audio/')
+                || normalized.startsWith('blob:');
+        }
+
+        function getQuestionAudioConfig(questionData) {
+            const audioConfig = questionData?.audio;
+
+            if (!audioConfig) {
+                return null;
+            }
+
+            if (typeof audioConfig === 'string') {
+                return isAudioFileSource(audioConfig)
+                    ? { src: audioConfig, text: '', autoplay: false }
+                    : { src: '', text: audioConfig, autoplay: false };
+            }
+
+            if (typeof audioConfig === 'object') {
+                return {
+                    src: typeof audioConfig.src === 'string' ? audioConfig.src : '',
+                    text: typeof audioConfig.text === 'string' ? audioConfig.text : '',
+                    autoplay: Boolean(audioConfig.autoplay)
+                };
+            }
+
+            return null;
+        }
+
+        function setAudioButtonState(button, isPlaying) {
+            if (!button) {
+                return;
+            }
+
+            button.classList.toggle('speaking', isPlaying);
+            button.innerText = isPlaying ? 'กำลังเล่น...' : 'เล่นเสียง';
+        }
+
+        function stopAudioPlayback() {
+            if (state.currentAudioPlayer) {
+                state.currentAudioPlayer.pause();
+                state.currentAudioPlayer.currentTime = 0;
+                state.currentAudioPlayer = null;
+            }
+
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+
+            setAudioButtonState(document.querySelector('.speaker-btn'), false);
         }
 
         function ensureQuestionMediaElements() {
@@ -356,7 +418,7 @@
             }
 
             if (showSpeaker) {
-                actionButtons.push('<button class="speaker-btn" onclick="repeatAudio(this)">ฟังเสียง</button>');
+                actionButtons.push('<button class="speaker-btn" onclick="repeatAudio(this)">เล่นเสียง</button>');
             }
 
             dom.specialInputContainer.classList.remove('hidden');
@@ -372,9 +434,10 @@
             dom.specialInputContainer.innerHTML = '';
         }
 
-        function speak(text) {
+        function speak(text, callbacks = {}) {
             if (!text || !window.speechSynthesis) {
-                return;
+                callbacks.onError?.();
+                return false;
             }
 
             window.speechSynthesis.cancel();
@@ -382,8 +445,65 @@
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = speechLang;
             utterance.rate = 0.9;
+            utterance.onend = () => {
+                callbacks.onEnd?.();
+            };
+            utterance.onerror = () => {
+                callbacks.onError?.();
+            };
 
             window.speechSynthesis.speak(utterance);
+            return true;
+        }
+
+        function playQuestionAudio(button) {
+            const questionData = getQuestion();
+            const audioConfig = getQuestionAudioConfig(questionData);
+
+            if (!audioConfig || (!audioConfig.src && !audioConfig.text)) {
+                return;
+            }
+
+            stopAudioPlayback();
+            setAudioButtonState(button, true);
+
+            if (audioConfig.src) {
+                const audioPlayer = new Audio(audioConfig.src);
+                state.currentAudioPlayer = audioPlayer;
+
+                audioPlayer.onended = () => {
+                    state.currentAudioPlayer = null;
+                    setAudioButtonState(button, false);
+                };
+
+                audioPlayer.onerror = () => {
+                    state.currentAudioPlayer = null;
+                    setAudioButtonState(button, false);
+                    window.alert('ไม่สามารถเล่นไฟล์เสียงของข้อนี้ได้');
+                };
+
+                const playPromise = audioPlayer.play();
+                if (playPromise?.catch) {
+                    playPromise.catch(() => {
+                        state.currentAudioPlayer = null;
+                        setAudioButtonState(button, false);
+                        window.alert('เบราว์เซอร์ยังไม่อนุญาตให้เล่นเสียง กรุณากดปุ่มเล่นอีกครั้ง');
+                    });
+                }
+
+                return;
+            }
+
+            if (!window.speechSynthesis) {
+                setAudioButtonState(button, false);
+                window.alert('เบราว์เซอร์นี้ยังไม่รองรับการเล่นเสียงคำพูด');
+                return;
+            }
+
+            speak(audioConfig.text, {
+                onEnd: () => setAudioButtonState(button, false),
+                onError: () => setAudioButtonState(button, false)
+            });
         }
 
         function renderOptions(questionData) {
@@ -405,7 +525,9 @@
         function loadQuestion() {
             const stage = getStage();
             const questionData = getQuestion();
+            const questionAudio = getQuestionAudioConfig(questionData);
 
+            stopAudioPlayback();
             dom.questionNum.innerText = state.currentQuestionIndex + 1;
             dom.questionText.innerText = formatQuestionText(questionData.q);
             renderQuestionImage(questionData);
@@ -427,10 +549,19 @@
                 });
             } else if (questionData.audio) {
                 showSpecialInput({
-                    text: 'ฟังเสียงแล้วเลือกคำตอบ',
+                    text: 'กดปุ่มเล่นเสียง แล้วเลือกคำตอบ',
                     showSpeaker: true
                 });
-                speak(questionData.audio);
+                setAudioButtonState(document.querySelector('.speaker-btn'), false);
+
+                if (questionAudio?.autoplay) {
+                    requestAnimationFrame(() => {
+                        const speakerButton = document.querySelector('.speaker-btn');
+                        if (speakerButton) {
+                            playQuestionAudio(speakerButton);
+                        }
+                    });
+                }
             }
 
             if (stage.isBoss) {
@@ -539,6 +670,7 @@
             const retryBtn = document.getElementById('retry-btn');
             const mainBtn = document.getElementById('end-main-btn');
 
+            stopAudioPlayback();
             dom.endOverlay.classList.remove('hidden');
 
             if (isPassed) {
@@ -561,11 +693,13 @@
         }
 
         function resetToMap() {
+            stopAudioPlayback();
             dom.endOverlay.classList.add('hidden');
             showMapScreen();
         }
 
         function retryCurrentStage() {
+            stopAudioPlayback();
             dom.endOverlay.classList.add('hidden');
             startStage(state.currentStageIndex);
         }
@@ -632,13 +766,7 @@
         }
 
         function repeatAudio(button) {
-            const questionData = getQuestion();
-            button.classList.add('speaking');
-            speak(questionData.audio || questionData.q);
-
-            setTimeout(() => {
-                button.classList.remove('speaking');
-            }, 1000);
+            playQuestionAudio(button);
         }
 
         function enterGame() {
@@ -649,6 +777,7 @@
         }
 
         function backToMap() {
+            stopAudioPlayback();
             dom.videoZone.classList.add('hidden'); // ซ่อนหน้าวิดีโอ
             dom.quizZone.classList.remove('hidden'); // แสดงหน้าเกม
             showMapScreen(); // เรียกแสดงหน้าแผนที่ด่าน

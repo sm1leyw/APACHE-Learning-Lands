@@ -104,7 +104,7 @@ const engQuizData = [
         vdoId: "fS9WNTlsQIE",
         isBoss: true, bossName: "Ego Boy (TJ Robert)",
         questions: [
-            { q: "บอส Ego Boy: 🎵 'doo doo doo doo doo doo' เพลงอะไร", a: ["Baby Shark", "Let It Go"], correct: 0, bossSay: "ร้องเพลงแข่งกันไหม!", bundle: false },
+            { q: "บอส Ego Boy: 🎵 'doo doo doo doo doo doo' เพลงอะไร", audio: "เพลงสยองขวัญ/ssstik.io_1776440638309.mp3", autoplay: true, a: ["Baby Shark", "Let It Go"], correct: 0, bossSay: "ร้องเพลงแข่งกันไหม!", bundle: false },
             { q: "บอส Ego Boy: 🎵 'How I wonder what you are' เพลงอะไร", a: ["Twinkle Twinkle Little Star", "ABC Song"], correct: 0, bossSay: "เสียงฉันเพราะกว่า!", bundle: false },
             { q: "บอส Ego Boy: 🎵 'H I J K L M N O P' เพลงอะไร", a: ["ABC Song", "Baby Shark"], correct: 0, bossSay: "ร้องตามให้ทันล่ะ!", bundle: false },
             { q: "บอส Ego Boy: 🎵 'Clap your hands' เพลงอะไร", a: ["If You're Happy and You Know It", "Hello"], correct: 0, bossSay: "แปะๆ!", bundle: false },
