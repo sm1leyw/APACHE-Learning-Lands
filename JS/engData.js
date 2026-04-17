@@ -32,7 +32,7 @@ const engQuizData = [
         ] 
     },
     { id: 4, name: "Food & Drink", 
-        vdoId: "RAOSqD9bkSM", 
+        vdoId: "TUzEbjxz9T8", 
         questions: [
         { q: "Do you like pizza? 🍕", a: ["Yes, I do.", "No, it is a dog."], correct: 0, hint: "ชอบไหม" }, 
         { q: "What is this? 🍎", a: ["Apple", "Banana"], correct: 0, hint: "สีแดงๆ" }, 
@@ -52,7 +52,7 @@ const engQuizData = [
         ] 
     },
     { id: 6, name: "Time", 
-        vdoId: "ZuWWu-gidY8",
+        vdoId: "HrOsJdY5wwI",
          questions: [
         { q: "What time is it? (7:00)", a: ["Seven o'clock", "Ten o'clock"], correct: 0, hint: "เลข 7" }, 
         { q: "Morning or night? ☀️", a: ["Morning (เช้า)", "Night (กลางคืน)"], correct: 0, hint: "พระอาทิตย์ขึ้น" }, 
