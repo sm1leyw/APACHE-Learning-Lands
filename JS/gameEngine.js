@@ -583,6 +583,6 @@
             init();
         }
     }
-
+    
     window.createSubjectGame = createSubjectGame;
 })();
