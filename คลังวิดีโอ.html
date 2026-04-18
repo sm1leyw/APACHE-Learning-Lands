@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายการ</title>
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #FFF5E1 0%, #E0F7FA 100%);
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 30px 30px;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-home {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid white;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+    .container {
+     max-width: 1200px;
+    margin: 0 auto;
+    padding: 300px 30px; /* บน-ล่างห่างขึ้น */
+    }
+    
+    .title {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* ล็อก 4 ช่องสวยๆ */
+    gap: 40px; /* ระยะห่างการ์ด */
+    margin-top: 40px; /* เว้นจาก header */
+    }
+
+    .card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #333;
+      text-align: center;
+    }
+
+    .views {
+      font-size: 12px;
+      color: gray;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 80px;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    .button {
+     display: block;        /* ทำให้จัดกลางได้ */
+    margin: 10px auto 0;   /* จัดกลาง + เว้นบน */
+    width: fit-content;    /* ขนาดพอดีข้อความ */
+    color: white;
+     background: #ff4d4d;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>คลังวิดีโอ</div>
+    <a href="index.html" class="back-home">← กลับหน้าแรก</a>
+  </header>
+
+  <div class="container">
+    
+    <div class="grid">
+
+      <div class="card">
+        <img src="รูปภาพ คลังวิดีโอ/ภาษาไทย.png" alt="">
+        <div class="card-body">
+        <div class="card-title">ภาษาไทย</div>
+        <a href="https://www.youtube.com/playlist?list=PL4xOafSaFrwA3ogOv4z2i9gauNZD6HqiG" class="button">Playlist</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="รูปภาพ คลังวิดีโอ/math.png" alt="">
+        <div class="card-body">
+        <div class="card-title">คณิตศาสตร์</div>
+        <a href="https://www.youtube.com/playlist?list=PLENWWyBUXn-BmbhDgC_Dmd64XOg0II-AC" class="button">Playlist</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="รูปภาพ คลังวิดีโอ/วิทยาศาสตร์.png" alt="">
+        <div class="card-body">
+        <div class="card-title">วิทยาศาสตร์</div>
+        <a href="https://www.youtube.com/playlist?list=PL4xOafSaFrwCaaIQs5tCGNLL0bppg6ZiE" class="button">Playlist</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="รูปภาพ คลังวิดีโอ/ภาษาeng.png" alt="">
+        <div class="card-body">
+        <div class="card-title">ภาษาอังกฤษ</div>
+        <a href="https://www.youtube.com/playlist?list=PLENWWyBUXn-A81w3oWCkhu1TI4H6ET2IC" class="button">Playlist</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 ระบบสื่อการเรียนรู้ | All Rights Reserved <br>
+  </footer>
+  
+</body>
+</html>
