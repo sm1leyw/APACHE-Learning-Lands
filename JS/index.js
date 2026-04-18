@@ -244,4 +244,24 @@ function navigateTo(url) {
     } else {
         initHomePage();
     }
+
+    createSubjectGame({
+    quizData: thaiQuizData,
+    boss: {
+        initialImage: 'ตัวละคร/TJ(Boss)_Thai.png',
+        transformedImage: 'ตัวละคร/บุญดา(Boss)_Thai.png',
+        transformedName: 'งูบุญดา'
+    }
+    }
+    );
+    
+    createSubjectGame({
+    quizData: engQuizData,
+    boss: {
+        initialImage: 'ตัวละคร/Joffy Extreme_(EngBoss).png', // รูปบอสอังกฤษ
+        transformedImage: 'ตัวละคร/Joffy_Extreme_buss(EngBoss).png',
+        transformedName: 'บอสงูอังกฤษ'
+    }
+    }
+    );
 })();

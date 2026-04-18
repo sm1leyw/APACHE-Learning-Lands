@@ -374,10 +374,11 @@
         }
 
         function resetBossVisuals(stage) {
-            state.isBossTransformed = false;
-            dom.bossDisplayName.innerText = stage.bossName || 'Boss';
-            dom.bossImg.src = boss.initialImage;
-            dom.bossBubble.innerText = 'รับมือ!';
+        state.isBossTransformed = false;
+        dom.bossDisplayName.innerText = stage.bossName || 'Boss';
+        dom.bossImg.src = config.boss?.initialImage || DEFAULT_BOSS.initialImage; 
+    
+        dom.bossBubble.innerText = 'รับมือ!';
         }
 
 
