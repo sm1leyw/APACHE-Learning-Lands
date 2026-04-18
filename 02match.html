@@ -4,15 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            try {
+                document.documentElement.dataset.theme = localStorage.getItem("apache-theme") === "light" ? "light" : "dark";
+            } catch (error) {
+                document.documentElement.dataset.theme = "dark";
+            }
+        })();
+    </script>
 
     <title>วิชาคณิตศาสตร์ | เรียนรู้แดนมหัศจรรย์</title>
 
     <link rel="stylesheet" href="CSS/game-common.css"> <!-- CSS หลัก -->
     <link rel="stylesheet" href="CSS/02match.css">     <!-- CSS คณิต -->
+    <link rel="stylesheet" href="CSS/global-ui.css">
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="app-page subject-page">
 
     <!-- 🎬 VIDEO ZONE (ก่อนเริ่มเกม) -->
     <div id="video-zone" class="container-view hidden">
@@ -210,6 +220,7 @@
     <script src="JS/matchData.js"></script>   <!-- ข้อมูล -->
     <script src="JS/gameEngine.js"></script> <!-- ระบบเกม -->
     <script src="JS/02match.js"></script>    <!-- Logic คณิต -->
+    <script src="JS/global-ui.js"></script>
 
 </body>
 </html>

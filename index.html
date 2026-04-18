@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            try {
+                document.documentElement.dataset.theme = localStorage.getItem("apache-theme") === "light" ? "light" : "dark";
+            } catch (error) {
+                document.documentElement.dataset.theme = "dark";
+            }
+        })();
+    </script>
     <title>เรียนรู้แดนมหัศจรรย์ | ป.1 - ป.3</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/global-ui.css">
 </head>
-<body>
+<body class="app-page home-page">
     <div class="page-background" aria-hidden="true">
         <div class="page-background__fallback"></div>
         <div id="shader-background" class="page-background__shader"></div>
@@ -98,7 +108,7 @@
                     aria-label="เข้าสู่วิชาคณิตศาสตร์">
                     <div class="card-frame">
                         <div class="card-panel">
-                            <span class="card-kicker">MATH QUEST</span>
+                            <span class="card-kicker">MATH</span>
                             <h3>วิชาคณิตศาสตร์</h3>
 
                             <div class="subject-image-wrap">
@@ -215,5 +225,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="JS/index.js"></script>
+    <script src="JS/global-ui.js"></script>
 </body>
 </html>

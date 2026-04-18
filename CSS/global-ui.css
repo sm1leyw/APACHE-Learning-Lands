@@ -258,6 +258,7 @@ html[data-theme="light"] .theme-toggle__thumb {
     transform: translate(0, 0) scale(0.45);
     transition: transform 0.28s ease, opacity 0.28s ease;
     cursor: pointer;
+    pointer-events: none;
 }
 
 .nav-orb__action::before {
@@ -304,6 +305,7 @@ html[data-theme="light"] .theme-toggle__thumb {
 .nav-orb.is-expanded .nav-orb__action {
     opacity: 1;
     transform: scale(1);
+    pointer-events: auto;
 }
 
 .nav-orb__icon {
@@ -486,34 +488,31 @@ html[data-theme="light"] .theme-toggle__thumb {
     .theme-toggle__thumb {
         transition: none;
     }
-
-    .interaction-canvas {
-        display: none;
-    }
 }
 
 @media (max-width: 780px) {
     .theme-toggle {
-        top: 14px;
-        right: 14px;
-        min-width: 116px;
-        padding: 8px 12px;
+        top: 12px;
+        right: 12px;
+        min-width: auto;
+        gap: 0;
+        padding: 8px;
     }
 
     .theme-toggle__label {
-        font-size: 0.8rem;
+        display: none;
     }
 
     .nav-orb {
-        right: 12px;
-        bottom: 12px;
-        width: 186px;
-        height: 186px;
+        right: 8px;
+        bottom: 8px;
+        width: 170px;
+        height: 170px;
     }
 
     .nav-orb__action {
-        width: 78px;
-        height: 78px;
+        width: 72px;
+        height: 72px;
         gap: 6px;
     }
 
@@ -528,31 +527,31 @@ html[data-theme="light"] .theme-toggle__thumb {
     }
 
     .nav-orb__action--home {
-        left: 18px;
-        top: 18px;
+        left: 14px;
+        top: 14px;
     }
 
     .nav-orb__action--video {
-        right: 18px;
-        top: 18px;
+        right: 14px;
+        top: 14px;
     }
 
     .nav-orb__action--news {
-        left: 18px;
-        bottom: 18px;
+        left: 14px;
+        bottom: 14px;
     }
 
     .nav-orb__action--contact {
-        right: 18px;
-        bottom: 18px;
+        right: 14px;
+        bottom: 14px;
     }
 
     .nav-orb__center {
-        width: 58px;
-        height: 58px;
+        width: 54px;
+        height: 54px;
     }
 
     .nav-orb__label {
-        font-size: 0.68rem;
+        font-size: 0.62rem;
     }
 }

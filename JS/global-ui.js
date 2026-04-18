@@ -43,7 +43,7 @@
 
         if (button) {
             button.setAttribute("aria-pressed", String(nextTheme === "light"));
-            button.setAttribute("aria-label", nextTheme === "dark" ? "สลับเป็นธีมสว่าง" : "สลับเป็นธีมมืด");
+            button.setAttribute("aria-label", nextTheme === "dark" ? "Switch to light theme" : "Switch to dark theme");
         }
     }
 
@@ -83,9 +83,9 @@
                     <span class="nav-orb__icon">${iconSet.contact}</span>
                     <span class="nav-orb__label">Contact</span>
                 </button>
-                <button class="nav-orb__center" type="button" aria-expanded="false" aria-label="เปิดเมนูนำทาง">
+                <button class="nav-orb__center" type="button" aria-expanded="false" aria-label="Open navigation menu">
                     ${iconSet.menu}
-                    <span class="sr-only">เมนูนำทาง</span>
+                    <span class="sr-only">Navigation menu</span>
                 </button>
             </div>
         `;
@@ -156,18 +156,19 @@
     function initPointerFx() {
         const canvas = document.querySelector(".interaction-canvas");
         const ctx = canvas?.getContext("2d");
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-        if (!canvas || !ctx || reducedMotion.matches) {
-            if (canvas) {
-                canvas.style.display = "none";
-            }
+        if (!canvas || !ctx) {
             return;
         }
 
         const particles = [];
         const ripples = [];
         let lastPoint = null;
+
+        function prefersReducedMotion() {
+            return reducedMotionQuery.matches;
+        }
 
         function resizeCanvas() {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -180,7 +181,7 @@
         }
 
         function spawnTrail(x, y, strength = 1) {
-            const count = 3;
+            const count = prefersReducedMotion() ? 1 : 3;
 
             for (let index = 0; index < count; index += 1) {
                 const hue = (performance.now() * 0.06 + index * 36 + Math.random() * 28) % 360;
@@ -198,8 +199,10 @@
                 });
             }
 
-            if (particles.length > 180) {
-                particles.splice(0, particles.length - 180);
+            const maxParticles = prefersReducedMotion() ? 60 : 180;
+
+            if (particles.length > maxParticles) {
+                particles.splice(0, particles.length - maxParticles);
             }
         }
 
@@ -218,6 +221,11 @@
         }
 
         function handlePointerMove(event) {
+            if (prefersReducedMotion()) {
+                lastPoint = { x: event.clientX, y: event.clientY };
+                return;
+            }
+
             const x = event.clientX;
             const y = event.clientY;
 
@@ -236,7 +244,10 @@
 
         function handlePointerDown(event) {
             spawnRipple(event.clientX, event.clientY);
-            spawnTrail(event.clientX, event.clientY, 1.4);
+
+            if (!prefersReducedMotion()) {
+                spawnTrail(event.clientX, event.clientY, 1.4);
+            }
         }
 
         function animate() {

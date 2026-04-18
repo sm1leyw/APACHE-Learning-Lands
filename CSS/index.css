@@ -205,6 +205,8 @@ img {
 .title {
     font-size: clamp(2.35rem, 5vw, 4rem);
     line-height: 1.50;
+    max-width: 100%;
+    overflow-wrap: anywhere;
     background: linear-gradient(90deg, #fff7d1 0%, #ffc472 35%, #8ef3ff 72%, #f7a4ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -593,6 +595,11 @@ img {
     .badge-ribbon {
         font-size: 0.95rem;
         text-align: center;
+    }
+
+    .title {
+        font-size: clamp(2.05rem, 10vw, 2.7rem);
+        line-height: 1.18;
     }
 
     .hero-description {
