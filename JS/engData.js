@@ -108,7 +108,7 @@ const engQuizData = [
     {
         id: 10, name: "ทายเพลง English Songs (บอส)",
         vdoId: "fS9WNTlsQIE",
-        isBoss: true, bossName: "Ego Boy (TJ Robert)",
+        isBoss: true, bossName: "Joffy Extreme",
         questions: [
             { q: "บอส Ego Boy: 🎵 'doo doo doo doo doo doo' เพลงอะไร", audio: "เพลงสยองขวัญ/ssstik.io_1776440638309.mp3", autoplay: true, a: ["Baby Shark", "Let It Go"], correct: 0, bossSay: "ร้องเพลงแข่งกันไหม!", bundle: false },
             { q: "บอส Ego Boy: 🎵 'Quack Quack Quack Quack' เพลงอะไร", audio: "เพลงสยองขวัญ/Five Little Ducks.mp3", autoplay: true, a: ["Five Little Ducks", "ABC Song"], correct: 0, bossSay: "เสียงฉันเพราะกว่า!", bundle: false },

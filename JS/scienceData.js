@@ -31,7 +31,7 @@ const scienceQuizData = [
     {
         id: 10, name: "การเปลี่ยนแปลงและแรง (บอส)",
         vdoId: "fh42cUCIQ88",
-        isBoss: true, bossName: "เขียด (TJ Robert)",
+        isBoss: true, bossName: "สุริยะ",
         questions: [
             { q: "บอสเขียด: ดันลูกบอล ลูกบอลเคลื่อนที่ไหม", a: ["เคลื่อนที่", "อยู่นิ่งๆ"], correct: 0, bossSay: "เข้ามาเลย!", bundle: false },
             { q: "บอสเขียด: ดึงของ ทำให้ขยับไหม", a: ["ขยับตามแรงดึง", "ไม่ขยับ"], correct: 0, bossSay: "รู้เรื่องแรงด้วยรึ!", bundle: false },
