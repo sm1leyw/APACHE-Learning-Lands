@@ -94,13 +94,13 @@ const engQuizData = [
         questions: [
             { q: "Who is he? (มนุษย์แมงมุม 🕷️)", a: ["Spider-Man", "Batman"], correct: 0, image: "ด่าน 9_ENG/SPIDERMAN.jpg", hint: "พ่นใยได้" },
             { q: "Who is he? (ไร้เทียมทาน)", a: ["Invincible", "Superman"], correct: 0, image: "ด่าน 9_ENG/invincible.png", hint: "เเข็งเเกร่งเเต่ยิงเลเซอร์ไม่ได้" },
-            { q: "Who is she? (เร็วจัด)", a: ["ATrain", "Anna"], correct: 0, image: "ด่าน 9_ENG/A-Train.png", hint: "วิ่งเร็วสุดๆ" },
+            { q: "Who is she? (เร็วจัด)", a: ["A-Train", "Anna"], correct: 0, image: "ด่าน 9_ENG/A-Train.png", hint: "วิ่งเร็วสุดๆ" },
             { q: "Who is he? (ตัวตึง)", a: ["Omni man", "Homelander"], correct: 0, image: "ด่าน 9_ENG/omniman.png", hint: "เเข็งเเกร่ง" },
-            { q: "Who is he? (พ่อมดน้อย)", a: ["Doctor strange", "Harry Potter"], correct: 0, image: "ด่าน 9_ENG/doctorstrange.png", hint: "ขี่ผ้าคุม" },
+            { q: "Who is he? (หมอแปลก)", a: ["Doctor strange", "Harry Potter"], correct: 0, image: "ด่าน 9_ENG/doctorstrange.png", hint: "ขี่ผ้าคุม" },
 
-            { q: "Who is he? (นินจานิโก)", a: ["Black noir", "Daredevil"], correct: 0, image: "ด่าน 9_ENG/blacknoir.png", hint: "มืดมิด" },
-            { q: "Who is he? (เก่งกระฉุด)", a: ["King baldwin", "King arthur"], correct: 0, image: "ด่าน 9_ENG/kingbaldwin.png", hint: "นำทัพอย่างชานฉลาด" },
-            { q: "Who is she? (หมาป่าร้ายเเดนเหนือ)", a: ["John snow", "John wick"], correct: 0, image: "ด่าน 9_ENG/johnsnow.png", hint: "หมาป่า" },
+            { q: "Who is he? (ชายแห่งความเงียบ)", a: ["Black noir", "Daredevil"], correct: 0, image: "ด่าน 9_ENG/blacknoir.png", hint: "มืดมิด" },
+            { q: "Who is he? (วัยรุ่นยกมือข้างเดียว)", a: ["King baldwin", "King arthur"], correct: 0, image: "ด่าน 9_ENG/kingbaldwin.png", hint: "นำทัพอย่างชานฉลาด" },
+            { q: "Who is she? (หมาป่าแดนเหนือ)", a: ["John snow", "John wick"], correct: 0, image: "ด่าน 9_ENG/johnsnow.png", hint: "หมาป่า" },
             { q: "Who is he? (ประธานาธิบดีคนที่ 16 ของสหรัฐอเมริกา)", a: ["Abraham Lincoln", "George Washington"], correct: 0, image: "ด่าน 9_ENG/อับราฮัมลินคอล์น.png", hint: "ประธานาธิบดีคนที่ 16 ของสหรัฐอเมริกา" },
             { q: "Who is he? (อัจฉริยะ)", a: ["Julius Caesar", "Albert Einstein"], correct: 0, image: "ด่าน 9_ENG/JuliusCaesar.png", hint: "อัจฉริยะ" }
         ]
@@ -110,17 +110,17 @@ const engQuizData = [
         vdoId: "fS9WNTlsQIE",
         isBoss: true, bossName: "Ego Boy (TJ Robert)",
         questions: [
-            { q: "บอส Ego Boy: 🎵 'doo doo doo doo doo doo' เพลงอะไร", audio: "เพลงสยองขวัญ/ssstik.io_1776440638309.mp3", autoplay: true, a: ["Baby Shark", "Let It Go"], correct: 0, bossSay: "ร้องเพลงแข่งกันไหม!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'Quack Quack Quack Quack' เพลงอะไร", audio: "เพลงสยองขวัญ/Five Little Ducks.mp3", autoplay: true, a: ["Five Little Ducks", "ABC Song"], correct: 0, bossSay: "เสียงฉันเพราะกว่า!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'E I E I O' เพลงอะไร", audio: "เพลงสยองขวัญ/Old MacDonald Had A Farm.mp3", autoplay: true, a: ["Old MacDonald Had A Farm", "Baby Shark"], correct: 0, bossSay: "ร้องตามให้ทันล่ะ!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'Here I am, here I am' เพลงอะไร", audio: "เพลงสยองขวัญ/Finger Family.mp3", autoplay: true, a: ["Finger Family", "Hello"], correct: 0, bossSay: "แปะๆ!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'Go round and round' เพลงอะไร", audio: "เพลงสยองขวัญ/Wheels on the Bus.mp3", autoplay: true, a: ["Wheels on the Bus", "Shape of You"], correct: 0, bossSay: "อ๊ากก คอแห้ง!", bundle: false, transforms: true },
+            { q: "🎵 'doo doo doo doo doo doo' เพลงอะไร", audio: "เพลงสยองขวัญ/ssstik.io_1776440638309.mp3", autoplay: true, a: ["Baby Shark", "Let It Go"], correct: 0, bossSay: "ร้องเพลงแข่งกันไหม!", bundle: false },
+            { q: "🎵 'Quack Quack Quack Quack' เพลงอะไร", audio: "เพลงสยองขวัญ/Five Little Ducks.mp3", autoplay: true, a: ["Five Little Ducks", "ABC Song"], correct: 0, bossSay: "เสียงฉันเพราะกว่า!", bundle: false },
+            { q: "🎵 'E I E I O' เพลงอะไร", audio: "เพลงสยองขวัญ/Old MacDonald Had A Farm.mp3", autoplay: true, a: ["Old MacDonald Had A Farm", "Baby Shark"], correct: 0, bossSay: "ร้องตามให้ทันล่ะ!", bundle: false },
+            { q: "🎵 'Here I am, here I am' เพลงอะไร", audio: "เพลงสยองขวัญ/Finger Family.mp3", autoplay: true, a: ["Finger Family", "Hello"], correct: 0, bossSay: "แปะๆ!", bundle: false },
+            { q: "🎵 'Go round and round' เพลงอะไร", audio: "เพลงสยองขวัญ/Wheels on the Bus.mp3", autoplay: true, a: ["Wheels on the Bus", "Shape of You"], correct: 0, bossSay: "อ๊ากก คอแห้ง!", bundle: false, transforms: true },
 
-            { q: "บอสงู: 🎵 'cookie from the cookie jar' เพลงอะไร", audio: "เพลงสยองขวัญ/Who Took The Cookie.mp3", autoplay: true, a: ["Who Took The Cookie?", "Let It Go"], correct: 0, bossSay: "ฟ่อออ! ฉันเลื้อยมาแล้ว!", bundle: true },
-            { q: "บอสงู: 🎵 'clap clap clap clap your hands' เพลงอะไร", audio: "เพลงสยองขวัญ/Wag Your Tail.mp3", autoplay: true, a: ["Wag Your Tail", "Happy Birthday"], correct: 0, bossSay: "หนาวไหมล่ะฟ่ออ!", bundle: true },
-            { q: "บอสงู: 🎵 'Good Morning Good Morning' เพลงอะไร", audio: "เพลงสยองขวัญ/Good Morning, Mr. Rooster.mp3", autoplay: true, a: ["Good Morning, Mr. Rooster", "Hello"], correct: 0, bossSay: "เป่าเค้กสิ!", bundle: true },
-            { q: "บอสงู: 🎵 'roll over! roll over!' เพลงอะไร", audio: "เพลงสยองขวัญ/Ten In The Bed.mp3", autoplay: true, a: ["Ten In The Bed ", "Baby Shark"], correct: 0, bossSay: "เพลงวัยรุ่นก็มา!", bundle: true },
-            { q: "บอสงู: 🎵 'merrily merrily merrily merrily' เพลงอะไร", audio: "เพลงสยองขวัญ/Row Row Row Your Boat.mp3", autoplay: true, a: ["Row Row Row Your Boat", "ABC Song"], correct: 0, bossSay: "ยอมแล้วจ้าาา!", bundle: true }
+            { q: "🎵 'cookie from the cookie jar' เพลงอะไร", audio: "เพลงสยองขวัญ/Who Took The Cookie.mp3", autoplay: true, a: ["Who Took The Cookie?", "Let It Go"], correct: 0, bossSay: "ฟ่อออ! ฉันเลื้อยมาแล้ว!", bundle: true },
+            { q: "🎵 'clap clap clap clap your hands' เพลงอะไร", audio: "เพลงสยองขวัญ/Wag Your Tail.mp3", autoplay: true, a: ["Wag Your Tail", "Happy Birthday"], correct: 0, bossSay: "หนาวไหมล่ะฟ่ออ!", bundle: true },
+            { q: "🎵 'Good Morning Good Morning' เพลงอะไร", audio: "เพลงสยองขวัญ/Good Morning, Mr. Rooster.mp3", autoplay: true, a: ["Good Morning, Mr. Rooster", "Hello"], correct: 0, bossSay: "เป่าเค้กสิ!", bundle: true },
+            { q: "🎵 'roll over! roll over!' เพลงอะไร", audio: "เพลงสยองขวัญ/Ten In The Bed.mp3", autoplay: true, a: ["Ten In The Bed ", "Baby Shark"], correct: 0, bossSay: "เพลงวัยรุ่นก็มา!", bundle: true },
+            { q: "🎵 'merrily merrily merrily merrily' เพลงอะไร", audio: "เพลงสยองขวัญ/Row Row Row Your Boat.mp3", autoplay: true, a: ["Row Row Row Your Boat", "ABC Song"], correct: 0, bossSay: "ยอมแล้วจ้าาา!", bundle: true }
         ]
     }
 ];

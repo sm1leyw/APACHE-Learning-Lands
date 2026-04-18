@@ -162,11 +162,11 @@ const thaiQuizData = [
         bossName: "TJ Robert",
         questions: [
             // PHASE 1: TJ Robert (Human)
-            { q: "ศึกบอส: “ครับผม” พูดสั้นลงว่าอะไร", a: ["ครับ", "สระ", "ผม"], correct: 0, bossSay: "โฮ้ๆๆ ตอบให้ถูกนะ!", bundle: false },
-            { q: "ศึกบอส: “ใช่หรือไม่” พูดสั้นว่าอะไร", a: ["ใช่ป่ะ", "ใช่ไหม", "ไม่ใช่"], correct: 1, bossSay: "เก่งนี่นา!", bundle: false },
-            { q: "ศึกบอส: “อะไร” พูดเร็ว ๆ เป็นว่าอะไร", a: ["ระ", "ไอ", "อะไก"], correct: 0, bossSay: "เริ่มหงุดหงิดแล้วนะ!", bundle: false },
-            { q: "ศึกบอส: “อย่างไร” พูดเร็วเป็นอะไร", a: ["ไร", "ยัง", "ยังไง"], correct: 2, bossSay: "หนอย!", bundle: false },
-            { q: "ศึกบอส (ข้อสุดท้ายเฟส 1): “หรือเปล่า” พูดสั้นว่าอะไร", a: ["ป่าว", "ฤๅ", "เหรอ"], correct: 0, bossSay: "แฮกๆ... พลังฉัน...", bundle: false, transforms: true },
+            { q: " “ข้อใดเป็นสระโอะลดรูป", a: ["กบ", "มือ", "รวย"], correct: 0, bossSay: "โฮ้ๆๆ ตอบให้ถูกนะ!", bundle: false },
+            { q: " “ใช่หรือไม่” พูดสั้นว่าอะไร", a: ["ใช่ป่ะ", "ใช่ไหม", "ไม่ใช่"], correct: 1, bossSay: "เก่งนี่นา!", bundle: false },
+            { q: " “อะไร” พูดเร็ว ๆ เป็นว่าอะไร", a: ["ระ", "ไอ", "อะไก"], correct: 0, bossSay: "เริ่มหงุดหงิดแล้วนะ!", bundle: false },
+            { q: " “อย่างไร” พูดเร็วเป็นอะไร", a: ["ไร", "ยัง", "ยังไง"], correct: 2, bossSay: "หนอย!", bundle: false },
+            { q: " “หรือเปล่า” พูดสั้นว่าอะไร", a: ["ป่าว", "ฤๅ", "เหรอ"], correct: 0, bossSay: "แฮกๆ... พลังฉัน...", bundle: false, transforms: true },
 
             // PHASE 2: Bunda (Snake) - triggered after Q5 correctly answered
             { q: "ศึกงูบุญดา: “ไม่ได้” พูดเร็วเป็นอะไร", a: ["ไม่", "ด้าย", "ไมได้"], correct: 2, bossSay: "ฟู่ๆๆ! ฉันแปลงร่างแล้ว!", bundle: true },
