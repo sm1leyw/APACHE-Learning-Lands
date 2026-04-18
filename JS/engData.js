@@ -111,15 +111,16 @@ const engQuizData = [
         isBoss: true, bossName: "Ego Boy (TJ Robert)",
         questions: [
             { q: "บอส Ego Boy: 🎵 'doo doo doo doo doo doo' เพลงอะไร", audio: "เพลงสยองขวัญ/ssstik.io_1776440638309.mp3", autoplay: true, a: ["Baby Shark", "Let It Go"], correct: 0, bossSay: "ร้องเพลงแข่งกันไหม!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'How I wonder what you are' เพลงอะไร", a: ["Twinkle Twinkle Little Star", "ABC Song"], correct: 0, bossSay: "เสียงฉันเพราะกว่า!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'H I J K L M N O P' เพลงอะไร", a: ["ABC Song", "Baby Shark"], correct: 0, bossSay: "ร้องตามให้ทันล่ะ!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'Clap your hands' เพลงอะไร", a: ["If You're Happy and You Know It", "Hello"], correct: 0, bossSay: "แปะๆ!", bundle: false },
-            { q: "บอส Ego Boy: 🎵 'Go round and round' เพลงอะไร", a: ["Wheels on the Bus", "Shape of You"], correct: 0, bossSay: "อ๊ากก คอแห้ง!", bundle: false, transforms: true },
-            { q: "บอสงู: 🎵 'E-I-E-I-O' เพลงอะไร", a: ["Old MacDonald Had a Farm", "Let It Go"], correct: 0, bossSay: "ฟ่อออ! ฉันเลื้อยมาแล้ว!", bundle: true },
-            { q: "บอสงู: 🎵 'The cold never bothered me anyway' เพลงอะไร", a: ["Let It Go", "Happy Birthday"], correct: 0, bossSay: "หนาวไหมล่ะฟ่ออ!", bundle: true },
-            { q: "บอสงู: 🎵 'To you... To you...' เพลงอะไร", a: ["Happy Birthday", "Hello"], correct: 0, bossSay: "เป่าเค้กสิ!", bundle: true },
-            { q: "บอสงู: 🎵 'I'm in love with the shape of you' เพลงอะไร", a: ["Shape of You", "Baby Shark"], correct: 0, bossSay: "เพลงวัยรุ่นก็มา!", bundle: true },
-            { q: "บอสงู: 🎵 'It's me...' เพลงอะไร", a: ["Hello", "ABC Song"], correct: 0, bossSay: "ยอมแล้วจ้าาา!", bundle: true }
+            { q: "บอส Ego Boy: 🎵 'Quack Quack Quack Quack' เพลงอะไร", audio: "เพลงสยองขวัญ/Five Little Ducks.mp3", autoplay: true, a: ["Five Little Ducks", "ABC Song"], correct: 0, bossSay: "เสียงฉันเพราะกว่า!", bundle: false },
+            { q: "บอส Ego Boy: 🎵 'E I E I O' เพลงอะไร", audio: "เพลงสยองขวัญ/Old MacDonald Had A Farm.mp3", autoplay: true, a: ["Old MacDonald Had A Farm", "Baby Shark"], correct: 0, bossSay: "ร้องตามให้ทันล่ะ!", bundle: false },
+            { q: "บอส Ego Boy: 🎵 'Here I am, here I am' เพลงอะไร", audio: "เพลงสยองขวัญ/Finger Family.mp3", autoplay: true, a: ["Finger Family", "Hello"], correct: 0, bossSay: "แปะๆ!", bundle: false },
+            { q: "บอส Ego Boy: 🎵 'Go round and round' เพลงอะไร", audio: "เพลงสยองขวัญ/Wheels on the Bus.mp3", autoplay: true, a: ["Wheels on the Bus", "Shape of You"], correct: 0, bossSay: "อ๊ากก คอแห้ง!", bundle: false, transforms: true },
+
+            { q: "บอสงู: 🎵 'cookie from the cookie jar' เพลงอะไร", audio: "เพลงสยองขวัญ/Who Took The Cookie.mp3", autoplay: true, a: ["Who Took The Cookie?", "Let It Go"], correct: 0, bossSay: "ฟ่อออ! ฉันเลื้อยมาแล้ว!", bundle: true },
+            { q: "บอสงู: 🎵 'clap clap clap clap your hands' เพลงอะไร", audio: "เพลงสยองขวัญ/Wag Your Tail.mp3", autoplay: true, a: ["Wag Your Tail", "Happy Birthday"], correct: 0, bossSay: "หนาวไหมล่ะฟ่ออ!", bundle: true },
+            { q: "บอสงู: 🎵 'Good Morning Good Morning' เพลงอะไร", audio: "เพลงสยองขวัญ/Good Morning, Mr. Rooster.mp3", autoplay: true, a: ["Good Morning, Mr. Rooster", "Hello"], correct: 0, bossSay: "เป่าเค้กสิ!", bundle: true },
+            { q: "บอสงู: 🎵 'roll over! roll over!' เพลงอะไร", audio: "เพลงสยองขวัญ/Ten In The Bed.mp3", autoplay: true, a: ["Ten In The Bed ", "Baby Shark"], correct: 0, bossSay: "เพลงวัยรุ่นก็มา!", bundle: true },
+            { q: "บอสงู: 🎵 'merrily merrily merrily merrily' เพลงอะไร", audio: "เพลงสยองขวัญ/Row Row Row Your Boat.mp3", autoplay: true, a: ["Row Row Row Your Boat", "ABC Song"], correct: 0, bossSay: "ยอมแล้วจ้าาา!", bundle: true }
         ]
     }
 ];
