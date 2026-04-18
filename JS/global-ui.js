@@ -67,19 +67,19 @@
             </button>
 
             <div class="nav-orb">
-                <button class="nav-orb__action nav-orb__action--home" type="button" data-nav="home" aria-label="Home">
+                <button class="nav-orb__action nav-orb__action--home" onclick="window.location='index.html'" type="button" data-nav="home" aria-label="Home">
                     <span class="nav-orb__icon">${iconSet.home}</span>
                     <span class="nav-orb__label">Home</span>
                 </button>
-                <button class="nav-orb__action nav-orb__action--video" type="button" data-nav="video" aria-label="Video">
+                <button class="nav-orb__action nav-orb__action--video" onclick="window.location='คลังวิดีโอ.html'" type="button" data-nav="video" aria-label="Video">
                     <span class="nav-orb__icon">${iconSet.video}</span>
                     <span class="nav-orb__label">Vdo</span>
                 </button>
-                <button class="nav-orb__action nav-orb__action--news" type="button" data-nav="news" aria-label="News">
+                <button class="nav-orb__action nav-orb__action--news" onclick="window.location='news.html'"  type="button" data-nav="news" aria-label="News">
                     <span class="nav-orb__icon">${iconSet.news}</span>
                     <span class="nav-orb__label">News</span>
                 </button>
-                <button class="nav-orb__action nav-orb__action--contact" type="button" data-nav="contact" aria-label="Contact">
+                <button class="nav-orb__action nav-orb__action--contact" onclick="window.location='contact.html'" type="button" data-nav="contact" aria-label="Contact">
                     <span class="nav-orb__icon">${iconSet.contact}</span>
                     <span class="nav-orb__label">Contact</span>
                 </button>
