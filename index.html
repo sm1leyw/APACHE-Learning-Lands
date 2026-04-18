@@ -4,73 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เรียนรู้แดนมหัศจรรย์ | ป.1 - ป.3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="page-background" aria-hidden="true">
+        <div class="page-background__fallback"></div>
+        <div id="shader-background" class="page-background__shader"></div>
+        <div class="page-background__grid"></div>
+        <div class="page-background__glow page-background__glow--one"></div>
+        <div class="page-background__glow page-background__glow--two"></div>
+        <div class="page-background__overlay"></div>
+    </div>
 
-    <div class="app-container">
+    <div class="page-shell">
         <header class="hero-banner">
+            <div class="hero-banner__shine"></div>
+
             <div class="mascot-container">
-                <img src="ตัวละคร/Dreambull(Main).png" alt="พี่ช้าง Dreambull" class="mascot-img" id="elephant-mascot">
+                <img
+                    src="ตัวละคร/Dreambull(Main).png"
+                    alt="พี่ช้าง Dreambull"
+                    class="mascot-img"
+                    id="elephant-mascot">
             </div>
-            
+
             <div class="banner-content">
+                <span class="hero-eyebrow">APACHE Learning Lands</span>
                 <h1 class="title">เรียนรู้แดนมหัศจรรย์</h1>
-                <div class="badge-ribbon">สำหรับระดับชั้น ประถมศึกษาปีที่ 1 - 3</div>
-                <p>เลือกวิชาที่อยากเรียน แล้วผจญภัยผ่านด่านไปพร้อมพี่ช้าง Dreambull</p>
+                <div class="badge-ribbon">สำหรับระดับชั้นประถมศึกษาปีที่ 1 - 3</div>
+                <p class="hero-description">
+                    เลือกรายวิชาที่อยากเรียน แล้วกดเข้าสู่แบบทดสอบได้ทันที
+                    พร้อมผจญภัยผ่านด่านไปกับพี่ช้าง Dreambull
+                </p>
+
+                <div class="hero-pill-row" aria-label="รายละเอียดหน้าหลัก">
+                    <span class="hero-pill">4 รายวิชา</span>
+                    <span class="hero-pill">การ์ดรูปแบบใหม่</span>
+                    <span class="hero-pill">พร้อมเข้าแบบทดสอบ</span>
+                </div>
             </div>
         </header>
 
-        <main class="subject-grid">
-
-            <div class="subject-card border-pink">
-                <div class="puffy-icon icon-pink">
-                    <span>กขค</span>
-                </div>
-                <h2>วิชาภาษาไทย</h2>
-                <p>สนุกกับการอ่าน เขียน และสะกดคำ!</p>
-                <button class="play-btn" data-subject="thai" onclick="navigateTo('01thai.html')">
-                    <span class="play-icon">▶</span> เริ่มเรียนรู้
-                </button>
+        <section class="subject-section" aria-labelledby="subject-heading">
+            <div class="section-copy">
+                <p class="section-tag">Subject Portal</p>
+                <h2 id="subject-heading">เลือกวิชาที่อยากผจญภัย</h2>
+                <p class="section-description">
+                    หน้าเลือกวิชาใหม่ใช้ภาพแผนที่จริงของแต่ละรายวิชา
+                    และคงลิงก์เข้าสู่ด่านเดิมของโปรเจกต์ครบทั้ง 4 วิชา
+                </p>
             </div>
 
-            <div class="subject-card border-yellow">
-                <div class="puffy-icon icon-yellow">
-                    <span>1+2=3</span>
-                </div>
-                <h2>วิชาคณิตศาสตร์</h2>
-                <p>ตะลุยโลกตัวเลขและรูปทรงแสนสนุก</p>
-                <button class="play-btn" data-subject="math" onclick="navigateTo('02match.html')">
-                    <span class="play-icon">▶</span> เริ่มเรียนรู้
-                </button>
-            </div>
+            <div class="subject-grid">
+                <article
+                    class="subject-card card-thai"
+                    data-destination="01thai.html"
+                    tabindex="0"
+                    role="button"
+                    aria-label="เข้าสู่วิชาภาษาไทย">
+                    <div class="card-frame">
+                        <div class="card-panel">
+                            <span class="card-kicker">THAI ADVENTURE</span>
+                            <h3>วิชาภาษาไทย</h3>
 
-            <div class="subject-card border-teal">
-                <div class="puffy-icon icon-teal">
-                    <span style="font-size: 2.5rem;">🔬</span>
-                </div>
-                <h2>วิชาวิทยาศาสตร์</h2>
-                <p>สำรวจธรรมชาติตัวเราและโลกรอบตัว</p>
-                <button class="play-btn" data-subject="science" onclick="navigateTo('03science.html')">
-                    <span class="play-icon">▶</span> เริ่มเรียนรู้
-                </button>
-            </div>
+                            <div class="subject-image-wrap">
+                                <img
+                                    src="CSS/bg-selecttor/apachebackground_thai.png"
+                                    alt="แผนที่ผจญภัยวิชาภาษาไทย"
+                                    class="subject-image"
+                                    loading="lazy">
+                                <div class="glitch-effect"></div>
+                            </div>
 
-            <div class="subject-card border-purple">
-                <div class="puffy-icon icon-purple">
-                    <span>ABC</span>
-                </div>
-                <h2>วิชาภาษาอังกฤษ</h2>
-                <p>Hello! ฝึกพูดและเรียนรู้คำศัพท์ใหม่</p>
-                <button class="play-btn" data-subject="english" onclick="navigateTo('04eng.html')">
-                    <span class="play-icon">▶</span> เริ่มเรียนรู้
-                </button>
-            </div>
+                            <p class="subject-description">
+                                สนุกกับการอ่าน เขียน สะกดคำ และฝึกใช้ภาษาไทยผ่านด่านผจญภัยแบบเข้าใจง่าย
+                            </p>
 
-        </main>
+                            <div class="subject-highlights" aria-label="จุดเด่นวิชาภาษาไทย">
+                                <span>อ่านออกเสียง</span>
+                                <span>สะกดคำ</span>
+                                <span>ผจญภัย 10 ด่าน</span>
+                            </div>
+
+                            <button class="play-btn" type="button" data-target="01thai.html">
+                                <span class="play-icon">▶</span>
+                                ทำแบบทดสอบภาษาไทย
+                            </button>
+                        </div>
+
+                        <div class="card-glow"></div>
+                    </div>
+                </article>
+
+                <article
+                    class="subject-card card-math"
+                    data-destination="02match.html"
+                    tabindex="0"
+                    role="button"
+                    aria-label="เข้าสู่วิชาคณิตศาสตร์">
+                    <div class="card-frame">
+                        <div class="card-panel">
+                            <span class="card-kicker">MATH QUEST</span>
+                            <h3>วิชาคณิตศาสตร์</h3>
+
+                            <div class="subject-image-wrap">
+                                <img
+                                    src="CSS/bg-selecttor/apachebackground_match.png"
+                                    alt="แผนที่ผจญภัยวิชาคณิตศาสตร์"
+                                    class="subject-image"
+                                    loading="lazy">
+                                <div class="glitch-effect"></div>
+                            </div>
+
+                            <p class="subject-description">
+                                ตะลุยโลกตัวเลข รูปทรง และโจทย์คิดสนุก เพื่อฝึกการแก้ปัญหาอย่างมั่นใจ
+                            </p>
+
+                            <div class="subject-highlights" aria-label="จุดเด่นวิชาคณิตศาสตร์">
+                                <span>ตัวเลข</span>
+                                <span>รูปทรง</span>
+                                <span>คิดวิเคราะห์</span>
+                            </div>
+
+                            <button class="play-btn" type="button" data-target="02match.html">
+                                <span class="play-icon">▶</span>
+                                ทำแบบทดสอบคณิตศาสตร์
+                            </button>
+                        </div>
+
+                        <div class="card-glow"></div>
+                    </div>
+                </article>
+
+                <article
+                    class="subject-card card-science"
+                    data-destination="03science.html"
+                    tabindex="0"
+                    role="button"
+                    aria-label="เข้าสู่วิชาวิทยาศาสตร์">
+                    <div class="card-frame">
+                        <div class="card-panel">
+                            <span class="card-kicker">SCIENCE MISSION</span>
+                            <h3>วิชาวิทยาศาสตร์</h3>
+
+                            <div class="subject-image-wrap">
+                                <img
+                                    src="CSS/bg-selecttor/apachebackground_sceince.png"
+                                    alt="แผนที่ผจญภัยวิชาวิทยาศาสตร์"
+                                    class="subject-image"
+                                    loading="lazy">
+                                <div class="glitch-effect"></div>
+                            </div>
+
+                            <p class="subject-description">
+                                สำรวจธรรมชาติ สิ่งมีชีวิต พลังงาน และเรื่องรอบตัวผ่านโจทย์ที่ชวนสังเกตและทดลอง
+                            </p>
+
+                            <div class="subject-highlights" aria-label="จุดเด่นวิชาวิทยาศาสตร์">
+                                <span>ธรรมชาติ</span>
+                                <span>การทดลอง</span>
+                                <span>คิดเป็นระบบ</span>
+                            </div>
+
+                            <button class="play-btn" type="button" data-target="03science.html">
+                                <span class="play-icon">▶</span>
+                                ทำแบบทดสอบวิทยาศาสตร์
+                            </button>
+                        </div>
+
+                        <div class="card-glow"></div>
+                    </div>
+                </article>
+
+                <article
+                    class="subject-card card-english"
+                    data-destination="04eng.html"
+                    tabindex="0"
+                    role="button"
+                    aria-label="เข้าสู่วิชาภาษาอังกฤษ">
+                    <div class="card-frame">
+                        <div class="card-panel">
+                            <span class="card-kicker">ENGLISH JOURNEY</span>
+                            <h3>วิชาภาษาอังกฤษ</h3>
+
+                            <div class="subject-image-wrap">
+                                <img
+                                    src="CSS/bg-selecttor/apachebackground_eng.png"
+                                    alt="แผนที่ผจญภัยวิชาภาษาอังกฤษ"
+                                    class="subject-image"
+                                    loading="lazy">
+                                <div class="glitch-effect"></div>
+                            </div>
+
+                            <p class="subject-description">
+                                ฝึกคำศัพท์ การอ่าน และการสื่อสารภาษาอังกฤษแบบค่อยเป็นค่อยไปในโลกผจญภัยสุดสนุก
+                            </p>
+
+                            <div class="subject-highlights" aria-label="จุดเด่นวิชาภาษาอังกฤษ">
+                                <span>Vocabulary</span>
+                                <span>Reading</span>
+                                <span>Listening</span>
+                            </div>
+
+                            <button class="play-btn" type="button" data-target="04eng.html">
+                                <span class="play-icon">▶</span>
+                                ทำแบบทดสอบภาษาอังกฤษ
+                            </button>
+                        </div>
+
+                        <div class="card-glow"></div>
+                    </div>
+                </article>
+            </div>
+        </section>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="JS/index.js"></script>
 </body>
 </html>

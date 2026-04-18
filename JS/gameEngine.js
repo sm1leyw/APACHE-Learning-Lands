@@ -66,6 +66,7 @@
             
             
         };
+        const defaultMapTitle = normalizeText(config.mapTitle || dom.currentStageTitle?.innerText || 'แผนที่การผจญภัย');
 
         function formatQuestionText(text) {
             let cleaned = normalizeText(text);
@@ -273,17 +274,38 @@
         function showVideoZone() {
             dom.quizZone.classList.add('hidden');
             dom.videoZone.classList.remove('hidden');
+            setHeartsVisibility(false);
         }
 
         function showGameScreen() {
             dom.mapScreen.classList.add('hidden');
             dom.gameScreen.classList.remove('hidden');
+            setHudTitle(getStage()?.name || defaultMapTitle);
+            setHeartsVisibility(true);
         }
 
         function showMapScreen() {
             dom.gameScreen.classList.add('hidden');
             dom.mapScreen.classList.remove('hidden');
+            setHudTitle(defaultMapTitle);
+            setHeartsVisibility(false);
             generateMap();
+        }
+
+        function setHudTitle(title) {
+            if (!dom.currentStageTitle) {
+                return;
+            }
+
+            dom.currentStageTitle.innerText = title;
+        }
+
+        function setHeartsVisibility(isVisible) {
+            if (!dom.heartsContainer) {
+                return;
+            }
+
+            dom.heartsContainer.classList.toggle('hidden', !isVisible);
         }
 
         function convertCoordsToSvgPath(coords) {
@@ -369,7 +391,6 @@
             state.currentHearts = maxHearts;
             state.isBossTransformed = false;
 
-            dom.currentStageTitle.innerText = stage.name;
             dom.stageNum.innerText = stage.id;
             dom.stageName.innerText = stage.name;
             dom.totalQuestions.innerText = String(getStageQuestionCount(stage));
@@ -791,7 +812,7 @@
         function init() {
             loadProgression();
             updateHeartsDisplay();
-            generateMap();
+            showMapScreen();
 
             if (dom.hintBubble) {
                 dom.hintBubble.classList.add('hidden');
