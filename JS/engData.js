@@ -93,10 +93,16 @@ const engQuizData = [
         vdoId: "vFVvdJHiFAk",
         questions: [
             { q: "Who is he? (มนุษย์แมงมุม 🕷️)", a: ["Spider-Man", "Batman"], correct: 0, image: "ด่าน 9_ENG/SPIDERMAN.jpg", hint: "พ่นใยได้" },
-            { q: "Who is he? (คนเหล็ก 🤖🔴)", a: ["Iron Man", "Superman"], correct: 0, hint: "ใส่ชุดเกราะสีแดง" },
-            { q: "Who is she? (เจ้าหญิงน้ำแข็ง ❄️)", a: ["Elsa", "Anna"], correct: 0, hint: "Let it go~" },
-            { q: "Who is he? (นักเตะหมายเลข 10 อาร์เจนติน่า ⚽)", a: ["Messi", "Ronaldo"], correct: 0, hint: "แชมป์โลก" },
-            { q: "Who is he? (พ่อมดน้อยมีแผลเป็น ⚡)", a: ["Harry Potter", "Mr. Bean"], correct: 0, hint: "ขี่ไม้กวาด" }
+            { q: "Who is he? (ไร้เทียมทาน)", a: ["Invincible", "Superman"], correct: 0, image: "ด่าน 9_ENG/invincible.png", hint: "เเข็งเเกร่งเเต่ยิงเลเซอร์ไม่ได้" },
+            { q: "Who is she? (เร็วจัด)", a: ["ATrain", "Anna"], correct: 0, image: "ด่าน 9_ENG/A-Train.png", hint: "วิ่งเร็วสุดๆ" },
+            { q: "Who is he? (ตัวตึง)", a: ["Omni man", "Homelander"], correct: 0, image: "ด่าน 9_ENG/omniman.png", hint: "เเข็งเเกร่ง" },
+            { q: "Who is he? (พ่อมดน้อย)", a: ["Doctor strange", "Harry Potter"], correct: 0, image: "ด่าน 9_ENG/doctorstrange.png", hint: "ขี่ผ้าคุม" },
+
+            { q: "Who is he? (นินจานิโก)", a: ["Black noir", "Daredevil"], correct: 0, image: "ด่าน 9_ENG/blacknoir.png", hint: "มืดมิด" },
+            { q: "Who is he? (เก่งกระฉุด)", a: ["King baldwin", "King arthur"], correct: 0, image: "ด่าน 9_ENG/kingbaldwin.png", hint: "นำทัพอย่างชานฉลาด" },
+            { q: "Who is she? (หมาป่าร้ายเเดนเหนือ)", a: ["John snow", "John wick"], correct: 0, image: "ด่าน 9_ENG/johnsnow.png", hint: "หมาป่า" },
+            { q: "Who is he? (ประธานาธิบดีคนที่ 16 ของสหรัฐอเมริกา)", a: ["Abraham Lincoln", "George Washington"], correct: 0, image: "ด่าน 9_ENG/อับราฮัมลินคอล์น.png", hint: "ประธานาธิบดีคนที่ 16 ของสหรัฐอเมริกา" },
+            { q: "Who is he? (อัจฉริยะ)", a: ["Julius Caesar", "Albert Einstein"], correct: 0, image: "ด่าน 9_ENG/JuliusCaesar.png", hint: "อัจฉริยะ" }
         ]
     },
     {
