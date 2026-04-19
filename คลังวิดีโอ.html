@@ -6,143 +6,158 @@
   <title>Apache Learning | คลังเก็บวิดีโอ</title>
   <link rel="stylesheet" href="CSS/global-ui.css">
   <style>
+    /* 1. การตั้งค่าพื้นฐาน */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: var(--ui-page-bg);
+        color: var(--ui-text);
+        transition: background 0.35s, color 0.35s;
+    }
 
-    
-
-
+    /* 2. ส่วนหัว (Header) - แก้ไขจุดที่ทำให้ปุ่มเบียด */
     header {
-      background: #222;
-      color: white;
-      padding: 30px 30px;
-      font-size: 22px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+        background: var(--ui-glass-strong);
+        color: var(--ui-text);
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* จัดให้โลโก้อยู่ซ้าย ปุ่มอยู่ขวา */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--ui-border);
+    }
+
+    .header { /* กล่องที่หุ้มโลโก้และข้อความ */
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .main-logo {
+        width: 60px; /* ปรับขนาดเล็กลงหน่อยเพื่อความสวยงามบนมือถือ */
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid #333;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
     }
 
     .back-home {
-    font-size: 14px;
-    color: var(--ui-text);
-    text-decoration: none;
-    padding: 8px 16px;
-    border: 2px solid var(--ui-text);
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    margin-right: 135px;
-  }
-  
-    .container {
-     max-width: 1200px;
-    margin: 0 auto;
-    padding: 300px 30px; /* บน-ล่างห่างขึ้น */
-    }
-    
-    .title {
-      font-size: 22px;
-      margin-bottom: 20px;
+        font-size: 14px;
+        color: var(--ui-text);
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 2px solid var(--ui-text);
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        margin-right: 0; /* ลบ margin 135px เดิมที่ทำให้ปุ่มเบียด */
+        white-space: nowrap; /* ป้องกันข้อความตัดบรรทัด */
     }
 
+    /* 3. เนื้อหาหลัก (Container) - แก้ไข padding 300px ที่กว้างเกินไป */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px; /* ลดระยะห่างเพื่อให้เห็นเนื้อหาเร็วขึ้น */
+    }
+
+    /* 4. ระบบ Grid การแสดงผลวิดีโอ */
     .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* ล็อก 4 ช่องสวยๆ */
-    gap: 40px; /* ระยะห่างการ์ด */
-    margin-top: 40px; /* เว้นจาก header */
+        display: grid;
+        /* ใช้ auto-fill แทนการล็อก 4 ช่อง เพื่อให้ปรับตามขนาดหน้าจออัตโนมัติ */
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
     }
 
     .card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    transition: 0.3s;
-    cursor: pointer;
-    padding: 15px;
-    width: 100%;
+        background: var(--ui-home-card);
+        color: var(--ui-text);
+        border: 1px solid var(--ui-border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: 0.3s;
+        padding: 15px;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+        transform: translateY(-5px);
     }
 
     .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 12px;
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     .card-title {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: #333;
-      text-align: center;
-    }
-
-    .views {
-      font-size: 12px;
-      color: gray;
-    }
-
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 80px;
-      margin-top: 50px;
-      font-size: 14px;
+        font-size: 18px;
+        margin: 12px 0;
+        color: var(--ui-text);
+        text-align: center;
+        font-weight: bold;
     }
 
     .button {
-     display: block;        /* ทำให้จัดกลางได้ */
-    margin: 10px auto 0;   /* จัดกลาง + เว้นบน */
-    width: fit-content;    /* ขนาดพอดีข้อความ */
-    color: white;
-     background: #ff4d4d;
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
+        display: block;
+        margin: 10px auto 0;
+        width: fit-content;
+        color: white;
+        background: #ff4d4d;
+        padding: 8px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s;
     }
 
-    body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            /* ใช้ตัวแปรสีจาก global-ui.css */
-            background: var(--ui-page-bg); 
-            color: var(--ui-text);
-            transition: background 0.35s, color 0.35s;
-        }
+    /* 5. ส่วนท้าย (Footer) */
+    footer {
+        background: var(--ui-glass-strong);
+        color: var(--ui-text);
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 50px;
+        border-top: 1px solid var(--ui-border);
+    }
 
+    /* 6. ปรับแต่งพิเศษสำหรับมือถือ (Responsive) */
+    @media (max-width: 768px) {
         header {
-            background: var(--ui-glass-strong);
-            color: var(--ui-text);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--ui-border);
-            
+            flex-direction: column; /* จัดโลโก้และปุ่มเรียงกันแนวดิ่ง */
+            gap: 15px;
+            padding: 20px;
+            text-align: center;
         }
 
-        .card {
-            /* ใช้สีการ์ดตามธีม */
-            background: var(--ui-home-card);
-            color: var(--ui-text);
-            border: 1px solid var(--ui-border);
-            
+        .header {
+            flex-direction: column;
+            gap: 5px;
         }
-        .main-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 5px solid #333; /* ความหนา รูปแบบ สี */
-            box-shadow: 5px 5px 10px rgba(0,0,0,0.5); /* เงา */
-      }
-  </style>
+
+        .back-home {
+            width: 80%; /* ให้ปุ่มกว้างขึ้นบนมือถือเพื่อกดง่าย */
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px 15px;
+        }
+    }
+
+    .back-home {
+      font-size: 14px;
+      color: var(--ui-text);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 2px solid var(--ui-text);
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-right: 135px;
+    }
+</style>
 </head>
 <body>
 
