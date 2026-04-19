@@ -7,11 +7,6 @@
   <link rel="stylesheet" href="CSS/global-ui.css">
   <style>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #FFF5E1 0%, #E0F7FA 100%);
-    }
 
     header {
       background: #222;
@@ -26,14 +21,15 @@
 
     .back-home {
     font-size: 14px;
-    color: white;
+    color: var(--ui-text);
     text-decoration: none;
     padding: 8px 16px;
-    border: 2px solid white;
+    border: 2px solid var(--ui-text);
     border-radius: 25px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    margin-right: 135px;
   }
   
     .container {
@@ -113,13 +109,48 @@
     transition: 0.3s;
     }
 
+    body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* ใช้ตัวแปรสีจาก global-ui.css */
+            background: var(--ui-page-bg); 
+            color: var(--ui-text);
+            transition: background 0.35s, color 0.35s;
+        }
+
+        header {
+            /* ปรับให้เข้ากับธีม */
+            background: var(--ui-glass-strong);
+            color: var(--ui-text);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--ui-border);
+            
+        }
+
+        .card {
+            /* ใช้สีการ์ดตามธีม */
+            background: var(--ui-home-card);
+            color: var(--ui-text);
+            border: 1px solid var(--ui-border);
+            
+        }
+        .main-logo {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+      }
   </style>
 </head>
 <body>
 
+  
   <header>
+    <div>
+      <img src="CSS/contact picture/Apache.png" alt="Logo" class="main-logo">
+    </div>
     <div>คลังวิดีโอ</div>
     <a href="index.html" class="back-home">← กลับหน้าแรก</a>
+    
   </header>
 
   <div class="container">
@@ -162,7 +193,7 @@
   </div>
 
   <footer>
-    © 2026 ระบบสื่อการเรียนรู้ | All Rights Reserved <br>
+    © 2026 ระบบสื่อการเรียนรู้ | Apache Learning Lands Team <br>
   </footer>
   
 </body>
