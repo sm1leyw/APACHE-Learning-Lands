@@ -79,7 +79,7 @@
                     <span class="nav-orb__icon">${iconSet.news}</span>
                     <span class="nav-orb__label">News</span>
                 </button>
-                <button class="nav-orb__action nav-orb__action--contact" onclick="window.location='contact.html'" type="button" data-nav="contact" aria-label="Contact">
+                <button class="nav-orb__action nav-orb__action--contact" onclick="window.location='Contact.html'" type="button" data-nav="contact" aria-label="Contact">
                     <span class="nav-orb__icon">${iconSet.contact}</span>
                     <span class="nav-orb__label">Contact</span>
                 </button>
