@@ -99,25 +99,58 @@
     <div class="banner-left">
         <h1>ข่าวประชาสัมพันธ์</h1>
         <p class="news-label">NEWS</p>
+        
     </div>
     <div class="banner-right"></div>
+    <img src="CSS/contact picture/team_apache.png" alt="Team Apache" class="banner-image">
 </div>
 
 <div class="news-container">
     <h2 class="section-title">ประกาศล่าสุด</h2>
     <div class="news-grid">
-        <div class="card">
+        <div class="card" onclick="openModal()">
             <img src="CSS/contact picture/boss.png" alt="Boss Update">
             <div class="card-body">
                 <h3>ประกาศสำคัญเรื่องการเรียน</h3>
-                <p>อัปเดต New Boss เวอร์ชั่นล่าสุด พร้อมรายละเอียดการเรียนการสอนใหม่</p>
+                <p>คลิกเพื่ออ่านรายละเอียดการอัปเดต New Boss...</p>
             </div>
         </div>
     </div>
 </div>
 
+<div id="newsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img src="CSS/contact picture/boss.png" alt="Full Image" class="modal-img">
+        <div class="modal-text">
+            <h2>ประกาศสำคัญเรื่องการเรียน</h2>
+            <hr>
+            <p>อัปเดต New Boss เวอร์ชั่นล่าสุด! เนื้อหาการเรียนการสอนในส่วนนี้จะมีความยาวมากขึ้นในอนาคต ซึ่งคุณสามารถเพิ่มข้อความ รายละเอียดตารางเรียน หรือเงื่อนไขต่างๆ ได้ไม่จำกัดในส่วนนี้ หน้าต่างนี้ถูกออกแบบมาให้รองรับการเลื่อนอ่าน (Scroll) หากเนื้อหามีความยาวมากเป็นพิเศษ</p>
+        </div>
+    </div>
+</div>
+
 <a href="contact.html" class="btn-contact-fixed">ติดต่อเรา</a>
+    
+    <script>
+    function openModal() {
+        document.getElementById("newsModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("newsModal").style.display = "none";
+    }
+
+    // ปิดเมื่อคลิกนอกหน้าต่าง Popup
+    window.onclick = function(event) {
+        let modal = document.getElementById("newsModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
+
     <script src="JS/global-ui.js"></script>
 </html>
