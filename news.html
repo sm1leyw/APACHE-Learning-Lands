@@ -79,6 +79,40 @@
             padding: 50px 20px !important; /* ลด padding จาก 300px เหลือ 50px */
             }
         }
+        /* แก้ไขในไฟล์ news.css หรือใน <style> ของหน้า news.html */
+
+.banner {
+    display: flex;
+    align-items: center; /* จัดให้เนื้อหาทั้งซ้ายและขวาอยู่กึ่งกลางแนวตั้ง */
+    justify-content: space-between;
+    background-color: #f7c04a; /* สีเหลืองตามภาพ */
+    height: 450px; /* หรือปรับความสูงตามต้องการ */
+    overflow: hidden;
+    width: 100%;
+}
+
+.banner-left {
+    flex: 1;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.banner-right {
+    flex: 1;
+    height: 100%; /* ให้ความสูงเต็มพื้นที่แบนเนอร์ */
+    display: flex;
+    align-items: center;    /* จัดรูปให้อยู่กลางแนวตั้ง (ในวงแดง) */
+    justify-content: center; /* จัดรูปให้อยู่กลางแนวนอน */
+}
+
+.banner-right img {
+    max-width: 90%;  /* ปรับขนาดรูปไม่ให้ใหญ่เกินไปจนเบียดขอบ */
+    max-height: 80%; /* เว้นระยะขอบบน-ล่างให้ดูมีพื้นที่ว่าง (Padding) */
+    object-fit: contain; /* ให้รูปคงสัดส่วนเดิมและอยู่ครบในกรอบ */
+}
+
     </style>
 </head>
 <body>
@@ -101,6 +135,7 @@
         
     </div>
     <div class="banner-right"></div>
+    <img src="CSS/contact picture/team_apache.png" alt="News Image" class="news-image">
 </div>
 
 <div class="news-container">
