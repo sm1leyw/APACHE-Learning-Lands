@@ -55,6 +55,31 @@
         .logo-text {
             color: var(--ui-text);
         }
+
+        /* คลังวิดีโอ.html */
+        .grid {
+            display: grid;
+            /* เปลี่ยนจาก repeat(4, 1fr) เป็นแบบยืดหยุ่น */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important; 
+            gap: 20px !important;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column !important;
+                padding: 20px !important;
+            }
+
+            .back-home {
+                margin-right: 0 !important;
+                margin-top: 15px;
+            }
+
+            .container {
+            padding: 50px 20px !important; /* ลด padding จาก 300px เหลือ 50px */
+            }
+        }
+    
     </style>
 </head>
 <body>
