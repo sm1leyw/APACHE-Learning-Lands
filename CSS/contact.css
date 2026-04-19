@@ -69,8 +69,7 @@ body {
 
 .banner-right {
     width: 65%;
-    /* เรียกรูปโดยตรงจากโฟลเดอร์ที่ไฟล์ CSS นี้ตั้งอยู่ */
-    background: url('contact picture/game.png') no-repeat center center;
+    background: url('contact picture/team_apache.png') no-repeat center center;
     background-size: cover;
 }
 
