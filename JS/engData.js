@@ -94,15 +94,15 @@ const engQuizData = [
         questions: [
             { q: "Who is he? (มนุษย์แมงมุม 🕷️)", a: ["Spider-Man", "Batman"], correct: 0, image: "ด่าน 9_ENG/SPIDERMAN.jpg", hint: "พ่นใยได้" },
             { q: "Who is he? (ไร้เทียมทาน)", a: ["Invincible", "Superman"], correct: 0, image: "ด่าน 9_ENG/invincible.png", hint: "เเข็งเเกร่งเเต่ยิงเลเซอร์ไม่ได้" },
-            { q: "Who is she? (เร็วจัด)", a: ["A-Train", "Anna"], correct: 0, image: "ด่าน 9_ENG/A-Train.png", hint: "วิ่งเร็วสุดๆ" },
-            { q: "Who is he? (ตัวตึง)", a: ["Omni man", "Homelander"], correct: 0, image: "ด่าน 9_ENG/omniman.png", hint: "เเข็งเเกร่ง" },
-            { q: "Who is he? (หมอแปลก)", a: ["Doctor strange", "Harry Potter"], correct: 0, image: "ด่าน 9_ENG/doctorstrange.png", hint: "ขี่ผ้าคุม" },
+            { q: "Who is he? (เร็วจัด)", a: ["A-Train", "Anna"], correct: 0, image: "ด่าน 9_ENG/A-Train.png", hint: "วิ่งเร็วสุดๆ" },
+            { q: "Who is he? (ตัวตึง)", a: ["Omni-Man", "Homelander"], correct: 0, image: "ด่าน 9_ENG/omniman.png", hint: "แข็งแกร่ง" },
+            { q: "Who is he? (หมอแปลก)", a: ["Doctor Strange", "Harry Potter"], correct: 0, image: "ด่าน 9_ENG/doctorstrange.png", hint: "ขี่ผ้าคลุม" },
 
-            { q: "Who is he? (ชายแห่งความเงียบ)", a: ["Black noir", "Daredevil"], correct: 0, image: "ด่าน 9_ENG/blacknoir.png", hint: "มืดมิด" },
-            { q: "Who is he? (วัยรุ่นยกมือข้างเดียว)", a: ["King baldwin", "King arthur"], correct: 0, image: "ด่าน 9_ENG/kingbaldwin.png", hint: "นำทัพอย่างชานฉลาด" },
-            { q: "Who is she? (หมาป่าแดนเหนือ)", a: ["John snow", "John wick"], correct: 0, image: "ด่าน 9_ENG/johnsnow.png", hint: "หมาป่า" },
+            { q: "Who is he? (ชายแห่งความเงียบ)", a: ["Black Noir", "Daredevil"], correct: 0, image: "ด่าน 9_ENG/blacknoir.png", hint: "มืดมิด" },
+            { q: "Who is he? (วัยรุ่นยกมือข้างเดียว)", a: ["King Baldwin", "King Arthur"], correct: 0, image: "ด่าน 9_ENG/kingbaldwin.png", hint: "นำทัพอย่างชาญฉลาด" },
+            { q: "Who is he? (หมาป่าแดนเหนือ)", a: ["John Snow", "John Wick"], correct: 0, image: "ด่าน 9_ENG/johnsnow.png", hint: "หมาป่าแห่งแดนเหนือ" },
             { q: "Who is he? (ประธานาธิบดีคนที่ 16 ของสหรัฐอเมริกา)", a: ["Abraham Lincoln", "George Washington"], correct: 0, image: "ด่าน 9_ENG/อับราฮัมลินคอล์น.png", hint: "ประธานาธิบดีคนที่ 16 ของสหรัฐอเมริกา" },
-            { q: "Who is he? (อัจฉริยะ)", a: ["Julius Caesar", "Albert Einstein"], correct: 0, image: "ด่าน 9_ENG/JuliusCaesar.png", hint: "อัจฉริยะ" }
+            { q: "Who is he? (ผู้นำชาวโรมัน)", a: ["Julius Caesar", "Albert Einstein"], correct: 0, image: "ด่าน 9_ENG/JuliusCaesar.png", hint: "ผู้นำผู้มีชื่อเสียงของโรมัน" }
         ]
     },
     {
@@ -119,7 +119,7 @@ const engQuizData = [
             { q: "🎵 'cookie from the cookie jar' เพลงอะไร", audio: "เพลงสยองขวัญ/Who Took The Cookie.mp3", autoplay: true, a: ["Who Took The Cookie?", "Let It Go"], correct: 0, bossSay: "ฟ่อออ! ฉันเลื้อยมาแล้ว!", bundle: true },
             { q: "🎵 'clap clap clap clap your hands' เพลงอะไร", audio: "เพลงสยองขวัญ/Wag Your Tail.mp3", autoplay: true, a: ["Wag Your Tail", "Happy Birthday"], correct: 0, bossSay: "หนาวไหมล่ะฟ่ออ!", bundle: true },
             { q: "🎵 'Good Morning Good Morning' เพลงอะไร", audio: "เพลงสยองขวัญ/Good Morning, Mr. Rooster.mp3", autoplay: true, a: ["Good Morning, Mr. Rooster", "Hello"], correct: 0, bossSay: "เป่าเค้กสิ!", bundle: true },
-            { q: "🎵 'roll over! roll over!' เพลงอะไร", audio: "เพลงสยองขวัญ/Ten In The Bed.mp3", autoplay: true, a: ["Ten In The Bed ", "Baby Shark"], correct: 0, bossSay: "เพลงวัยรุ่นก็มา!", bundle: true },
+            { q: "🎵 'roll over! roll over!' เพลงอะไร", audio: "เพลงสยองขวัญ/Ten In The Bed.mp3", autoplay: true, a: ["Ten In The Bed", "Baby Shark"], correct: 0, bossSay: "เพลงวัยรุ่นก็มา!", bundle: true },
             { q: "🎵 'merrily merrily merrily merrily' เพลงอะไร", audio: "เพลงสยองขวัญ/Row Row Row Your Boat.mp3", autoplay: true, a: ["Row Row Row Your Boat", "ABC Song"], correct: 0, bossSay: "ยอมแล้วจ้าาา!", bundle: true }
         ]
     }

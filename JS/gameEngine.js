@@ -557,10 +557,29 @@
             hideSpecialInput();
 
             if (questionData.type === 'text') {
+                const hasQuestionAudio = Boolean(questionAudio?.src || questionAudio?.text);
+
                 showSpecialInput({
-                    text: 'พิมพ์คำตอบให้ถูกต้อง',
-                    showTextInput: true
+                    text: hasQuestionAudio ? 'กดปุ่มเล่นเสียง แล้วพิมพ์คำตอบ' : 'พิมพ์คำตอบให้ถูกต้อง',
+                    showTextInput: true,
+                    showSpeaker: hasQuestionAudio,
+                    inputPlaceholder: hasQuestionAudio ? 'ฟังเสียงแล้วพิมพ์คำตอบ' : 'พิมพ์คำตอบ...'
                 });
+
+                if (hasQuestionAudio) {
+                    setAudioButtonState(document.querySelector('.speaker-btn'), false);
+
+                    requestAnimationFrame(() => {
+                        const speakerButton = document.querySelector('.speaker-btn');
+                        const textAnswer = document.getElementById('text-answer');
+
+                        textAnswer?.focus();
+
+                        if (speakerButton) {
+                            playQuestionAudio(speakerButton);
+                        }
+                    });
+                }
             } else if (questionData.type === 'speech') {
                 showSpecialInput({
                     text: 'กดปุ่มพูด แล้วส่งคำตอบ',
