@@ -42,11 +42,11 @@ const thaiQuizData = [
         name: "การอ่าน",
         vdoId: "4RUCUs7vzLw",
         questions: [
-            { q: "อ่านออกเสียงคำว่า “ปลา”", a: ["ปลา"], correct: 0, type: "speech" },
-            { q: "อ่านออกเสียงคำว่า “หมา”", a: ["หมา"], correct: 0, type: "speech" },
-            { q: "อ่านออกเสียงคำว่า “บ้าน”", a: ["บ้าน"], correct: 0, type: "speech" },
-            { q: "อ่านออกเสียงคำว่า “นก”", a: ["นก"], correct: 0, type: "speech" },
-            { q: "อ่านออกเสียงคำว่า “รถ”", a: ["รถ"], correct: 0, type: "speech" }
+            { q: "อ่านออกเสียงคำว่า “คำว่าปลา”", a: ["คำว่าปลา"], correct: 0, type: "speech" },
+            { q: "อ่านออกเสียงคำว่า “คำว่าหมา”", a: ["คำว่าหมา"], correct: 0, type: "speech" },
+            { q: "อ่านออกเสียงคำว่า “คำว่าบ้าน”", a: ["คำว่าบ้าน"], correct: 0, type: "speech" },
+            { q: "อ่านออกเสียงคำว่า “คำว่านก”", a: ["คำว่านก"], correct: 0, type: "speech" },
+            { q: "อ่านออกเสียงคำว่า “คำว่ารถ”", a: ["คำว่ารถ"], correct: 0, type: "speech" }
         ]
     },
     // --- STAGE 4: การเขียน (5 Questions) ---
