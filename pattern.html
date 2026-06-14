@@ -61,8 +61,14 @@
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
     </a>
     <div class="container">
-        <h1>pattern-lock-js</h1>
-        <iframe class="stars" src="https://ghbtns.com/github-btn.html?user=tympanix&repo=pattern-lock-js&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                <div style="text-align: center; margin: 20px;">
+            <input type="text" id="playerName" placeholder="พิมพ์ชื่อเล่นของน้อง" style="font-size: 20px; padding: 10px; border-radius: 10px;">
+            <br><br>
+            <button id="btnSignUp" style="padding: 10px 20px; font-size: 18px; background-color: #4CAF50; color: white; border-radius: 10px;">สร้างบัญชีใหม่</button>
+            <button id="btnLogin" style="padding: 10px 20px; font-size: 18px; background-color: #2196F3; color: white; border-radius: 10px;">เข้าเล่นเกม</button>
+        </div>
+        <h1>Password</h1>
+        
         <svg class="patternlock" id="lock" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <g class="lock-actives"></g>
             <g class="lock-lines"></g>
@@ -79,12 +85,14 @@
                 <circle cx="50" cy="80" r="2"/>
                 <circle cx="80" cy="80" r="2"/>
             </g>
-        <svg>
+        </svg>
+        
     </div>
+    
 
 
     <script src="js/vendor.js"></script>
-
+    <script src="js/auth.js"></script>
     <script src="js/patternlock.js"></script>
 
     <script type="text/javascript">
