@@ -245,3 +245,15 @@ function navigateTo(url) {
         initHomePage();
     }
 })();
+
+window.onload = () => {
+    const currentUser = localStorage.getItem("currentUser");
+    const loginBtn = document.getElementById("loginBtn");
+
+    if (currentUser) {
+        // ถ้าล็อกอินอยู่ เปลี่ยนปุ่มเป็นชื่อน้อง หรือรูป Avatar
+        const [name, avatar] = currentUser.split("_");
+        loginBtn.innerHTML = `สวัสดีน้อง ${name}`;
+        loginBtn.style.backgroundColor = "green";
+    }
+};
