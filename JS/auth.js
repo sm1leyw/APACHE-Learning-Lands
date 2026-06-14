@@ -1,5 +1,5 @@
 // JS/auth.js
-import { db } from "./firebase-config.js";
+import { db } from "./FirebaseConfig.js";
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // ตัวแปรนี้จะเก็บรหัสลากเส้น (คุณต้องเอาค่าจาก Library ลากเส้นมาใส่ตัวแปรนี้)
@@ -12,12 +12,14 @@ window.currentPattern = "";
 document.getElementById("btnSignUp").addEventListener("click", async () => {
     const name = document.getElementById("playerName").value.trim();
     const pattern = window.currentPattern;
+    const avatar = window.selectedAvatar; // ดึงค่า avatar
 
-    if (!name || !pattern) {
-        return alert("ต้องพิมพ์ชื่อ และ ลากเส้นรหัสผ่านก่อนนะ!");
+    if (!name || !pattern || !avatar) {
+        return alert("อ๊ะ! ต้องพิมพ์ชื่อ, เลือกตัวละคร และลากเส้นรหัสผ่านให้ครบก่อนนะจ๊ะ!");
     }
 
-    const userRef = doc(db, "students", name); // ใช้ชื่อเด็กเป็น ID
+    const documentID = name + "_" + avatar; 
+    const userRef = doc(db, "students", documentID);
     const docSnap = await getDoc(userRef);
 
     if (docSnap.exists()) {
@@ -39,12 +41,14 @@ document.getElementById("btnSignUp").addEventListener("click", async () => {
 document.getElementById("btnLogin").addEventListener("click", async () => {
     const name = document.getElementById("playerName").value.trim();
     const pattern = window.currentPattern;
+    const avatar = window.selectedAvatar; // ดึงค่า avatar มา
 
-    if (!name || !pattern) {
-        return alert("ต้องพิมพ์ชื่อ และ ลากเส้นรหัสผ่านก่อนนะ!");
+    if (!name || !pattern || !avatar) {
+        return alert("อ๊ะ! ต้องพิมพ์ชื่อ, เลือกตัวละคร และลากเส้นรหัสผ่านให้ครบก่อนนะจ๊ะ!");
     }
 
-    const userRef = doc(db, "students", name);
+    const documentID = name + "_" + avatar;
+    const userRef = doc(db, "students", documentID);
     const docSnap = await getDoc(userRef);
 
     if (docSnap.exists()) {
@@ -57,7 +61,8 @@ document.getElementById("btnLogin").addEventListener("click", async () => {
             // จำชื่อไว้ในเครื่อง และดึง Progress กลับมา
             localStorage.setItem("currentUser", name);
             localStorage.setItem("magic_thai_progress", userData.magic_thai_progress);
-            
+            localStorage.setItem("selectedAvatar", avatar); // บันทึก avatar ที่เลือก
+
             // สั่งเปลี่ยนหน้าไปที่หน้าแผนที่ด่าน (ใส่ชื่อไฟล์แผนที่ของคุณ)
             window.location.href = "index.html"; 
         } else {

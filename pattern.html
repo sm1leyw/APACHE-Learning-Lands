@@ -23,10 +23,15 @@
             font-family: 'Varela Round', sans-serif;
         }
 
-        .container {
-            margin: auto;
-            height: 100%;
-        }
+
+    .container {
+        margin: auto;
+        height: 100vh; /* บังคับให้สูงแค่เต็มหน้าจอพอดี */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* ช่วยให้จัดกึ่งกลางสวยๆ */
+    }
 
         h1 {
             text-align: center;
@@ -49,6 +54,12 @@
             margin: auto;
             display: block;
         }
+            #lock {
+        width: 90vw;    /* ปรับให้กว้างไม่เกิน 90% ของจอ */
+        max-width: 400px; /* จำกัดความกว้างไม่ให้บานเกินไปในจอคอม */
+        height: 50vh;   /* ลองปรับเป็น 50-60vh ให้เหลือพื้นที่ปุ่มด้านล่าง */
+        padding-bottom: 0; 
+    }
     </style>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -64,6 +75,14 @@
                 <div style="text-align: center; margin: 20px;">
             <input type="text" id="playerName" placeholder="พิมพ์ชื่อเล่นของน้อง" style="font-size: 20px; padding: 10px; border-radius: 10px;">
             <br><br>
+            <div id="avatarSelection" style="margin: 15px 0;">
+                <p style="font-size: 16px; margin-bottom: 10px; font-weight: bold; color: #555;">เลือกตัวละครประจำตัว:</p>
+                <img src="ตัวละคร/จุก.png" class="avatar-img" data-avatar="จุก" alt="จุก">
+                <img src="ตัวละคร/น้อยหน่า.png" class="avatar-img" data-avatar="น้อยหน่า" alt="น้อยหน่า">
+                <img src="ตัวละคร/มานี.png" class="avatar-img" data-avatar="มานี" alt="มานี">
+                <img src="ตัวละคร/สมหมาย.png" class="avatar-img" data-avatar="สมหมาย" alt="สมหมาย">
+                <img src="ตัวละคร/Dreambull(Main).png" class="avatar-img" data-avatar="Dreambull" alt="Dreambull">
+            </div>
             <button id="btnSignUp" style="padding: 10px 20px; font-size: 18px; background-color: #4CAF50; color: white; border-radius: 10px;">สร้างบัญชีใหม่</button>
             <button id="btnLogin" style="padding: 10px 20px; font-size: 18px; background-color: #2196F3; color: white; border-radius: 10px;">เข้าเล่นเกม</button>
         </div>
@@ -91,18 +110,57 @@
     
 
 
+    <style>
+        .avatar-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            background-color: white;
+            object-fit: cover;
+        }
+        .avatar-img.selected {
+            border-color: #FF9800; /* กรอบสีส้มตอนถูกเลือก */
+            transform: scale(1.2); /* ขยายรูปให้ใหญ่ขึ้น */
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+
     <script src="js/vendor.js"></script>
-    <script src="js/auth.js"></script>
     <script src="js/patternlock.js"></script>
+    <script type="module" src="JS/auth.js"></script>
 
     <script type="text/javascript">
-    var e = document.getElementById('lock')
-    var p = new PatternLock(e, {
-        onPattern: function() {
-            this.success()
-        }
-    });
+        // ประกาศตัวแปรมารอรับค่า
+        window.currentPattern = "";
+        window.selectedAvatar = ""; 
+
+        // --- ระบบดักจับการกดเลือก Avatar ---
+        const avatarImages = document.querySelectorAll('.avatar-img');
+        avatarImages.forEach(img => {
+            img.addEventListener('click', function() {
+                // ล้างกรอบสีส้มรูปอื่นทิ้ง
+                avatarImages.forEach(a => a.classList.remove('selected'));
+                // ใส่กรอบสีส้มรูปที่กด
+                this.classList.add('selected');
+                // ดึงชื่อมาเก็บ
+                window.selectedAvatar = this.getAttribute('data-avatar');
+                console.log("เลือกตัวละคร:", window.selectedAvatar);
+            });
+        });
+
+        // --- ระบบลากเส้น Pattern Lock ---
+        var e = document.getElementById('lock');
+        var p = new PatternLock(e, {
+            onPattern: function(patternValue) {
+                window.currentPattern = String(patternValue); 
+                console.log("ลากเส้นได้รหัสแล้ว: ", window.currentPattern);
+                this.success();
+            }
+        });
     </script>
 </body>
-
 </html>
