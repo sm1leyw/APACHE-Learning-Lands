@@ -18,10 +18,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/global-ui.css">
+    <style>
+        #welcomeOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(8px);
+}
+
+.enter-card {
+    width: 450px;
+    padding: 50px 40px;
+
+    text-align: center;
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    color: white;
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.enter-card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.enter-card h1 {
+    margin-bottom: 10px;
+}
+    </style>
 </head>
 <body class="app-page home-page">
-    <div id="userHeader" style="position: absolute; top: 10px; right: 10px;">
-        <button id="loginBtn" onclick="window.location.href='pattern.html'">เข้าสู่ระบบ</button>
+    <div id="welcomeOverlay">
+    <div class="enter-card" onclick="goToPattern()">
+        <h1>APACHE Learning Lands</h1>
+        <p>Click to Enter</p>
+    </div>
     </div>
     <div class="page-background" aria-hidden="true">
         <div class="page-background__fallback"></div>
@@ -229,5 +273,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="JS/index.js"></script>
     <script src="JS/global-ui.js"></script>
+    <script>
+        function goToPattern() {
+    window.location.href = "pattern.html";
+    }
+    </script>
 </body>
 </html>
