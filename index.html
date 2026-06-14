@@ -279,4 +279,19 @@
     }
     </script>
 </body>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const isLoggedIn =
+        localStorage.getItem("apache_auth") === "true";
+
+    if (isLoggedIn) {
+        document.getElementById("welcomeOverlay").style.display = "none";
+    }
+});
+
+function goToPattern() {
+    window.location.href = "pattern.html";
+}
+</script>
 </html>

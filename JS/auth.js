@@ -55,17 +55,17 @@ document.getElementById("btnLogin").addEventListener("click", async () => {
         const userData = docSnap.data();
         
         // เช็กว่ารหัสลากเส้นตรงกับที่เซฟไว้ไหม
-        if (userData.patternCode === pattern) {
-            alert("ยินดีต้อนรับกลับมา! ลุยกันเลย 🚀");
-            
-            // จำชื่อไว้ในเครื่อง และดึง Progress กลับมา
-            localStorage.setItem("currentUser", name);
-            localStorage.setItem("magic_thai_progress", userData.magic_thai_progress);
-            localStorage.setItem("selectedAvatar", avatar); // บันทึก avatar ที่เลือก
+    if (userData.patternCode === pattern) {
+    alert("ยินดีต้อนรับกลับมา! ลุยกันเลย 🚀");
 
-            // สั่งเปลี่ยนหน้าไปที่หน้าแผนที่ด่าน (ใส่ชื่อไฟล์แผนที่ของคุณ)
-            window.location.href = "index.html"; 
-        } else {
+    localStorage.setItem("apache_auth", "true");
+
+    localStorage.setItem("currentUser", name);
+    localStorage.setItem("magic_thai_progress", userData.magic_thai_progress);
+    localStorage.setItem("selectedAvatar", avatar);
+
+    window.location.href = "index.html";
+    } else {
             alert("อ๊ะ! ลากเส้นรหัสผ่านผิดจ้า ลองวาดใหม่นะ ❌");
         }
     } else {
